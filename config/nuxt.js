@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Adonuxt',
+    title: 'Pré Avaliação MPS - SW',
     meta: [
       {
         charset: 'utf-8'
@@ -19,7 +19,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Adonuxt project'
+        content: 'Programa de Pós-Graduação em Computação Aplicada - PPCA'
       }
     ],
     link: [
