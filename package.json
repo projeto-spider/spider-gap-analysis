@@ -25,7 +25,9 @@
     "@adonisjs/lucid": "^4.0.22",
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
+    "buefy": "^0.6.2",
     "cross-env": "^3.1.4",
+    "font-awesome": "^4.7.0",
     "nuxt": "latest",
     "standard": "^8.6.0",
     "youch": "^2.0.4"
@@ -46,7 +48,9 @@
     "eslint-plugin-html": "^2.0.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "node-sass": "^4.7.2",
     "nodemon": "^1.11.0",
+    "sass-loader": "^6.0.6",
     "standard": "^8.6.0"
   }
 }

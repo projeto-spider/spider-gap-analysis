@@ -33,7 +33,10 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~assets/css/main.css'],
+  css: [
+    { src: '@/assets/overrides.scss', lang: 'sass' },
+    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' },
+  ],
   /*
   ** Customize the progress-bar color
   */
@@ -41,5 +44,9 @@ module.exports = {
   /*
   ** Point to resources
   */
-  srcDir: resolve(__dirname, '..', 'resources')
+  srcDir: resolve(__dirname, '..', 'resources'),
+  /*
+  ** Plugins
+  */
+  plugins: ['~plugins/buefy']
 }
