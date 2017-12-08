@@ -36,7 +36,7 @@
           <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
               <ul>
-                <nuxt-link tag="li" to="/">
+                <nuxt-link tag="li" to="/" exact>
                   <a>Home</a>
                 </nuxt-link>
 
