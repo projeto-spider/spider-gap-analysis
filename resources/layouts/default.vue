@@ -41,7 +41,7 @@
                 </nuxt-link>
 
                 <nuxt-link tag="li" to="/organization">
-                  <a>Organizations</a>
+                  <a>Organizações</a>
                 </nuxt-link>
 
                 <nuxt-link tag="li" to="/organizational-unit">
