@@ -30,6 +30,9 @@ module.exports = {
       }
     ]
   },
+  router: {
+    linkActiveClass: 'is-active'
+  },
   /*
   ** Global CSS
   */
