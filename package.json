@@ -26,6 +26,7 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "buefy": "^0.6.2",
+    "cleave.js": "^1.0.7",
     "cross-env": "^3.1.4",
     "font-awesome": "^4.7.0",
     "nuxt": "latest",
