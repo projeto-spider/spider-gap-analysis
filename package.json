@@ -25,6 +25,7 @@
     "@adonisjs/lucid": "^4.0.22",
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
+    "@nuxtjs/axios": "^4.5.0",
     "buefy": "^0.6.2",
     "cep-promise": "^2.0.6",
     "cleave.js": "^1.0.7",

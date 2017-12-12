@@ -49,7 +49,15 @@ module.exports = {
   */
   srcDir: resolve(__dirname, '..', 'resources'),
   /*
+  ** Modules
+  */
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  /*
   ** Plugins
   */
-  plugins: ['~plugins/buefy']
+  plugins: [
+    '~plugins/buefy'
+  ]
 }
