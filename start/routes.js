@@ -15,4 +15,10 @@
 
 const Route = use('Route')
 
+Route.group(() => {
+  Route.resource('organizations', 'OrganizationController').apiOnly()
+})
+  .formats(['json'])
+  .prefix('api')
+
 Route.any('*', 'NuxtController.render')
