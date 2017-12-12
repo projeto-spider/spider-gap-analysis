@@ -26,10 +26,13 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "buefy": "^0.6.2",
+    "cep-promise": "^2.0.6",
     "cleave.js": "^1.0.7",
     "cross-env": "^3.1.4",
     "font-awesome": "^4.7.0",
     "nuxt": "latest",
+    "p-debounce": "^1.0.0",
+    "sqlite3": "^3.1.13",
     "standard": "^8.6.0",
     "youch": "^2.0.4"
   },
