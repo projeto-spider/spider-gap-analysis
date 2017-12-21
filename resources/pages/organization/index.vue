@@ -9,14 +9,18 @@
         <tr>
           <th>ID</th>
           <th>Nome</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="org in organizations">
           <th>{{org.id}}</th>
           <td>
+            {{org.name}}
+          </td>
+          <td>
             <nuxt-link :to="`/organization/${org.id}`">
-              {{org.name}}
+              <button class="button is-primary">Ver</button>
             </nuxt-link>
           </td>
         </tr>
