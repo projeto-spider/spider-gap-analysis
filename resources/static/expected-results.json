@@ -1,0 +1,1164 @@
+[
+  {
+    "id": 1,
+    "processId": 1,
+    "abbr": "GPR 1",
+    "description": "O escopo do trabalho para o projeto é definido",
+    "evidence": "O propósito do processo Gerência de Riscos é identificar, analisar, tratar, monitorar e reduzir continuamente os riscos em nível organizacional e de projeto."
+  },
+  {
+    "id": 2,
+    "processId": 1,
+    "abbr": "GPR 2",
+    "description": "As tarefas e os produtos de trabalho do projeto são dimensionados utilizando métodos apropriados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o tamanho e/ou a complexidade das tarefas e dos artefatos gerados no projeto foram estimados utilizando métodos adequados (ex: baseados na EAP ou estrutura equivalente, em técnicas de estimativa ou em dados históricos)?"
+  },
+  {
+    "id": 3,
+    "processId": 1,
+    "abbr": "GPR 3",
+    "description": "O modelo e as fases do ciclo de vida do projeto são definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  o modelo do ciclo de vida do projeto foi definido, indicando suas fases, as relações de sequência e interdependência entre elas?"
+  },
+  {
+    "id": 4,
+    "processId": 1,
+    "abbr": "GPR 4",
+    "description": "(Até o nível F) O esforço e o custo para a execução das tarefas e dos produtos de trabalho são estimados com base em dados históricos ou referências técnicas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  foram realizadas estimativas de custo e esforço para tarefas e produtos de trabalho com base em dados históricos ou métodos de estimativas e que foram documentadas as suas justificativas?"
+  },
+  {
+    "id": 5,
+    "processId": 1,
+    "abbr": "GPR 4",
+    "description": "(A partir do nível E) O planejamento e as estimativas das tarefas do projeto são feitos baseados no repositório de estimativas e no conjunto de ativos de processo organizacional",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as atividades para realização de estimativas e planejamento, estão baseadas no processo definido para o projeto, nos ativos de processo organizacional e no repositório de medidas da organização?"
+  },
+  {
+    "id": 6,
+    "processId": 1,
+    "abbr": "GPR 5",
+    "description": "O orçamento e o cronograma do projeto, incluindo a definição de marcos e pontos de controle, são estabelecidos e mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) o orçamento e o cronograma foram definidos, revistos e atualizados ao longo do desenvolvimento, conforme necessário?; (ii) o cronograma possui marcos e/ou pontos de controle?; (iii) o cronograma estabelece as dependências entre tarefas?"
+  },
+  {
+    "id": 7,
+    "processId": 1,
+    "abbr": "GPR 6",
+    "description": "Os riscos do projeto são identificados e o seu impacto, probabilidade de ocorrência e prioridade de tratamento são determinados e documentados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) existe uma lista dos riscos identificados para o projeto? (ii) foi realizada uma análise para determinar a probabilidade, o impacto, o grau de importância (exposição) e a prioridade de cada risco?"
+  },
+  {
+    "id": 8,
+    "processId": 1,
+    "abbr": "GPR 7",
+    "description": "Os recursos humanos para o projeto são planejados considerando o perfil e o conhecimento necessários para executá-lo",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) a equipe do projeto foi selecionada a partir das competências requeridas para realizar as atividades do projeto e considerando o perfil dos candidatos?; (ii) foi planejado treinamento, quando necessário?"
+  },
+  {
+    "id": 9,
+    "processId": 1,
+    "abbr": "GPR 8",
+    "description": "(Até o nível F) Os recursos e o ambiente de trabalho necessários para executar o projeto são planejados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram planejados os recursos e o ambiente de trabalho necessários? (obs: aqui trata-se de outros recursos que não recursos humanos)"
+  },
+  {
+    "id": 10,
+    "processId": 1,
+    "abbr": "GPR 8",
+    "description": "(A partir do nível E) Os recursos e o ambiente de trabalho necessários para executar os projetos são planejados a partir dos ambientes padrão de trabalho da organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  existe um plano para gerência de dados, que relacione todos os documentos gerados no projeto, sua distribuição, mídia para armazenamento, forma de proteção (segurança e sigilo) e recuperação dos dados?"
+  },
+  {
+    "id": 11,
+    "processId": 1,
+    "abbr": "GPR 9",
+    "description": "Os dados relevantes do projeto são identificados e planejados quanto à forma de coleta, armazenamento e distribuição. Um mecanismo é estabelecido para acessá-los, incluindo, se pertinente, questões de privacidade e segurança",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  existe um plano para gerência de dados, que relacione todos os documentos gerados no projeto, sua distribuição, mídia para armazenamento, forma de proteção (segurança e sigilo) e recuperação dos dados?"
+  },
+  {
+    "id": 12,
+    "processId": 1,
+    "abbr": "GPR 10",
+    "description": "Um plano geral para a execução do projeto é estabelecido com a integração de planos específicos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as informações de planejamento do projeto foram documentadas, organizadas e relacionadas entre si, de forma a comporem o plano de projeto?"
+  },
+  {
+    "id": 13,
+    "processId": 1,
+    "abbr": "GPR 11",
+    "description": "A viabilidade de atingir as metas do projeto é explicitamente avaliada considerando restrições e recursos disponíveis. Se necessário, ajustes são realizados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  a viabilidade do projeto foi avaliada de forma explícita após a elaboração do plano do projeto,  e considerando critérios como os objetivos do projeto, os recursos financeiros, técnicos, humanos, bem como das restrições impostas pelo cliente?"
+  },
+  {
+    "id": 14,
+    "processId": 1,
+    "abbr": "GPR 12",
+    "description": "O Plano do Projeto é revisado com todos os interessados e o compromisso com ele é obtido e mantido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  há registro de: (i) que todos os interessados tomaram conhecimento, revisaram e se comprometeram com o planejamento do projeto?; (ii) houve recomprometimento conforme necessário?"
+  },
+  {
+    "id": 15,
+    "processId": 1,
+    "abbr": "GPR 13",
+    "description": "O escopo, as tarefas, as estimativas, o orçamento e o cronograma do projeto são monitorados em relação ao planejado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação ao escopo, prazo, esforço, custos e cronograma?"
+  },
+  {
+    "id": 16,
+    "processId": 1,
+    "abbr": "GPR 14",
+    "description": "Os recursos materiais e humanos bem como os dados relevantes do projeto são monitorados em relação ao planejado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação ao escopo aos recursos materiais, humanos e em relação aos dados relevantes do projeto?"
+  },
+  {
+    "id": 17,
+    "processId": 1,
+    "abbr": "GPR 15",
+    "description": "Os riscos são monitorados em relação ao planejado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação aos riscos?"
+  },
+  {
+    "id": 18,
+    "processId": 1,
+    "abbr": "GPR 16",
+    "description": "O envolvimento das partes interessadas no projeto é planejado,monitorado e mantido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o que foi planejado em relação ao envolvimento das partes interessadas foi monitorado e se existe evidência de que os compromissos assumidos foram cumpridos ou negociados?"
+  },
+  {
+    "id": 19,
+    "processId": 1,
+    "abbr": "GPR 17",
+    "description": "Revisões são realizadas em marcos do projeto e conforme estabelecido no planejamento",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  ocorreram revisões nos marcos do projeto e em outros pontos estabelecidos no planejamento, que complementam o acompanhamento do dia-a-dia com uma visâo mais ampla e abrangente do projeto? "
+  },
+  {
+    "id": 20,
+    "processId": 1,
+    "abbr": "GPR 18",
+    "description": "Registros de problemas identificados e o resultado da análise de questões pertinentes, incluindo dependências críticas, são estabelecidos e tratados com as partes interessadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem registros de identificação e análise dos problemas ocorridos no projeto e de que estes problemas foram  tratados com os interessados? "
+  },
+  {
+    "id": 21,
+    "processId": 1,
+    "abbr": "GPR 19",
+    "description": "Ações para corrigir desvios em relação ao planejado e para prevenir a repetição dos problemas identificados são estabelecidas,implementadas e acompanhadas até a sua conclusão",
+    "evidence": ""
+  },
+  {
+    "id": 22,
+    "processId": 1,
+    "abbr": "GPR 20",
+    "description": "(A partir do nível E) Equipes envolvidas no projeto são estabelecidas e mantidas a partir das regras e diretrizes para estruturação, formação e atuação",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) as equipes envolvidas no projeto foram definidas a partir das regras e diretrizes organizacionais? (ii) foram mapeados os relacionamentos entre as equipes internas e externas ao projeto (da própria organização e do cliente), conforme pertinente?"
+  },
+  {
+    "id": 23,
+    "processId": 1,
+    "abbr": "GPR 21",
+    "description": "(A partir do nível E) Experiências relacionadas aos processos contribuem para os ativos de processo organizacional",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram coletadas, a partir dos projetos, potenciais contribuições aos ativos de processo? "
+  },
+  {
+    "id": 24,
+    "processId": 1,
+    "abbr": "GPR 22",
+    "description": "(A partir do nível E) Um processo definido para o projeto é estabelecido de acordo com a estratégia para adaptação do processo da organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi definido um processo para o projeto, a partir dos processos-padrão da organização e das diretrizes estabelecidas para a adaptação do processo-padrão aos projetos?"
+  },
+  {
+    "id": 25,
+    "processId": 1,
+    "abbr": "GPR 22",
+    "description": "(A partir do nível B) Os objetivos de qualidade e de desempenho do processo definido para o projeto são estabelecidos e mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi definido um processo para o projeto, a partir dos processos-padrão da organização e das diretrizes estabelecidas para a adaptação do processo-padrão aos projetos?"
+  },
+  {
+    "id": 26,
+    "processId": 1,
+    "abbr": "GPR 23",
+    "description": "(A partir do nível B) O processo definido para o projeto que o possibilita atender seus objetivos de qualidade e de desempenho é composto com base em técnicas estatísticas e outras técnicas quantitativas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) existem, para o projeto, objetivos especificados quantitativamente relacionados a atributos de desempenho do processo e a atributos do produto resultante do processo? (ii) esses objetivos foram revisados e atualizados em função de mudanças no negócio, na organização, no desempenho ou no projeto?"
+  },
+  {
+    "id": 27,
+    "processId": 1,
+    "abbr": "GPR 24",
+    "description": "(A partir do nível B) Subprocessos e atributos críticos para avaliar o desempenho e que estão relacionados ao alcance dos objetivos de qualidade e de desempenho do processo do projeto são selecionados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) foram selecionados subprocessos adequados para compor o processo definido para o projeto? (ii) esta seleção considerou critérios predefinidos, entre eles sua estabilidade histórica e sua capacidade? (iii) que foram utilizadas técnicas estatísticas e outras técnicas quantitativas para esta seleção?"
+  },
+  {
+    "id": 28,
+    "processId": 1,
+    "abbr": "GPR 25",
+    "description": "(A partir do nível B) Medidas e técnicas analíticas são selecionadas para serem utilizadas na gerência quantitativa",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) a seleção dos subprocessos do processo definido para o projeto para serem gerenciados quantitativa e estatisticamente foi feita baseada nos critérios definidos?; (ii) foram identificados os atributos por meio dos quais cada subprocesso foi gerenciado estatisticamente?"
+  },
+  {
+    "id": 29,
+    "processId": 1,
+    "abbr": "GPR 26",
+    "description": "(A partir do nível B) O desempenho dos subprocessos escolhidos para gerência quantitativa é monitorado usando técnicas estatísticas outras técnicas quantitativas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) foi determinada a capacidade dos subprocessos escolhidos para gerência quantitativa? (ii) o desempenho do subprocesso foi monitorado com relação à capacidade de satisfazer os objetivos de qualidade e desempenho do projeto? (iii) foram utilizadas técnicas estatísticas e outras técnicas quantitativas nesta monitoração?"
+  },
+  {
+    "id": 30,
+    "processId": 1,
+    "abbr": "GPR 27",
+    "description": "(A partir do nível B) O projeto é gerenciado usando técnicas estatísticas e outras técnicas quantitativas para determinar se seus objetivos de qualidade e de desempenho do processo serão atingidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado quanto ao atingimento de seus objetivos de qualidade para o produto e de desempenho dos processos que estão sendo gerenciados estatistica e quantitativamente?"
+  },
+  {
+    "id": 31,
+    "processId": 1,
+    "abbr": "GPR 28",
+    "description": "(A partir do nível B) Questões que afetam os objetivos de qualidade e de desempenho do processo do projeto são alvo de análise de causa raiz",
+    "evidence": "As evidências apresentadas para este questões que afetam os objetivos de qualidade e de desempenho do processo do projeto são alvo de análise de causa raiz?"
+  },
+  {
+    "id": 32,
+    "processId": 2,
+    "abbr": "GRE 1",
+    "description": "O entendimento dos requisitos é obtido junto aos fornecedores de requisitos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (ii) que as pessoas autorizadas a definir e a alterar requisitos foram identificadas? (ii) que existe um documento de requisitos que represente seu entendimento? (iii) que os requisitos foram aceitos pelo cliente ou um representante?"
+  },
+  {
+    "id": 33,
+    "processId": 2,
+    "abbr": "GRE 2",
+    "description": "Os requisitos são avaliados com base em critérios objetivos e um comprometimento da equipe técnica com estes requisitos é obtido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi obtido e registrado um comprometimento formal da equipe técnica com os requisitos aprovados? (ii) que foram definidos critérios para análise de requisitos e que estes foram usados como base para a avaliação e a aceitação dos requisitos do projeto (por parte da equipe técnica)? (iii) que um novo comprometimento da equipe técnica com os requisitos foi obtido e registrado quando houve mudanças nos requisitos?"
+  },
+  {
+    "id": 34,
+    "processId": 2,
+    "abbr": "GRE 3",
+    "description": "A rastreabilidade bidirecional entre os requisitos e os produtos de trabalho é estabelecida e mantida",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi criada e mantida, ao longo do projeto, a rastreabilidade bidirecional entre os requisitos e demais produtos de trabalho, incluindo os planos do projeto e as unidades de código?"
+  },
+  {
+    "id": 35,
+    "processId": 2,
+    "abbr": "GRE 4",
+    "description": "Revisões em planos e produtos de trabalho do projeto são realizadas visando identificar e corrigir inconsistências em relação aos requisitos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foram executadas revisões para identificar inconsistências em planos e demais produtos de trabalho do projeto, com base nos requisitos? (ii) que foram executadas ações para corrigir inconsistências identificadas ao longo do projeto?"
+  },
+  {
+    "id": 36,
+    "processId": 2,
+    "abbr": "GRE 5",
+    "description": "Mudanças nos requisitos são gerenciadas ao longo do projeto",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que existe um histórico das solicitações de mudança em requisitos do projeto, disponível para a equipe do projeto? (ii) que foi realizada uma análise do impacto destas mudanças antes de sua implementação? (iii) que a mudança foi incorporada ao planejamento do projeto antes de ser executada?"
+  },
+  {
+    "id": 37,
+    "processId": 3,
+    "abbr": "AQU 1",
+    "description": "As necessidades de aquisição, as metas, os critérios de aceitação do produto, os tipos e a estratégia de aquisição são definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram especificadas: (i) as necessidades que motivam a aquisição? (ii) as metas desta aquisição? (iii)  os critérios de aceitação dos produtos resultantes da aquisição? (iv) os tipos de aquisição (por exemplo, pacote, terceirização de serviço) e as estratégias a serem adotadas?"
+  },
+  {
+    "id": 38,
+    "processId": 3,
+    "abbr": "AQU 2",
+    "description": "Os critérios de seleção do fornecedor são estabelecidos e usados para avaliar os potenciais fornecedores",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i)  que os critérios de seleção do fornecedor foram definidos? (ii) que estes critérios foram usados para avaliar os potenciais fornecedores?"
+  },
+  {
+    "id": 39,
+    "processId": 3,
+    "abbr": "AQU 3",
+    "description": "O fornecedor é selecionado com base na avaliação das propostas e dos critérios estabelecidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que o fornecedor foi selecionado a partir do conjunto de potenciais fornecedores? (ii)  que a seleção baseou-se na avaliação das propostas e nos critérios de seleção de fornecedores previamente estabelecidos?"
+  },
+  {
+    "id": 40,
+    "processId": 3,
+    "abbr": "AQU 4",
+    "description": "Um acordo que expresse claramente as expectativas, responsabilidades e obrigações de ambas as partes (cliente e fornecedor) é estabelecido e negociado entre elas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi estabelecido um acordo documentado entre o cliente e o fornecedor que expresse claramente as expectativas, as responsabilidades e as obrigações de ambas as partes? (ii) que, quando aplicável, este acordo foi revisto e refletiu mudanças ocorridas ao longo do tempo?"
+  },
+  {
+    "id": 41,
+    "processId": 3,
+    "abbr": "AQU 5",
+    "description": "Um produto que satisfaça a necessidade expressa pelo cliente é adquirido baseado na análise dos potenciais candidatos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  o produto foi adquirido a partir da análise dos potenciais produtos candidatos?"
+  },
+  {
+    "id": 42,
+    "processId": 3,
+    "abbr": "AQU 6",
+    "description": "A aquisição é monitorada de forma que as condições especificadas sejam atendidas, tais como custo, cronograma e qualidade, gerando ações corretivas quando necessário",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que as atividades para monitoração do fornecedor foram conduzidas? (ii) que, quando necessário, ações corretivas foram registradas e acompanhadas até a sua conclusão?"
+  },
+  {
+    "id": 43,
+    "processId": 3,
+    "abbr": "AQU 7",
+    "description": "O produto é entregue e avaliado em relação ao acordado e os resultados são documentados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que  o produto foi entregue, avaliado em relação aos critérios de aceitação e demais termos do acordo estabelecido, para, então, ser efetivamente aceito? (ii) que os resultados da avaliação para a aceitação foram documentados?"
+  },
+  {
+    "id": 44,
+    "processId": 3,
+    "abbr": "AQU 8",
+    "description": "O produto adquirido é incorporado ao projeto, caso pertinente",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que, caso pertinente, houve a incorporação do produto ao projeto?"
+  },
+  {
+    "id": 45,
+    "processId": 4,
+    "abbr": "GCO 1",
+    "description": "Um Sistema de Gerência de Configuração é estabelecido e mantido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi estabelecido um sistema de gerência de configuração? (ii) que o sistema de gerência de configuração foi mantido ao longo do tempo?"
+  },
+  {
+    "id": 46,
+    "processId": 4,
+    "abbr": "GCO 2",
+    "description": "Os itens de configuração são identificados com base em critérios estabelecidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os itens que devem estar sob gerência de configuração foram identificados a partir de critérios estabelecidos, bem como se foram definidos o nível de controle desejado para cada item e o momento de aplicá-lo?"
+  },
+  {
+    "id": 47,
+    "processId": 4,
+    "abbr": "GCO 3",
+    "description": "Os itens de configuração sujeitos a um controle formal são colocados sob baseline",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os itens de configuração sujeitos a um controle formal foram colocados sob baseline?"
+  },
+  {
+    "id": 48,
+    "processId": 4,
+    "abbr": "GCO 4",
+    "description": "A situação dos itens de configuração e das baselines é registrada ao longo do tempo e disponibilizada",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) existe registro da situação dos itens de configuração? ; (ii) existe um histórico de sua evolução ao longo do tempo, possibilitando identificar a versão de cada item? (iii) é possível identificar, diferenciar e recuperar o conteúdo das baselines geradas?"
+  },
+  {
+    "id": 49,
+    "processId": 4,
+    "abbr": "GCO 5",
+    "description": "Modificações em itens de configuração são controladas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que as solicitações de mudança foram registradas, analisadas quanto ao impacto gerado, acompanhadas até a sua conclusão e disponibilizadas? (ii) que existiu controle das solicitações de mudança atendidas e disponibilizadas nas baselines? (iii) que a liberação de itens a serem modificados e a incorporação das versões modificadas destes itens foram controladas?"
+  },
+  {
+    "id": 50,
+    "processId": 4,
+    "abbr": "GCO 6",
+    "description": "O armazenamento, o manuseio e a liberação de itens de configuração e baselines são controlados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os itens de configuração e as baselines foram armazenados no sistema e disponibilizados para os interessados, conforme as permissões de acesso e manuseio estabelecidas? (ii) que as liberações de itens de configuração e baselines foram realizadas de maneira controlada?"
+  },
+  {
+    "id": 51,
+    "processId": 4,
+    "abbr": "GCO 7",
+    "description": "Auditorias de configuração são realizadas objetivamente para assegurar que as baselines e os itens de configuração estejam íntegros, completos e consistentes",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foram realizadas auditorias de gerência de configuração conforme planejado? (ii) que as auditorias avaliaram se as baselines e os itens de configuração estavam íntegros, completos, corretos e consistentes?"
+  },
+  {
+    "id": 52,
+    "processId": 5,
+    "abbr": "GQA 1",
+    "description": "A aderência dos produtos de trabalho aos padrões, procedimentos e requisitos aplicáveis é avaliada objetivamente, antes dos produtos serem entregues e em marcos predefinidos ao longo do ciclo de vida do projeto",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem registros de avaliações objetivas dos produtos de trabalho gerados em relação a padrões, procedimentos e requisitos aplicáveis, antes dos produtos serem entregues e nos marcos definidos para o projeto? Obs: avaliações objetivas são realizadas por um grupo que não esteve envolvido diretamente na elaboração desses produtos de trabalho com base em critérios que minimizem a subjetividade e o viés do revisor."
+  },
+  {
+    "id": 53,
+    "processId": 5,
+    "abbr": "GQA 2",
+    "description": "A aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem registros de avaliações objetivas dos processos executados em relação a descrições de processo, padrões e procedimentos, ao longo do ciclo de vida? Obs: avaliações objetivas são realizadas por um grupo que não esteve envolvido diretamente na execução destas atividades com base em critérios que minimizem a subjetividade e o viés do revisor."
+  },
+  {
+    "id": 54,
+    "processId": 5,
+    "abbr": "GQA 3",
+    "description": "Os problemas e as não-conformidades são identificados, registrados e comunicados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que  há registros dos problemas e das não-conformidades identificadas nas avaliações e que estes são comunicados aos responsáveis pelos produtos/processos aplicáveis?"
+  },
+  {
+    "id": 55,
+    "processId": 5,
+    "abbr": "GQA 4",
+    "description": "Ações corretivas para as não-conformidades são estabelecidas e acompanhadas até as suas efetivas conclusões, Quando necessário, o escalamento das ações corretivas para níveis superiores é realizado, de forma a garantir sua solução",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foram definidas ações corretivas para as não-conformidades e que elas foram acompanhadas até a sua conclusão? (ii) que, quando necessário, as não-conformidades não resolvidas foram escalonadas para níveis superiores visando a efetivação das ações corretivas, conforme mecanismo estabelecido? "
+  },
+  {
+    "id": 56,
+    "processId": 6,
+    "abbr": "GPP 1",
+    "description": "As oportunidades de negócio, as necessidades e os investimentos são identificados, qualificados, priorizados e selecionados em relação aos objetivos estratégicos da organização por meio de critérios objetivos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que as oportunidades de negócio, necessidades e investimentos foram registrados e decisões foram tomadas após a realização de sua qualificação, priorização e seleção? (ii) que os as decisões foram tomadas com base em critérios objetivos alinhados aos objetivos estratégicos da organização? (iii) que existe registro da decisão tomada? "
+  },
+  {
+    "id": 57,
+    "processId": 6,
+    "abbr": "GPP 2",
+    "description": "Os recursos e orçamentos para cada projeto são identificados e alocados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificados os recursos (pessoas, instalações, ferramentas, entre outros) e o orçamento necessários para a execução dos projetos, bem como se estes foram alocados para os projetos?"
+  },
+  {
+    "id": 58,
+    "processId": 6,
+    "abbr": "GPP 3",
+    "description": "A responsabilidade e autoridade pelo gerenciamento dos projetos são estabelecidas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que, para os projetos aprovados, foi identificado o responsável pelo seu gerenciamento, estabelecendo sua autoridade e suas responsabilidades em relação ao projeto?"
+  },
+  {
+    "id": 59,
+    "processId": 6,
+    "abbr": "GPP 4",
+    "description": "O portfólio é monitorado em relação aos critérios que foram utilizados para a priorização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) houve monitoração do portfólio? (ii) são considerados os critérios utilizados para a priorização, conforme pertinente?"
+  },
+  {
+    "id": 60,
+    "processId": 6,
+    "abbr": "GPP 5",
+    "description": "Ações para corrigir desvios no portfólio e para prevenir a repetição dos problemas identificados são estabelecidas, implementadas e acompanhadas até a sua conclusão",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) em decorrência da monitoração do portfólio foram tomadas ações para resolução e/ou prevenção de problemas? (ii) estas ações foram acompanhadas até a sua conclusão? (iii) mecanismos de escalonamento foram utilizados quando pertinente?"
+  },
+  {
+    "id": 61,
+    "processId": 6,
+    "abbr": "GPP 6",
+    "description": "Os conflitos sobre recursos entre projetos são tratados e resolvidos, de acordo com os critérios utilizados para a priorização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) quando surgiram conflitos em relação a recursos compartilhados entre os projetos, estes foram tratados e resolvidos? (ii) são considerados os critérios utilizados para a priorização, conforme pertinente?"
+  },
+  {
+    "id": 62,
+    "processId": 6,
+    "abbr": "GPP 7",
+    "description": "Projetos que atendem aos acordos e requisitos que levaram à sua aprovação são mantidos, e os que não atendem são redirecionados ou cancelados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que análises sobre o portfólio de projetos são realizadas periodicamente de forma a identificar se os projetos em andamento continuam a atender aos seus objetivos ou se existe a necessidade de replanejamento e, eventualmente, até de cancelamento?"
+  },
+  {
+    "id": 63,
+    "processId": 6,
+    "abbr": "GPP 8",
+    "description": "A situação do portfólio de projetos é comunicada para as partes interessadas, com periodicidade definida ou quando o portfólio for alterado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que houve comunicação da situação do portfólio de projetos aos interessados?"
+  },
+  {
+    "id": 64,
+    "processId": 7,
+    "abbr": "MED 1",
+    "description": "Objetivos de medição são estabelecidos e mantidos a partir dos objetivos de negócio da organização e das necessidades de informação de processos técnicos e gerenciais",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os objetivos da organização e as necessidades de informação de processos técnicos e gerenciais foram identificados? (ii) que os objetivos de medição para atender a estas demandas foram estabelecidos e mantidos ao longo do tempo?"
+  },
+  {
+    "id": 65,
+    "processId": 7,
+    "abbr": "MED 2",
+    "description": "Um conjunto adequado de medidas, orientado pelos objetivos de medição, é identificado e definido, priorizado, documentado, revisado e, quando pertinente, atualizado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi definido um conjunto de medidas a partir dos objetivos de medição? (ii) que este conjunto de medidas foi documentado e priorizado? (iii) que foi revisado e atualizado, quando necessário?"
+  },
+  {
+    "id": 66,
+    "processId": 7,
+    "abbr": "MED 3",
+    "description": "Os procedimentos para a coleta e o armazenamento de medidas são especificados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foram definidos os procedimentos para a coleta das medidas (através de atributos como, por exemplo, periodicidade da coleta, responsável, ferramentas etc,)? (ii) que foram especificados os procedimentos necessários para o armazenamento?"
+  },
+  {
+    "id": 67,
+    "processId": 7,
+    "abbr": "MED 4",
+    "description": "Os procedimentos para a análise das medidas são especificados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram definidos os procedimentos necessários para a análise das medidas coletadas (através de atributos como, por exemplo, periodicidade da análise, responsável, ferramentas etc.)?"
+  },
+  {
+    "id": 68,
+    "processId": 7,
+    "abbr": "MED 5",
+    "description": "Os dados requeridos são coletados e analisados",
+    "evidence": "Evidências deste resultado permitem avaliar se os dados de medições foram efetivamente coletados e analisados pelos responsáveis, conforme definido?"
+  },
+  {
+    "id": 69,
+    "processId": 7,
+    "abbr": "MED 6",
+    "description": "Os dados e os resultados das análises são armazenados",
+    "evidence": "Evidências deste resultado permitem avaliar se os dados e os resultados de análises foram registrados e armazenados conforme especificado, juntamente com informações de contexto suficientes para sua interpretação?"
+  },
+  {
+    "id": 70,
+    "processId": 7,
+    "abbr": "MED 7",
+    "description": "Os dados e os resultados das análises são comunicados aos interessados e são utilizados para apoiar decisões",
+    "evidence": "Evidências deste resultado permitem avaliar se os resultados da medição foram comunicados aos interessados de forma a apoiar decisões na organização e nos projetos, conforme pertinente?"
+  },
+  {
+    "id": 71,
+    "processId": 8,
+    "abbr": "AMP 1",
+    "description": "A descrição das necessidades e os objetivos dos processos da organização são estabelecidos e mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os objetivos dos processos padrão da organização e suas necessidades foram descritos e são atualizados, quando pertinente?"
+  },
+  {
+    "id": 72,
+    "processId": 8,
+    "abbr": "AMP 2",
+    "description": "As informações e os dados relacionados ao uso dos processos padrão para projetos específicos existem e são mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as informações e os dados relacionados à adaptação e à utilização de um processo padrão da organização para projetos específicos foram gerados e estão armazenados?"
+  },
+  {
+    "id": 73,
+    "processId": 8,
+    "abbr": "AMP 3",
+    "description": "Avaliações dos processos padrão da organização são realizadas para identificar seus pontos fortes, pontos fracos e oportunidades de melhoria",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que são realizadas avaliações periódicas dos processos padrão da organização que possibilitem a identificação e o entendimento de seus pontos fortes, pontos fracos e oportunidades de melhoria?"
+  },
+  {
+    "id": 74,
+    "processId": 8,
+    "abbr": "AMP 4",
+    "description": "Registros das avaliações realizadas são mantidos acessíveis",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que há registros ou relatórios de avaliações dos processos padrão da organização e se estes estão acessíveis aos interessados?"
+  },
+  {
+    "id": 75,
+    "processId": 8,
+    "abbr": "AMP 5",
+    "description": "Os objetivos de melhoria dos processos são identificados e priorizados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificados e priorizados os objetivos de melhoria dos processos e ativos de processo organizacional?"
+  },
+  {
+    "id": 76,
+    "processId": 8,
+    "abbr": "AMP 6",
+    "description": "Um plano de implementação de melhorias nos processos é definido e executado, e os efeitos desta implementação são monitorados e confirmados com base nos objetivos de melhoria",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que existe um plano de implementação de melhorias nos processos organizacionais, definido com base nos objetivos de melhoria? (ii) que este plano foi executado e seus efeitos foram monitorados e analisados?"
+  },
+  {
+    "id": 77,
+    "processId": 8,
+    "abbr": "AMP 7",
+    "description": "Ativos de processo organizacional são implantados na organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a implantação dos ativos de processo organizacional e suas alterações é realizada de forma planejada e controlada, considerando sua adequação?"
+  },
+  {
+    "id": 78,
+    "processId": 8,
+    "abbr": "AMP 8",
+    "description": "Os processos padrão da organização são utilizados em projetos a serem iniciados e, se pertinente, em projetos em andamento",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os projetos iniciados após a implantação dos ativos de processo organizacional utilizaram os processos padrão da organização? (ii) que os projetos em andamento após a implantação também utilizaram os ativos e as suas alterações, quando pertinente?"
+  },
+  {
+    "id": 79,
+    "processId": 8,
+    "abbr": "AMP 9",
+    "description": "A implementação dos processos padrão da organização e o uso dos ativos de processo organizacional nos projetos são monitorados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem registros de monitoração da implementação dos processos padrão da organização e do uso dos ativos de processo organizacional, contendo informações sobre a sua utilização nos projetos?"
+  },
+  {
+    "id": 80,
+    "processId": 8,
+    "abbr": "AMP 10",
+    "description": "Experiências relacionadas aos processos são incorporadas aos ativos de processo organizacional",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as experiências relacionadas ao uso dos processos, tais como, por exemplo, produtos de trabalho, lições aprendidas e melhores práticas, foram documentadas e incluídas como ativos de processo organizacional?"
+  },
+  {
+    "id": 81,
+    "processId": 9,
+    "abbr": "DFP 1",
+    "description": "Um conjunto definido de processos padrão é estabelecido e mantido, juntamente com a indicação da aplicabilidade de cada processo",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os processos-padrão utilizados pela organização foram definidos, incluindo a identificação de quando são aplicáveis?; (ii) que estes processos-padrão e sua aplicação são atualizados, quando necessário?"
+  },
+  {
+    "id": 82,
+    "processId": 9,
+    "abbr": "DFP 2",
+    "description": "Uma biblioteca de ativos de processo organizacional é estabelecida e mantida",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existe uma biblioteca de ativos na organização na qual são mantidos os processos padrão definidos e que esta é atualizada, quando necessário?"
+  },
+  {
+    "id": 83,
+    "processId": 9,
+    "abbr": "DFP 3",
+    "description": "Tarefas, atividades, papéis e produtos de trabalho associados aos processos padrão são identificados e detalhados, juntamente com o desempenho esperado do processo",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os processos padrão foram definidos, identificando as tarefas, atividades, papéis envolvidos e produtos de trabalho (entradas e/ou saídas)? (ii) que foi definido o desempenho esperado para estes processos?"
+  },
+  {
+    "id": 84,
+    "processId": 9,
+    "abbr": "DFP 4",
+    "description": "As descrições dos modelos de ciclo de vida a serem utilizados nos projetos da organização são estabelecidas e mantidas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os modelos de ciclo de vida que foram selecionados para uso na organização, de forma a atender à variedade de projetos, foram descritos, e que esta definição foi mantida conforme necessário?"
+  },
+  {
+    "id": 85,
+    "processId": 9,
+    "abbr": "DFP 5",
+    "description": "Uma estratégia para adaptação do processo padrão é desenvolvida considerando as necessidades dos projetos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem critérios e guias para adaptação do processo padrão da organização de forma a atender às necessidades específicas de um projeto?"
+  },
+  {
+    "id": 86,
+    "processId": 9,
+    "abbr": "DFP 6",
+    "description": "O repositório de medidas da organização é estabelecido e mantido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi estabelecido um repositório de medidas para a organização e que este foi mantido?"
+  },
+  {
+    "id": 87,
+    "processId": 9,
+    "abbr": "DFP 7",
+    "description": "Os ambientes padrão de trabalho da organização são estabelecidos e mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram estabelecidos ambientes padrão de trabalho da organização e que estes foram mantidos?"
+  },
+  {
+    "id": 88,
+    "processId": 9,
+    "abbr": "DFP 8",
+    "description": "Regras e diretrizes para a estruturação, formação e atuação de equipes são estabelecidas e mantidas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram estabelecidas regras e diretrizes para a estruturação, formação e atuação das equipes na organização e que estas foram mantidas?"
+  },
+  {
+    "id": 89,
+    "processId": 10,
+    "abbr": "GRH 1",
+    "description": "As necessidades estratégicas da organização e dos projetos são revistas para identificar recursos, conhecimentos e habilidades requeridos e, de acordo com a necessidade, planejar como desenvolvê-los ou contratá-los",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) foi realizada uma revisão para identificar as necessidades de recursos, conhecimentos e habilidades de acordo com as estratégias da organização e dos projetos? (ii) foi planejado como desenvolver ou contratar estes recursos, conhecimentos e habilidades?"
+  },
+  {
+    "id": 90,
+    "processId": 10,
+    "abbr": "GRH 2",
+    "description": "Indivíduos com as habilidades e competências requeridas são identificados e recrutados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a força de trabalho é constituída por indivíduos identificados e recrutados com base nas habilidades e competências requeridas pela organização?"
+  },
+  {
+    "id": 91,
+    "processId": 10,
+    "abbr": "GRH 3",
+    "description": "As necessidades de treinamento que são responsabilidade da organização são identificadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a organização identificou dentre as suas necessidades estratégicas de treinamento, as que estarão sob sua responsabilidade?"
+  },
+  {
+    "id": 92,
+    "processId": 10,
+    "abbr": "GRH 4",
+    "description": "Uma estratégia de treinamento é definida, com o objetivo de atender às necessidades de treinamento dos projetos e da organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a organização possui uma estratégia de treinamento alinhada aos seus objetivos que contempla as necessidades de treinamento dos projetos e da própria organização?"
+  },
+  {
+    "id": 93,
+    "processId": 10,
+    "abbr": "GRH 5",
+    "description": "Um plano tático de treinamento é definido, com o objetivo de implementar a estratégia de treinamento",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi definido um plano tático para suprir as necessidades de treinamento da organização e dos projetos e que este está alinhado à estratégia de treinamento definida?"
+  },
+  {
+    "id": 94,
+    "processId": 10,
+    "abbr": "GRH 6",
+    "description": "Os treinamentos identificados como sendo responsabilidade da organização são conduzidos e registrados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que os treinamentos identificados como de responsabilidade da organização foram planejados a partir da estratégia e do plano tático de treinamento? (ii) que estes treinamentos foram realizados e registrados?"
+  },
+  {
+    "id": 95,
+    "processId": 10,
+    "abbr": "GRH 7",
+    "description": "A efetividade do treinamento é avaliada",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a efetividade do treinamento foi avaliada em relação aos objetivos pelos quais o treinamento foi realizado?"
+  },
+  {
+    "id": 96,
+    "processId": 10,
+    "abbr": "GRH 8",
+    "description": "Critérios objetivos para avaliação do desempenho de grupos e indivíduos são definidos e monitorados para prover informações sobre este desempenho e melhorá-lo",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que existe registro de critérios objetivos para avaliar indivíduos e grupos? (ii) que existe registro de que foram conduzidas avaliações com base nestes critérios e que os resultados destas avaliações são utilizados para melhorar o desempenho dos indivíduos e grupos?"
+  },
+  {
+    "id": 97,
+    "processId": 10,
+    "abbr": "GRH 9",
+    "description": "Uma estratégia apropriada de gerência de conhecimento é planejada, estabelecida e mantida para compartilhar informações na organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que uma estratégia para gerenciar os ativos de conhecimento da organização foi planejada, é executada e mantida, de forma a compartilhar as informações na organização?"
+  },
+  {
+    "id": 98,
+    "processId": 10,
+    "abbr": "GRH 10",
+    "description": "Uma rede de especialistas na organização é estabelecida e um mecanismo de apoio à troca de informações entre os especialistas e os projetos é implementado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que há na organização a identificação de uma rede de especialistas? (ii) que foi implementado um mecanismo de apoio ao fluxo das informações providas por esta rede para os projetos?"
+  },
+  {
+    "id": 99,
+    "processId": 10,
+    "abbr": "GRH 11",
+    "description": "O conhecimento é disponibilizado e compartilhado na organização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o conhecimento foi disponibilizado e compartilhado entre os membros da organização?"
+  },
+  {
+    "id": 100,
+    "processId": 11,
+    "abbr": "GRU 1",
+    "description": "Uma estratégia de gerenciamento de ativos é documentada, contemplando a definição de ativo reutilizável, além dos critérios para aceitação, certificação, classificação, descontinuidade e avaliação de ativos reutilizáveis",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que a organização definiu as necessidades inerentes à adoção de um processo de gerência de reutilização, bem como sua utilização? (ii) que os critérios foram especificados, documentados e  revisados com os responsáveis, na organização, pela gerência de ativos reutilizáveis?"
+  },
+  {
+    "id": 101,
+    "processId": 11,
+    "abbr": "GRU 2",
+    "description": "Um mecanismo de armazenamento e recuperação de ativos reutilizáveis é implantado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi implantada uma biblioteca de ativos reutilizáveis que é utilizada pelos membros da organização? (ii) que foram estabelecidos os mecanismos para armazenamento e recuperação de ativos a partir desta biblioteca?"
+  },
+  {
+    "id": 102,
+    "processId": 11,
+    "abbr": "GRU 3",
+    "description": "Os dados de utilização dos ativos reutilizáveis são registrados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existe registro dos dados sobre a reutilização de ativos a partir da biblioteca de ativos reutilizáveis?"
+  },
+  {
+    "id": 103,
+    "processId": 11,
+    "abbr": "GRU 4",
+    "description": "Os ativos reutilizáveis são periodicamente mantidos, segundo os critérios definidos, e suas modificações são controladas ao longo do seu ciclo de vida",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que existem estratégias de manutenção e de gerência de configuração de ativos reutilizáveis, bem como a adoção destas na organização?"
+  },
+  {
+    "id": 104,
+    "processId": 11,
+    "abbr": "GRU 5",
+    "description": "Os usuários de ativos reutilizáveis são notificados sobre problemas detectados, modificações realizadas, novas versões disponibilizadas e descontinuidade de ativos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os problemas detectados, as modificações, as novas versões e a própria descontinuidade dos ativos reutilizáveis foram comunicados para seus usuários (produtores e consumidores destes ativos reutilizáveis)?"
+  },
+  {
+    "id": 106,
+    "processId": 12,
+    "abbr": "DRE 1",
+    "description": "As necessidades, expectativas e restrições do cliente, tanto do produto quanto de suas interfaces, são identificadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificadas as necessidades, expectativas e restrições do cliente, tanto do produto quanto de suas interfaces?"
+  },
+  {
+    "id": 107,
+    "processId": 12,
+    "abbr": "DRE 2",
+    "description": "Um conjunto definido de requisitos do cliente é especificado e priorizado a partir das necessidades, expectativas e restrições identificadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as necessidades, expectativas e restrições identificadas foram transformadas em um conjunto de requisitos do cliente?"
+  },
+  {
+    "id": 108,
+    "processId": 12,
+    "abbr": "DRE 3",
+    "description": "Um conjunto de requisitos funcionais e não-funcionais, do produto e dos componentes do produto que descrevem a solução do problema a ser resolvido, é definido e mantido a partir dos requisitos do cliente",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que um conjunto de requisitos funcionais e não-funcionais foi definido e possui uma correlação com os requisitos do cliente? (ii) que este conjunto de requisitos é mantido?"
+  },
+  {
+    "id": 109,
+    "processId": 12,
+    "abbr": "DRE 4",
+    "description": "Os requisitos funcionais e não-funcionais de cada componente do produto são refinados, elaborados e alocados, Interfaces internas e externas do produto e de cada componente do produto são definidas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os requisitos funcionais e não-funcionais foram refinados, elaborados e alocados a um componente do produto?"
+  },
+  {
+    "id": 110,
+    "processId": 12,
+    "abbr": "DRE 5",
+    "description": "Conceitos operacionais e cenários são desenvolvidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram definidos cenários (sequência de eventos) possíveis de ocorrer no uso do produto?"
+  },
+  {
+    "id": 111,
+    "processId": 12,
+    "abbr": "DRE 6",
+    "description": "Os requisitos são analisados, usando critérios definidos, para balancear as necessidades dos interessados com as restrições existentes",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os requisitos foram analisados com base em critérios definidos de forma a balancear as necessidades dos interessados considerando as restrições de projeto existentes?"
+  },
+  {
+    "id": 112,
+    "processId": 12,
+    "abbr": "DRE 7",
+    "description": "Os requisitos são validados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os requisitos foram validados?"
+  },
+  {
+    "id": 113,
+    "processId": 13,
+    "abbr": "ITP 1",
+    "description": "Uma estratégia de integração, consistente com o projeto (design) e com os requisitos do produto, é desenvolvida e mantida para os componentes do produto",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi definida uma estratégia para conduzir a integração dos componentes do produto de forma consistente com o projeto (design) e com os requisitos do produto?"
+  },
+  {
+    "id": 114,
+    "processId": 13,
+    "abbr": "ITP 2",
+    "description": "Um ambiente para integração dos componentes do produto é estabelecido e mantido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi definido o ambiente para integração dos componentes do produto e que este foi mantido, conforme necessário?"
+  },
+  {
+    "id": 115,
+    "processId": 13,
+    "abbr": "ITP 3",
+    "description": "A compatibilidade das interfaces internas e externas dos componentes do produto é assegurada",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as interfaces internas e externas dos componentes do produto foram revistas para assegurar a compatibilidade?"
+  },
+  {
+    "id": 116,
+    "processId": 13,
+    "abbr": "ITP 4",
+    "description": "As definições, o projeto (design) e as mudanças nas interfaces internas e externas são gerenciados para o produto e para os componentes do produto",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as definições, o projeto (design) e as mudanças nas interfaces internas e externas do produto e dos componentes do produto foram gerenciados?"
+  },
+  {
+    "id": 117,
+    "processId": 13,
+    "abbr": "ITP 5",
+    "description": "Cada componente do produto é verificado, utilizando-se critérios definidos, para confirmar que estes estão prontos para a integração",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi realizada a verificação dos componentes do produto baseada, em critérios definidos, antes da integração para garantir que os componentes estavam prontos para serem integrados?"
+  },
+  {
+    "id": 118,
+    "processId": 13,
+    "abbr": "ITP 6",
+    "description": "Os componentes do produto são integrados, de acordo com a estratégia determinada e seguindo os procedimentos e critérios para integração",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os componentes do produto foram integrados de acordo com a sequência estabelecida e seguindo os procedimentos e critérios para integração?"
+  },
+  {
+    "id": 119,
+    "processId": 13,
+    "abbr": "ITP 7",
+    "description": "Os componentes do produto integrados são avaliados e os resultados da integração são registrados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os componentes do produto foram avaliados e os resultados da avaliação foram documentados?"
+  },
+  {
+    "id": 120,
+    "processId": 13,
+    "abbr": "ITP 8",
+    "description": "Uma estratégia de teste de regressão é desenvolvida e aplicada para uma nova verificação do produto, caso ocorra uma mudança nos componentes do produto (incluindo requisitos, projeto (design) e códigos associados)",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar: (i) que foi definida uma estratégia para testes de regressão? (ii) que essa estratégia foi aplicada para uma nova verificação do produto em decorrência de mudanças nos requisitos, projeto (design) ou códigos dos componentes do produto?"
+  },
+  {
+    "id": 121,
+    "processId": 13,
+    "abbr": "ITP 9",
+    "description": "O produto e a documentação relacionada são preparados e entregues ao cliente",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o produto e a documentação foram organizados em uma mídia adequada para entrega ao cliente?"
+  },
+  {
+    "id": 122,
+    "processId": 14,
+    "abbr": "PCP 1",
+    "description": "Alternativas de solução e critérios de seleção são desenvolvidos para atender aos requisitos definidos de produto e componentes de produto",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram desenvolvidas alternativas de solução e critérios para seleção da alternativa mais adequada para atender aos requisitos definidos para o produto e componentes do produto?"
+  },
+  {
+    "id": 123,
+    "processId": 14,
+    "abbr": "PCP 2",
+    "description": "Soluções são selecionadas para o produto ou componentes do produto, com base em cenários definidos e em critérios identificados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as soluções para o produto ou componentes do produto foram selecionadas considerando os cenários definidos e os critérios identificados?"
+  },
+  {
+    "id": 124,
+    "processId": 14,
+    "abbr": "PCP 3",
+    "description": "O produto e/ou componente do produto é projetado e documentado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o produto e/ou componente do produto foi projetado e documentado?"
+  },
+  {
+    "id": 125,
+    "processId": 14,
+    "abbr": "PCP 4",
+    "description": "As interfaces entre os componentes do produto são projetadas com base em critérios predefinidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as interfaces entre os componentes do produto foram projetadas com base em critérios previamente definidos?"
+  },
+  {
+    "id": 126,
+    "processId": 14,
+    "abbr": "PCP 5",
+    "description": "Uma análise dos componentes do produto é conduzida para decidir sobre sua construção, compra ou reutilização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi feita uma análise sobre construir, comprar ou reutilizar componentes do produto?"
+  },
+  {
+    "id": 127,
+    "processId": 14,
+    "abbr": "PCP 6",
+    "description": "Os componentes do produto são implementados e verificados de acordo com o que foi projetado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os componentes do produto foram implementados e verificados de acordo com o que foi planejado?"
+  },
+  {
+    "id": 128,
+    "processId": 14,
+    "abbr": "PCP 7",
+    "description": "A documentação é identificada, desenvolvida e disponibilizada de acordo com os padrões estabelecidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a documentação foi identificada, desenvolvida e disponibilizada para os interessados de acordo com os padrões estabelecidos?"
+  },
+  {
+    "id": 129,
+    "processId": 14,
+    "abbr": "PCP 8",
+    "description": "A documentação é mantida de acordo com os critérios definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a documentação foi mantida de acordo com os critérios definidos?"
+  },
+  {
+    "id": 130,
+    "processId": 15,
+    "abbr": "VAL 1",
+    "description": "Produtos de trabalho a serem validados são identificados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificados os produtos de trabalho a serem validados?"
+  },
+  {
+    "id": 131,
+    "processId": 15,
+    "abbr": "VAL 2",
+    "description": "Uma estratégia de validação é desenvolvida e implementada, estabelecendo cronograma, participantes envolvidos, métodos para validação e qualquer material a ser utilizado na validação",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi desenvolvida e implementada uma estratégia de validação que define o cronograma, participantes envolvidos, métodos para validação e o material a ser utilizado na validação?"
+  },
+  {
+    "id": 132,
+    "processId": 15,
+    "abbr": "VAL 3",
+    "description": "Critérios e procedimentos para validação dos produtos de trabalho a serem validados são identificados e um ambiente para validação é estabelecido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificados critérios e procedimentos a serem utilizados para a validação dos produtos de trabalho, bem como permitem assegurar que foi estabelecido um ambiente para validação?"
+  },
+  {
+    "id": 133,
+    "processId": 15,
+    "abbr": "VAL 4",
+    "description": "Atividades de validação são executadas para garantir que o produto esteja pronto para uso no ambiente operacional pretendido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as atividades de validação foram executadas para garantir que o produto esteja pronto para uso no ambiente operacional pretendido?"
+  },
+  {
+    "id": 134,
+    "processId": 15,
+    "abbr": "VAL 5",
+    "description": "Problemas são identificados e registrados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os problemas identificados durante as atividades de validação foram registrados?"
+  },
+  {
+    "id": 135,
+    "processId": 15,
+    "abbr": "VAL 6",
+    "description": "Resultados de atividades de validação são analisados e disponibilizados para as partes interessadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os resultados das atividades de validação foram analisados e disponibilizados para as partes interessadas?"
+  },
+  {
+    "id": 136,
+    "processId": 15,
+    "abbr": "VAL 7",
+    "description": "Evidências de que os produtos de software desenvolvidos estão prontos para o uso pretendido são fornecidas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os produtos de software desenvolvidos estavam prontos para o uso pretendido?"
+  },
+  {
+    "id": 137,
+    "processId": 16,
+    "abbr": "VER 1",
+    "description": "Produtos de trabalho a serem verificados são identificados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os produtos de trabalho sujeitos à verificação foram identificados?"
+  },
+  {
+    "id": 138,
+    "processId": 16,
+    "abbr": "VER 2",
+    "description": "Uma estratégia de verificação é desenvolvida e implementada, estabelecendo cronograma, revisores envolvidos, métodos para verificação e qualquer material a ser utilizado na verificação",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que há uma estratégia definida para a verificação que inclua cronograma, revisores envolvidos, métodos a serem utilizados e materiais a serem empregados na verificação?"
+  },
+  {
+    "id": 139,
+    "processId": 16,
+    "abbr": "VER 3",
+    "description": "Critérios e procedimentos para verificação dos produtos de trabalho a serem verificados são identificados e um ambiente para verificação é estabelecido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) critérios e procedimentos a serem utilizados para a verificação foram identificados?; (ii) foi estabelecido um ambiente para verificação?"
+  },
+  {
+    "id": 140,
+    "processId": 16,
+    "abbr": "VER 4",
+    "description": "Atividades de verificação, incluindo testes e revisões por pares, são executadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as atividades de verificação, incluindo tanto testes quanto revisão por pares, foram executadas de acordo com o planejado?"
+  },
+  {
+    "id": 141,
+    "processId": 16,
+    "abbr": "VER 5",
+    "description": "Defeitos são identificados e registrados",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os defeitos identificados durante as atividades de verificação foram identificados e registrados?"
+  },
+  {
+    "id": 142,
+    "processId": 16,
+    "abbr": "VER 6",
+    "description": "Resultados de atividades de verificação são analisados e disponibilizados para as partes interessadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os resultados das atividades de verificação foram (i) analisados? (ii) foram adotados procedimentos para disponibilização dos resultados para as partes interessadas?"
+  },
+  {
+    "id": 143,
+    "processId": 17,
+    "abbr": "DRU 1",
+    "description": "Domínios de aplicação em que serão investigadas oportunidades de reutilização de ativos ou nos quais se pretende praticar reutilização são identificados, detectando os respectivos potenciais de reutilização",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que houve uma análise dos domínios de aplicação, visando identificar oportunidades de reutilização?"
+  },
+  {
+    "id": 144,
+    "processId": 17,
+    "abbr": "DRU 2",
+    "description": "A capacidade de reutilização sistemática da organização é avaliada e ações corretivas são tomadas, caso necessário",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) a organização avaliou suas condições para implementar um programa de desenvolvimento para reutilização; (ii) as ações corretivas foram planejadas e executadas, quando necessário?"
+  },
+  {
+    "id": 145,
+    "processId": 17,
+    "abbr": "DRU 3",
+    "description": "Um programa de reutilização, envolvendo propósitos, escopo, metas e objetivos, é planejado com a finalidade de atender às necessidades de reutilização de domínios",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foi elaborado um plano para a adoção de um programa de reutilização contemplando propósito, escopo, metas e objetivos?"
+  },
+  {
+    "id": 146,
+    "processId": 17,
+    "abbr": "DRU 4",
+    "description": "O programa de reutilização é implantado, monitorado e avaliado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) o programa de reutilização foi implantado na organização; (ii) o programa de reutilização foi monitorado? (iii) o programa de reutilização foi avaliado?"
+  },
+  {
+    "id": 147,
+    "processId": 17,
+    "abbr": "DRU 5",
+    "description": "Propostas de reutilização são avaliadas de forma a garantir que o resultado da reutilização seja apropriado para a aplicação alvo",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as propostas de reutilização apresentadas foram avaliadas para determinar se eram adequadas para a aplicação alvo?"
+  },
+  {
+    "id": 148,
+    "processId": 17,
+    "abbr": "DRU 6",
+    "description": "Formas de representação para modelos de domínio e arquiteturas de domínio são selecionadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram selecionadas notações para representação dos modelos de domínio e arquiteturas?"
+  },
+  {
+    "id": 149,
+    "processId": 17,
+    "abbr": "DRU 7",
+    "description": "Um modelo de domínio é desenvolvido e seus limites e relações com outros domínios são estabelecidos e mantidos, Este modelo deve ser capaz de capturar características, capacidades, conceitos e funções comuns, variantes, opcionais e obrigatórios",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que (i) as fronteiras entre os domínios tratados pela organização foram identificadas, estabelecidas e mantidas, conforme pertinente?; (ii) o modelo de domínio foi definido, estabelecendo características, capacidades, conceitos, funções comuns, variantes e opcionais e obrigatórios?"
+  },
+  {
+    "id": 150,
+    "processId": 17,
+    "abbr": "DRU 8",
+    "description": "Uma arquitetura de domínio descrevendo uma família de aplicações para o domínio é desenvolvida e mantida por todo o seu ciclo de vida",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) os modelos de domínios foram detalhados, gerando uma arquitetura de domínio, que descreve uma família de aplicações para o domínio?; (ii) esta arquitetura foi mantida por todo o ciclo de vida?"
+  },
+  {
+    "id": 151,
+    "processId": 17,
+    "abbr": "DRU 9",
+    "description": "Ativos do domínio são especificados, adquiridos ou desenvolvidos, e mantidos por todo o seu ciclo de vida",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que (i) foram elaboradas especificações sobre ativos de domínio?; (ii) ativos de domínio foram adquiridos ou desenvolvidos, conforme pertinente, e mantidos ao longo do seu ciclo de vida?"
+  },
+  {
+    "id": 152,
+    "processId": 18,
+    "abbr": "GDE 1",
+    "description": "Guias organizacionais para a gerência de decisões são estabelecidos e mantidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que (i) foram definidos os tipos de problemas ou questões que devem ser tratadas por meio de um processo formal de decisão e como as decisões devem ser tomadas? (ii) estas definições são mantidas, conforme necessário?"
+  },
+  {
+    "id": 153,
+    "processId": 18,
+    "abbr": "GDE 2",
+    "description": "O problema ou questão a ser objeto de um processo formal de tomada de decisão é definido",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o problema ou questão a ser objeto de um processo formal de tomada de decisão foi definido?"
+  },
+  {
+    "id": 154,
+    "processId": 18,
+    "abbr": "GDE 3",
+    "description": "Critérios para avaliação das alternativas de solução são estabelecidos e mantidos em ordem de importância, de forma que os critérios mais importantes exerçam mais influência na avaliação",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que (i) critérios para avaliar as soluções alternativas foram definidos e revistos, quando necessário?; (ii) os critérios estão em ordem de importância, de modo que os mais importantes exercem mais influência sobre a avaliação?"
+  },
+  {
+    "id": 155,
+    "processId": 18,
+    "abbr": "GDE 4",
+    "description": "Alternativas de solução aceitáveis para o problema ou questão são identificadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram identificadas soluções alternativas aceitáveis para o problema ou questões especificadas?"
+  },
+  {
+    "id": 156,
+    "processId": 18,
+    "abbr": "GDE 5",
+    "description": "Os métodos de avaliação das alternativas de solução são selecionados de acordo com sua viabilidade de aplicação",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram selecionados métodos para avaliar as soluções alternativas, considerando a viabilidade de sua aplicação?"
+  },
+  {
+    "id": 157,
+    "processId": 18,
+    "abbr": "GDE 6",
+    "description": "Soluções alternativas são avaliadas usando os critérios e métodos estabelecidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que a avaliação das alternativas de solução foi realizada utilizando os critérios e os métodos definidos?"
+  },
+  {
+    "id": 158,
+    "processId": 18,
+    "abbr": "GDE 7",
+    "description": "Decisões são tomadas com base na avaliação das alternativas utilizando os critérios de avaliação estabelecidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que as soluções foram selecionadas considerando os resultados da avaliação das alternativas, usando como base os critérios e métodos estabelecidos?"
+  },
+  {
+    "id": 159,
+    "processId": 19,
+    "abbr": "GRI 1",
+    "description": "O escopo da gerência de riscos é determinado",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que o escopo da gerência de riscos foi determinado seja dentro do âmbito dos projetos, ou relativo a atividades organizacionais?"
+  },
+  {
+    "id": 160,
+    "processId": 19,
+    "abbr": "GRI 2",
+    "description": "As origens e as categorias de riscos são determinadas e os parâmetros usados para analisar riscos, categorizá-los e controlar o esforço da gerência de riscos são definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) existem categorias e origens dos riscos definidas?; (ii) existem parâmetros definidos para analisar os riscos, categorizá-los e controlar o esforço da gerência do risco?"
+  },
+  {
+    "id": 161,
+    "processId": 19,
+    "abbr": "GRI 3",
+    "description": "As estratégias apropriadas para a gerência de riscos são definidas e implementadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram definidas estratégias para a gerência de riscos e se estas foram implementadas?"
+  },
+  {
+    "id": 162,
+    "processId": 19,
+    "abbr": "GRI 4",
+    "description": "Os riscos do projeto são identificados e documentados, incluindo seu contexto, condições e possíveis consequências para o projeto e as partes interessadas",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) os riscos do projeto foram identificados e documentados?; (ii) a documentação inclui o contexto, as condições e as possíveis consequências para o projeto e as partes interessadas?"
+  },
+  {
+    "id": 163,
+    "processId": 19,
+    "abbr": "GRI 5",
+    "description": "Os riscos são priorizados, estimados e classificados de acordo com as categorias e os parâmetros definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os riscos do projeto foram priorizados, estimados e classificados conforme as categorias e os parâmetros estabelecidos nas estratégias definidas para a gerência de riscos?"
+  },
+  {
+    "id": 164,
+    "processId": 19,
+    "abbr": "GRI 6",
+    "description": "Planos para a mitigação de riscos são desenvolvidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram desenvolvidos planos para a mitigação dos riscos?"
+  },
+  {
+    "id": 165,
+    "processId": 19,
+    "abbr": "GRI 7",
+    "description": "Os riscos são analisados e a prioridade de aplicação dos recursos para o monitoramento desses riscos é determinada",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que os riscos foram analisados e que foi determinada a prioridade de alocação dos recursos para o monitoramento?"
+  },
+  {
+    "id": 166,
+    "processId": 19,
+    "abbr": "GRI 8",
+    "description": "Os riscos são avaliados e monitorados para determinar mudanças em sua situação e no progresso das atividades para seu tratamento",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que: (i) os riscos são avaliados e monitorados para determinar mudanças na sua situação?; (ii) as atividades para tratamento dos riscos são monitoras para determinar mudanças em seu progresso?"
+  },
+  {
+    "id": 167,
+    "processId": 19,
+    "abbr": "GRI 9",
+    "description": "Ações apropriadas são executadas para corrigir ou evitar o impacto do risco, baseadas na sua prioridade, probabilidade, consequência ou outros parâmetros definidos",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "id": 1,
+    "levelId": 1,
+    "description": "Gerência de Projetos",
+    "abbr": "GPR",
+    "proposal": "O propósito do processo Gerência de Projetos é estabelecer e manter planos que definem as atividades, recursos e responsabilidades do projeto, bem como prover informações sobre o andamento do projeto que permitam a realização de correções quando houver desvios significativos no desempenho do projeto. O propósito deste processo evolui à medida que a organização cresce em maturidade. "
+  },
+  {
+    "id": 2,
+    "levelId": 1,
+    "description": "Gerência de Requisitos",
+    "abbr": "GRE",
+    "proposal": "O propósito do processo Gerência de Requisitos é gerenciar os requisitos do produto e dos componentes do produto do projeto e identificar inconsistências entre os requisitos, os planos do projeto e os produtos de trabalho do projeto."
+  },
+  {
+    "id": 3,
+    "levelId": 2,
+    "description": "Aquisição",
+    "abbr": "AQU",
+    "proposal": "O propósito do processo Aquisição é gerenciar a aquisição de produtos que satisfaçam às necessidades expressas pelo adquirente."
+  },
+  {
+    "id": 4,
+    "levelId": 2,
+    "description": "Gerência de Configuração",
+    "abbr": "GCO",
+    "proposal": "O propósito do processo Gerência de Configuração é estabelecer e manter a integridade de todos os produtos de trabalho de um processo ou projeto e disponibilizá-los a todos os envolvidos."
+  },
+  {
+    "id": 5,
+    "levelId": 2,
+    "description": "Garantia da Qualidade",
+    "abbr": "GQA",
+    "proposal": "O propósito do processo Garantia da Qualidade é assegurar que os produtos de trabalho e a execução dos processos estejam em conformidade com os planos, procedimentos e padrões estabelecidos"
+  },
+  {
+    "id": 6,
+    "levelId": 2,
+    "description": "Gerência de Portfólio de Projetos",
+    "abbr": "GPP",
+    "proposal": "O propósito do processo Gerência de Portfólio de Projetos é iniciar e manter projetos que sejam necessários, suficientes e sustentáveis, de forma a atender os objetivos estratégicos da organização. Este processo compromete o investimento e os recursos organizacionais adequados e estabelece a autoridade necessária para executar os projetos selecionados. Ele executa a qualificação contínua de projetos para confirmar que eles justificam a continuidade dos investimentos, ou podem ser redirecionados para justificar."
+  },
+  {
+    "id": 7,
+    "levelId": 2,
+    "description": "Medição",
+    "abbr": "MED",
+    "proposal": "O propósito do processo Medição é coletar, armazenar, analisar e relatar os dados relativos aos produtos desenvolvidos e aos processos implementados na organização e em seus projetos, de forma a apoiar os objetivos organizacionais."
+  },
+  {
+    "id": 8,
+    "levelId": 3,
+    "description": "Avaliação e Melhoria do Processo Organizacional",
+    "abbr": "AMP",
+    "proposal": "O propósito do processo Avaliação e Melhoria do Processo Organizacional é determinar o quanto os processos padrão da organização contribuem para alcançar os objetivos de negócio da organização e para apoiar a organização a planejar, realizar e implantar melhorias contínuas nos processos com base no entendimento de seus pontos fortes e fracos."
+  },
+  {
+    "id": 9,
+    "levelId": 3,
+    "description": "Definição do Processo Organizacional",
+    "abbr": "DFP",
+    "proposal": "O propósito do processo Definição do Processo Organizacional é estabelecer e manter um conjunto de ativos de processo organizacional e padrões do ambiente de trabalho usáveis e aplicáveis às necessidades de negócio da organização."
+  },
+  {
+    "id": 10,
+    "levelId": 3,
+    "description": "Gerência de Recursos Humanos",
+    "abbr": "GRH",
+    "proposal": "O propósito do processo Gerência de Recursos Humanos é prover a organização e os projetos com os recursos humanos necessários e manter suas competências adequadas às necessidades do negócio."
+  },
+  {
+    "id": 11,
+    "levelId": 3,
+    "description": "Gerência de Reutilização",
+    "abbr": "GRU",
+    "proposal": "O propósito do processo Gerência de Reutilização é gerenciar o ciclo de vida dos ativos reutilizáveis."
+  },
+  {
+    "id": 12,
+    "levelId": 4,
+    "description": "Desenvolvimento de Requisitos",
+    "abbr": "DRE",
+    "proposal": "O propósito do processo Desenvolvimento de Requisitos é definir os requisitos do cliente, do produto e dos componentes do produto."
+  },
+  {
+    "id": 13,
+    "levelId": 4,
+    "description": "Integração do Produto",
+    "abbr": "ITP",
+    "proposal": "O propósito do processo Integração do Produto é compor os componentes do produto, produzindo um produto integrado consistente com seu projeto, e demonstrar que os requisitos funcionais e não-funcionais são satisfeitos para o ambiente alvo ou equivalente."
+  },
+  {
+    "id": 14,
+    "levelId": 4,
+    "description": "Projeto e Construção do Produto",
+    "abbr": "PCP",
+    "proposal": "O propósito do processo Projeto e Construção do Produto é projetar, desenvolver e implementar soluções para atender aos requisitos. "
+  },
+  {
+    "id": 15,
+    "levelId": 4,
+    "description": "Validação",
+    "abbr": "VAL",
+    "proposal": "O propósito do processo Validação é confirmar que um produto ou componente do produto atenderá a seu uso pretendido quando colocado no ambiente para o qual foi desenvolvido."
+  },
+  {
+    "id": 16,
+    "levelId": 4,
+    "description": "Verificação",
+    "abbr": "VER",
+    "proposal": "O propósito do processo Verificação é confirmar que cada serviço e/ou produto de trabalho do processo ou do projeto atende apropriadamente os requisitos especificados."
+  },
+  {
+    "id": 17,
+    "levelId": 5,
+    "description": "Desenvolvimento para Reutilização",
+    "abbr": "DRU",
+    "proposal": "O propósito do processo Desenvolvimento para Reutilização é identificar oportunidades de reutilização sistemática de ativos na organização e, se possível, estabelecer um programa de reutilização para desenvolver ativos a partir de engenharia de domínios de aplicação."
+  },
+  {
+    "id": 18,
+    "levelId": 5,
+    "description": "Gerência de Decisões",
+    "abbr": "GDE",
+    "proposal": "O propósito do processo Gerência de Decisões é analisar possíveis decisões críticas usando um processo formal, com critérios estabelecidos, para avaliação das alternativas identificadas."
+  },
+  {
+    "id": 19,
+    "levelId": 5,
+    "description": "Gerência de Riscos",
+    "abbr": "GRI",
+    "proposal": "O propósito do processo Gerência de Riscos é identificar, analisar, tratar, monitorar e reduzir continuamente os riscos em nível organizacional e de projeto."
+  }
+]

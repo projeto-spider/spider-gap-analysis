@@ -45,13 +45,6 @@
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
-          </div>
-        </div>
-      </div>
-
       <div>
         <template>
           <div v-if="editing">
@@ -70,10 +63,54 @@
         </template>
       </div>
     </form>
+
+    <div v-if="editing" class="card">
+      <div class="card-content">
+        <div class="content">
+          <b-field>
+            <b-checkbox v-model="selectedLevels"
+              v-for="level in levels"
+              :key="level.id"
+              :native-value="level.id"
+              type="is-success"
+              >
+              <span>[{{level.level}}] {{level.title}}</span>
+            </b-checkbox>
+          </b-field>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="editing" class="card">
+      <div class="card-content">
+        <div class="content">
+          <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Nível</th>
+                <th>Processo</th>
+                <th>Attributo do Processo</th>
+                <th>Resultados Esperados</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="scopeItem in scope">
+                <td v-for="col in scopeItem">{{col}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import levels from '~/static/levels.json'
+import processes from '~/static/process.json'
+import expectedResults from '~/static/expected-results.json'
+import attributes from '~/static/process-attributes.json'
+
 const attrs = [
   'organization_id',
   'description',
@@ -82,6 +119,9 @@ const attrs = [
   'coordinator',
   'colaborators',
 ]
+
+const flatten = xs =>
+  xs.reduce((acc, ys) => acc.concat(ys), [])
 
 export default {
   /*
@@ -115,6 +155,7 @@ export default {
     console.log({org})
     return org
   },*/
+
   data () {
     return {
       id: this.$route.params.id,
@@ -124,7 +165,13 @@ export default {
       coordinator: '',
       colaborators: 0,
       selectableOrganizations: [],
-      organizationName: false
+      organizationName: false,
+      originallySelectedLevels: [],
+      selectedLevels: [],
+      levels: levels
+        .sort((a, b) =>
+          a.level.charCodeAt(0) - b.level.charCodeAt(0)
+        )
     }
   },
 
@@ -138,8 +185,13 @@ export default {
 
     const unit = await this.$axios.$get(`/units/${id}`)
     const organization = await this.$axios.$get(`/organizations/${unit.organization_id}`)
+    const selectedLevels = await this.$axios.$get(`/units/${id}/levels`).then(r =>
+      r.map(level => level.level_id)
+    )
     Object.assign(this, unit)
     this.organizationName = organization.name
+    this.originallySelectedLevels = selectedLevels
+    this.selectedLevels = selectedLevels
   },
 
   head () {
@@ -152,6 +204,33 @@ export default {
     editing() {
       return this.id !== 'new'
     },
+
+    scope() {
+      return flatten(
+        levels
+          .filter(level => this.selectedLevels.includes(level.id))
+          .map(level =>
+            flatten(
+              processes
+              .filter(p => p.levelId === level.id)
+              .map(process =>
+                attributes
+                  .filter(attr => attr.processId === process.id)
+                  .map(attr =>
+                    [ level.level
+                    , process.abbr
+                    , attr.abbr
+                    , expectedResults
+                        .filter(result => result.processId === process.id)
+                        .map(result => result.abbr)
+                        .join(', ')
+                    ]
+                  )
+              )
+            )
+          )
+      )
+    }
   },
 
   methods: {
@@ -185,6 +264,37 @@ export default {
           })
           throw err
         })
+      const newLevels = this.selectedLevels
+        .filter(level => !this.originallySelectedLevels.includes(level))
+        .map(level =>
+          this.$axios.$post(`/units/${id}/levels`, {
+            unit_id: id,
+            level_id: level
+          })
+          .catch(() => {
+            const levelName = levels.find(l => l.id === level).title
+            this.$snackbar.open({
+              message: 'Falha ao adicionar nível ' + levelName,
+              type: 'is-danger',
+              position: 'is-bottom-left',
+            })
+          })
+        )
+      const levelsToRemove = this.originallySelectedLevels
+        .filter(level => !this.selectedLevels.includes(level))
+        .map(level =>
+          this.$axios.$delete(`/units/${id}/levels/${level}`)
+          .catch(() => {
+            const levelName = levels.find(l => l.id === level).title
+            this.$snackbar.open({
+              message: 'Falha ao remover nível ' + levelName,
+              type: 'is-danger',
+              position: 'is-bottom-left',
+            })
+          })
+        )
+
+      await Promise.all(newLevels.concat(levelsToRemove))
 
       this.$snackbar.open({
         message: 'Atualizado com sucesso',

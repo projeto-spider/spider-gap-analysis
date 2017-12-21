@@ -1,0 +1,35 @@
+[{
+  "id": 1,
+  "level": "G",
+  "title": "Parcialmente Gerenciado"
+},
+{
+  "id": 2,
+  "level": "F",
+  "title": "Gerenciado"
+},
+{
+  "id": 3,
+  "level": "E",
+  "title": "Parcialmente Definido"
+},
+{
+  "id": 4,
+  "level": "D",
+  "title": "Largamente Definido"
+},
+{
+  "id": 5,
+  "level": "C",
+  "title": "Definido"
+},
+{
+  "id": 6,
+  "level": "B",
+  "title": "Gerenciado Quantitativamente"
+},
+{
+  "id": 7,
+  "level": "A",
+  "title": "Em Otimização"
+}]
