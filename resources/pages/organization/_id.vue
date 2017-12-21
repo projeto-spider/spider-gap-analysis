@@ -2,98 +2,100 @@
   <section class="container">
     <strong>Cadastrar Informações Gerais da Empresa</strong>
 
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <h3>Organização</h3>
+    <form @submit.prevent="() => editing ? update() : create()">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h3>Organização</h3>
 
-          <b-field grouped>
-            <b-field label="Razão Social" expanded>
-              <b-input v-model="name"></b-input>
+            <b-field grouped>
+              <b-field label="Razão Social" expanded>
+                <b-input v-model="name" required></b-input>
+              </b-field>
+
+              <b-field label="Data Fundação" expanded>
+                <b-datepicker
+                  v-if="fundationDate instanceof Date"
+                  v-model="fundationDate"
+                ></b-datepicker>
+              </b-field>
             </b-field>
 
-            <b-field label="Data Fundação" expanded>
-              <b-datepicker
-                v-if="fundationDate instanceof Date"
-                v-model="fundationDate"
-              ></b-datepicker>
-            </b-field>
-          </b-field>
+            <b-field grouped>
+              <b-field label="Número Total de Colaboradores" expanded>
+                <b-input v-model="colaborators" type="number"></b-input>
+              </b-field>
 
-          <b-field grouped>
-            <b-field label="Número Total de Colaboradores" expanded>
-              <b-input v-model="colaborators" type="number"></b-input>
+              <b-field label="Número de Colaboradores envolvidos com Software" expanded>
+                <b-input v-model="softwareColaborators" type="number"></b-input>
+              </b-field>
             </b-field>
 
-            <b-field label="Número de Colaboradores envolvidos com Software" expanded>
-              <b-input v-model="softwareColaborators" type="number"></b-input>
+            <b-field label="Descrição das atividades da Organização" expanded>
+              <b-input type="textarea" v-model="description"></b-input>
             </b-field>
-          </b-field>
-
-          <b-field label="Descrição das atividades da Organização" expanded>
-            <b-input type="textarea" v-model="description"></b-input>
-          </b-field>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <h3>Endereço</h3>
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <h3>Endereço</h3>
 
-          <b-field expanded>
-            <b-input placeholder="CEP" v-model="cep" expanded></b-input>
+            <b-field expanded>
+              <b-input placeholder="CEP" v-model="cep" expanded></b-input>
 
-            <p class="control">
-              <button @click="findAddress" class="button is-info">Buscar</button>
-            </p>
-          </b-field>
-
-          <b-field label="Endereço" expanded>
-            <b-input required v-model="address"></b-input>
-          </b-field>
-
-          <b-field grouped>
-            <b-field label="Complemento" expanded>
-              <b-input v-model="complement"></b-input>
+              <p class="control">
+                <button @click="findAddress" class="button is-info">Buscar</button>
+              </p>
             </b-field>
 
-            <b-field label="Estado" expanded>
-              <b-input required v-model="state"></b-input>
-            </b-field>
-          </b-field>
-
-          <b-field grouped>
-            <b-field label="Bairro" expanded>
-              <b-input required v-model="neighborhood"></b-input>
+            <b-field label="Endereço" expanded>
+              <b-input required v-model="address"></b-input>
             </b-field>
 
-            <b-field label="Município" expanded>
-              <b-input required v-model="city"></b-input>
+            <b-field grouped>
+              <b-field label="Complemento" expanded>
+                <b-input v-model="complement"></b-input>
+              </b-field>
+
+              <b-field label="Estado" expanded>
+                <b-input required v-model="state"></b-input>
+              </b-field>
             </b-field>
-          </b-field>
+
+            <b-field grouped>
+              <b-field label="Bairro" expanded>
+                <b-input required v-model="neighborhood"></b-input>
+              </b-field>
+
+              <b-field label="Município" expanded>
+                <b-input required v-model="city"></b-input>
+              </b-field>
+            </b-field>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div>
-      <template>
-        <div v-if="editing">
-          <button @click="update" class="button is-info">
-            Atualizar
+      <div>
+        <template>
+          <div v-if="editing">
+            <button type="submit" class="button is-info">
+              Atualizar
+            </button>
+
+            <button @click="destroy" class="button is-danger">
+              Excluir
+            </button>
+          </div>
+
+          <button v-else type="submit" class="button is-primary">
+            Criar
           </button>
-
-          <button @click="destroy" class="button is-danger">
-            Excluir
-          </button>
-        </div>
-
-        <button v-else @click="create" class="button is-primary">
-          Criar
-        </button>
-      </template>
-    </div>
+        </template>
+      </div>
+    </form>
   </section>
 </template>
 
