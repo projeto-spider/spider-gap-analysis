@@ -44,7 +44,7 @@
                   <a>Organizações</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/organizational-unit">
+                <nuxt-link tag="li" to="/unit">
                   <a>Unidade Organizacional</a>
                 </nuxt-link>
 

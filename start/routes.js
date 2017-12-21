@@ -17,6 +17,7 @@ const Route = use('Route')
 
 Route.group(() => {
   Route.resource('organizations', 'OrganizationController').apiOnly()
+  Route.resource('units', 'UnitController').apiOnly()
 })
   .formats(['json'])
   .prefix('api')

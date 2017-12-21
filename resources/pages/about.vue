@@ -1,4 +1,3 @@
-{{{{raw}}}}
 <template>
   <section class="container">
     <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
@@ -13,7 +12,7 @@
     </nuxt-link>
   </section>
 </template>
-{{{{/raw}}}}
+
 <script>
 export default {
   asyncData ({ req }) {
