@@ -16,12 +16,12 @@
                     :value="unit.id"
                     :key="unit.id"
                   >
-                    {{ unit.description }}
+                    {{ unit.name }}
                   </option>
                 </optgroup>
               </b-select>
 
-              <b-field v-else disabled expanded>{{unit.description}}</b-field>
+              <b-field v-else disabled expanded>{{unit.name}}</b-field>
             </b-field>
 
             <b-field grouped>

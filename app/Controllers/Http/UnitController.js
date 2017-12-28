@@ -5,6 +5,7 @@ const Unit = use('App/Models/Unit')
 
 const attrs = [
   'organization_id',
+  'name',
   'description',
   'activity',
   'manager',

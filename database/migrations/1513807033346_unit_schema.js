@@ -8,6 +8,7 @@ class UnitSchema extends Schema {
       table.increments()
       table.integer('organization_id').unsigned()
       table.foreign('organization_id').references('organizations.id')
+      table.string('name').defaultTo('')
       table.string('description').defaultTo('')
       table.string('activity').defaultTo('')
       table.string('manager').defaultTo(null)

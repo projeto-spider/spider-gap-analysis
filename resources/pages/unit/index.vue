@@ -8,16 +8,16 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Nome</th>
           <th>Coordenador</th>
-          <th>Descrição</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="unit in units">
           <th>{{unit.id}}</th>
+          <td>{{unit.name}}</td>
           <td>{{unit.coordinator}}</td>
-          <td>{{unit.description || '--'}}</td>
           <td>
             <nuxt-link :to="`/unit/${unit.id}`">
               <button class="button is-primary">Ver</button>

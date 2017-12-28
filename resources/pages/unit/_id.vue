@@ -22,6 +22,10 @@
               <b-field v-else disabled expanded>{{organizationName}}</b-field>
             </b-field>
 
+            <b-field label="Nome" expanded>
+              <b-input v-model="name" required></b-input>
+            </b-field>
+
             <b-field grouped>
               <b-field label="Gerente" expanded>
                 <b-input v-model="manager" required></b-input>
@@ -113,6 +117,7 @@ import attributes from '~/static/process-attributes.json'
 
 const attrs = [
   'organization_id',
+  'name',
   'description',
   'activity',
   'manager',
@@ -160,6 +165,7 @@ export default {
     return {
       id: this.$route.params.id,
       organization_id: null,
+      name: '',
       description: '',
       manager: '',
       coordinator: '',
