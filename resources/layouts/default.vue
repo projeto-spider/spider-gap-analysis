@@ -48,7 +48,7 @@
                   <a>Unidade Organizacional</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/projects">
+                <nuxt-link tag="li" to="/project">
                   <a>Projetos</a>
                 </nuxt-link>
 

@@ -10,6 +10,10 @@ class Unit extends Model {
   levels() {
     return this.hasMany('App/Models/UnitLevel')
   }
+
+  projects() {
+    return this.hasMany('App/Models/Project', 'id', 'unitId')
+  }
 }
 
 module.exports = Unit
