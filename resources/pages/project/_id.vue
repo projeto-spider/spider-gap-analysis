@@ -41,7 +41,7 @@
                   :value="level.id"
                   :key="level.id"
                 >
-                  {{ level.title }}
+                  {{ "[" + level.level + "] " + level.title }}
                 </option>
               </b-select>
 
