@@ -29,7 +29,6 @@ class ProjectController {
 
   async store ({ request }) {
     const data = request.only(attrs)
-    console.log({data})
     const unit = await Unit.findOrFail(+data.unitId)
       .catch(() => {
         throw {status: 400, message: 'Invalid unitId'}

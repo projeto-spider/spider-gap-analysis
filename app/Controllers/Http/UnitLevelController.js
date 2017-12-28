@@ -26,8 +26,6 @@ class UnitLevelController {
       level_id: data.level_id
     }).fetch()
 
-    console.log({exists})
-
     if (exists.length) {
       throw {status: 400, message: 'Already exists'}
     }

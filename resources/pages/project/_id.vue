@@ -226,9 +226,6 @@ export default {
 
   methods: {
     async create() {
-      console.log('foo')
-      console.log(this.project)
-
       const {id} = await this.$axios.$post('/projects', this.project)
         .catch(err => {
           this.$snackbar.open({
