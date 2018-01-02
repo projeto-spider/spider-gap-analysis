@@ -73,21 +73,53 @@
 
             <b-field grouped>
               <b-field label="Fase Atual" expanded>
-                <b-input v-model="project.currentStep"></b-input>
+                <b-select v-model="project.currentStep" placeholder="Fase Atual" expanded>
+                  <option
+                    v-for="item in ['Contratação', 'Planejamento', 'Análise/projeto', 'Construção', 'Teste', 'Parado', 'Concluído']"
+                    :value="item"
+                    :key="item"
+                  >
+                    {{ item }}
+                  </option>
+                </b-select>
               </b-field>
 
               <b-field label="Tipo de Cliente" expanded>
-                <b-input v-model="project.clientType"></b-input>
+                <b-select v-model="project.clientType" placeholder="Tipo de Cliente" expanded>
+                  <option
+                    v-for="item in ['Interno', 'Externo']"
+                    :value="item"
+                    :key="item"
+                  >
+                    {{ item }}
+                  </option>
+                </b-select>
               </b-field>
             </b-field>
 
             <b-field grouped>
               <b-field label="Tipo de Projeto" expanded>
-                <b-input v-model="project.type"></b-input>
+                <b-select v-model="project.type" placeholder="Tipo de Projeto" expanded>
+                  <option
+                    v-for="item in ['Evolução Produto', 'Manutenção', 'Desenvolvimento']"
+                    :value="item"
+                    :key="item"
+                  >
+                    {{ item }}
+                  </option>
+                </b-select>
               </b-field>
 
               <b-field label="Importância" expanded>
-                <b-input v-model="project.importance"></b-input>
+                <b-select v-model="project.importance" placeholder="Importância" expanded>
+                  <option
+                    v-for="item in ['Baixa', 'Média', 'Alta']"
+                    :value="item"
+                    :key="item"
+                  >
+                    {{ item }}
+                  </option>
+                </b-select>
               </b-field>
             </b-field>
 
