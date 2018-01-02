@@ -37,7 +37,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: '@/assets/overrides.scss', lang: 'sass' },
     { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' },
   ],
   /*

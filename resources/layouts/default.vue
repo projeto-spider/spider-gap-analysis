@@ -104,4 +104,4 @@
 export default {}
 </script>
 
-<style></style>
+<style lang="sass" src="@/assets/overrides.scss"></style>
