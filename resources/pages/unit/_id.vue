@@ -19,7 +19,7 @@
                 </option>
               </b-select>
 
-              <b-field v-else disabled expanded>{{organizationName}}</b-field>
+              <p v-else>{{organizationName}}</p>
             </b-field>
 
             <b-field label="Nome" expanded>
@@ -129,41 +129,11 @@ const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
 export default {
-  /*
   async asyncData ({ app, params, req }) {
     const {id} = params
 
-    const creating = id === 'new'
-
-    if (creating) {
-      return {
-        id: null,
-        name: '',
-        fundationDate: new Date(),
-        colaborators: 0,
-        softwareColaborators: 0,
-        description: '',
-        cep: '',
-        address: '',
-        state: '',
-        city: '',
-        complement: '',
-        neighborhood: '',
-      }
-    }
-
-    const data = await app.$axios.$get(`/units/${id}`)
-    console.log({data})
-    const org = Object.assign({}, data, {
-      fundationDate: new Date(data.fundationDate),
-    })
-    console.log({org})
-    return org
-  },*/
-
-  data () {
-    return {
-      id: this.$route.params.id,
+    const data = {
+      id,
       organization_id: null,
       name: '',
       description: '',
@@ -179,25 +149,24 @@ export default {
           a.level.charCodeAt(0) - b.level.charCodeAt(0)
         )
     }
-  },
 
-  async created() {
-    const {id} = this.$route.params
-
-    if (!this.editing) {
-      this.selectableOrganizations = await this.$axios.$get('/organizations')
-      return
+    if (id === "new") {
+      data.selectableOrganizations = await app.$axios.$get('/organizations')
+      return data
     }
 
-    const unit = await this.$axios.$get(`/units/${id}`)
-    const organization = await this.$axios.$get(`/organizations/${unit.organization_id}`)
-    const selectedLevels = await this.$axios.$get(`/units/${id}/levels`).then(r =>
+    const unit = await app.$axios.$get(`/units/${id}`)
+    const organization = await app.$axios.$get(`/organizations/${unit.organization_id}`)
+    const selectedLevels = await app.$axios.$get(`/units/${id}/levels`).then(r =>
       r.map(level => level.level_id)
     )
-    Object.assign(this, unit)
-    this.organizationName = organization.name
-    this.originallySelectedLevels = selectedLevels
-    this.selectedLevels = selectedLevels
+
+    Object.assign(data, unit)
+    data.organizationName = organization.name
+    data.originallySelectedLevels = selectedLevels
+    data.selectedLevels = selectedLevels
+
+    return data
   },
 
   head () {

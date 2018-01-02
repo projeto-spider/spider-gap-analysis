@@ -15,9 +15,10 @@
 
               <b-field label="Data Fundação" expanded>
                 <b-datepicker
-                  v-if="fundationDate instanceof Date"
+                  v-if="isClient && fundationDate instanceof Date"
                   v-model="fundationDate"
                 ></b-datepicker>
+                <b-input disabled v-else></b-input>
               </b-field>
             </b-field>
 
@@ -123,40 +124,11 @@ const attrs = [
 export default {
   components: { Cleave },
 
-  /*
   async asyncData ({ app, params, req }) {
-    const {id} = params
+    const { id } = params
 
-    const creating = id === 'new'
-
-    if (creating) {
-      return {
-        id: null,
-        name: '',
-        fundationDate: new Date(),
-        colaborators: 0,
-        softwareColaborators: 0,
-        description: '',
-        cep: '',
-        address: '',
-        state: '',
-        city: '',
-        complement: '',
-        neighborhood: '',
-      }
-    }
-
-    const data = await app.$axios.$get(`/organizations/${id}`)
-    console.log({data})
-    const org = Object.assign({}, data, {
-      fundationDate: new Date(data.fundationDate),
-    })
-    console.log({org})
-    return org
-  },*/
-  data () {
-    return {
-      id: this.$route.params.id,
+    const data = {
+      id,
       name: '',
       fundationDate: new Date(),
       colaborators: 0,
@@ -168,22 +140,30 @@ export default {
       city: '',
       complement: '',
       neighborhood: '',
+      isClient: false
     }
+
+    if (id === "new") {
+      return data
+    }
+
+    const org = await app.$axios.$get(`/organizations/${id}`)
+
+    Object.assign(org, {
+      fundationDate: new Date(org.fundationDate),
+    })
+
+    Object.assign(data, org)
+
+    return data
   },
 
-  async created() {
-    const {id} = this.$route.params
+  mounted() {
+    this.isClient = !process.server
 
-    if (!this.editing) {
-      return
+    if (this.isClient) {
+      this.fundationDate = new Date(this.fundationDate)
     }
-
-    const data = await this.$axios.$get(`/organizations/${id}`)
-
-    const org = Object.assign({}, data, {
-      fundationDate: new Date(data.fundationDate),
-    })
-    Object.assign(this, org)
   },
 
   head () {

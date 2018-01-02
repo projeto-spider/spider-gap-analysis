@@ -21,7 +21,7 @@
                 </optgroup>
               </b-select>
 
-              <b-field v-else disabled expanded>{{unit.name}}</b-field>
+              <p v-else>{{unit.name}}</p>
             </b-field>
 
             <b-field grouped>
@@ -64,9 +64,10 @@
 
               <b-field label="Data de Inicio" expanded>
                 <b-datepicker
-                  v-if="project.startDate instanceof Date"
+                  v-if="isClient && project.startDate instanceof Date"
                   v-model="project.startDate"
                 ></b-datepicker>
+                <b-input disabled v-else></b-input>
               </b-field>
             </b-field>
 
@@ -77,9 +78,10 @@
 
               <b-field label="Data de Término" expanded>
                 <b-datepicker
-                  v-if="project.endDate instanceof Date"
+                  v-if="isClient && project.endDate instanceof Date"
                   v-model="project.endDate"
                 ></b-datepicker>
+                <b-input disabled v-else></b-input>
               </b-field>
             </b-field>
 
@@ -159,10 +161,13 @@ const attrs = [
 ]
 
 export default {
-  data () {
-    return {
+  async asyncData({ app, params }) {
+    const {id} = params
+
+    const data = {
+      isClient: false,
       project: {
-        id: this.$route.params.id,
+        id,
         unitId: null,
         name: '',
         manager: '',
@@ -185,31 +190,36 @@ export default {
       unit: {},
       levels
     }
-  },
 
-  async created() {
-    const {id} = this.project
-
-    if (!this.editing) {
-      const orgs = await this.$axios.$get('/organizations')
-      const units = await this.$axios.$get('/units')
-      this.selectableOrganizations = orgs
+    if (id === "new") {
+      const orgs = await app.$axios.$get('/organizations')
+      const units = await app.$axios.$get('/units')
+      data.selectableOrganizations = orgs
         .map(org => ({
           label: org.name,
           units: units.filter(unit => unit.organization_id === org.id)
         }))
         .filter(org => org.units.length)
-      return
+
+      return data
     }
 
-    const data = await this.$axios.$get(`/projects/${id}`)
-    const unit = await this.$axios.$get(`/units/${data.unitId}`)
+    data.project = await app.$axios.$get(`/projects/${id}`)
+    data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
 
-    data.startDate = new Date(data.startDate)
-    data.endDate = new Date(data.endDate)
+    data.project.startDate = new Date(data.project.startDate)
+    data.project.endDate = new Date(data.project.endDate)
 
-    Object.assign(this.project, data)
-    this.unit = unit
+    return data
+  },
+
+  mounted() {
+    this.isClient = !process.server
+
+    if (this.isClient) {
+      this.project.startDate = new Date(this.project.startDate)
+      this.project.endDate = new Date(this.project.endDate)
+    }
   },
 
   head () {
