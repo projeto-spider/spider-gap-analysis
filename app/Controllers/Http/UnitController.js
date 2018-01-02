@@ -11,6 +11,7 @@ const attrs = [
   'manager',
   'coordinator',
   'colaborators',
+  'expectedResults'
 ]
 
 class UnitController {

@@ -88,21 +88,29 @@
     <div v-if="editing" class="card">
       <div class="card-content">
         <div class="content">
-          <table class="table is-fullwidth">
-            <thead>
-              <tr>
-                <th>Nível</th>
-                <th>Processo</th>
-                <th>Attributo do Processo</th>
-                <th>Resultados Esperados</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="scopeItem in scope">
-                <td v-for="col in scopeItem">{{col}}</td>
-              </tr>
-            </tbody>
-          </table>
+          <b-table
+            :data="filteredScope"
+            :checked-rows.sync="selectedResults"
+            checkable
+          >
+            <template v-if="props.rows.level)" scope="props">
+              <b-table-column label="Nível">
+                {{ props.row.level }}
+              </b-table-column>
+
+              <b-table-column label="Processo">
+                {{ props.row.process }}
+              </b-table-column>
+
+              <b-table-column label="Atributo do Processo">
+                {{ props.row.attribute }}
+              </b-table-column>
+
+              <b-table-column label="Resultados Esperados">
+                {{ props.row.result }}
+              </b-table-column>
+            </template>
+          </b-table>
         </div>
       </div>
     </div>
@@ -123,6 +131,7 @@ const attrs = [
   'manager',
   'coordinator',
   'colaborators',
+  'expectedResults'
 ]
 
 const flatten = xs =>
@@ -144,10 +153,37 @@ export default {
       organizationName: false,
       originallySelectedLevels: [],
       selectedLevels: [],
+      selectedResults: [],
+      expectedResults: [],
       levels: levels
         .sort((a, b) =>
           a.level.charCodeAt(0) - b.level.charCodeAt(0)
-        )
+        ),
+      scope: flatten(
+        levels
+          .map(level =>
+            flatten(
+              processes
+              .filter(p => p.levelId === level.id)
+              .map(process =>
+                expectedResults
+                  .filter(result => result.processId === process.id)
+                  .map(result => ({
+                    id: result.id,
+                    levelId: level.id,
+                    level: level.level,
+                    process: process.abbr,
+                    result: result.abbr,
+                    attribute: attributes
+                        .filter(attr => attr.processId === process.id)
+                        .map(attr => attr.abbr)
+                        .join(', ')
+                  })
+                )
+              )
+            )
+          )
+      )
     }
 
     if (id === "new") {
@@ -169,6 +205,11 @@ export default {
     return data
   },
 
+  created() {
+    this.selectedResults = this.scope
+      .filter(({id}) => this.expectedResults.includes(id))
+  },
+
   head () {
     return {
       title: 'Unidade Organizacional'
@@ -180,32 +221,9 @@ export default {
       return this.id !== 'new'
     },
 
-    scope() {
-      return flatten(
-        levels
-          .filter(level => this.selectedLevels.includes(level.id))
-          .map(level =>
-            flatten(
-              processes
-              .filter(p => p.levelId === level.id)
-              .map(process =>
-                attributes
-                  .filter(attr => attr.processId === process.id)
-                  .map(attr =>
-                    [ level.level
-                    , process.abbr
-                    , attr.abbr
-                    , expectedResults
-                        .filter(result => result.processId === process.id)
-                        .map(result => result.abbr)
-                        .join(', ')
-                    ]
-                  )
-              )
-            )
-          )
-      )
-    }
+    filteredScope() {
+      return this.scope.filter(({levelId}) => this.selectedLevels.includes(levelId))
+    },
   },
 
   methods: {
@@ -230,7 +248,11 @@ export default {
 
     async update() {
       const id = this.id
-      const data = await this.$axios.$put(`/units/${id}`, this.attrs())
+      const updatedData = this.attrs()
+      updatedData.expectedResults = this.selectedResults
+        .filter(({levelId}) => this.selectedLevels.includes(levelId))
+        .map(er => er.id)
+      const data = await this.$axios.$put(`/units/${id}`, updatedData)
         .catch(err => {
           this.$snackbar.open({
             message: 'Falha ao atualizar unidade',
@@ -278,6 +300,8 @@ export default {
       })
       data.fundationDate = new Date(data.fundationDate)
       Object.assign(this, data)
+      this.selectedResults = this.scope
+        .filter(({id}) => this.expectedResults.includes(id))
     },
 
     async destroy() {
@@ -299,6 +323,13 @@ export default {
       })
 
       this.$router.push('/unit/')
+    },
+
+    watch: {
+      expectedResults() {
+        this.selectedResults = this.scope
+          .filter(({id}) => this.expectedResults.includes(id))
+      },
     },
 
     attrs() {

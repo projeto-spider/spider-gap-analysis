@@ -3,6 +3,17 @@
 const Model = use('Model')
 
 class Unit extends Model {
+  getExpectedResults(str) {
+    return str
+      .split(',')
+      .filter(x => x)
+      .map(Number)
+  }
+
+  setExpectedResults(arr) {
+    return arr.join(',')
+  }
+
   organization() {
     return this.belongsTo('App/Models/Organization')
   }
