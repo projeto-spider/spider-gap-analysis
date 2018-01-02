@@ -8,21 +8,7 @@
           <div class="content">
             <h3>Projeto</h3>
 
-            <b-field label="Unidade Organizacional" expanded>
-              <b-select v-if="!editing" v-model="project.unitId" placeholder="Unidade Organizacional" expanded required>
-                <optgroup v-for="org in selectableOrganizations" :label="org.label">
-                  <option
-                    v-for="unit in org.units"
-                    :value="unit.id"
-                    :key="unit.id"
-                  >
-                    {{ unit.name }}
-                  </option>
-                </optgroup>
-              </b-select>
-
-              <p v-else>{{unit.name}}</p>
-            </b-field>
+            <unit-picker :disabled="editing" v-model="project.unitId" :value="project.unitId"></unit-picker>
 
             <b-field grouped>
               <b-field label="Nome" expanded>
@@ -140,6 +126,7 @@
 </template>
 
 <script>
+import UnitPicker from '~/components/unit-picker.vue'
 import levels from '~/static/levels.json'
 
 const attrs = [
@@ -161,6 +148,8 @@ const attrs = [
 ]
 
 export default {
+  components: { UnitPicker },
+
   async asyncData({ app, params }) {
     const {id} = params
 
@@ -185,28 +174,14 @@ export default {
         justification: '',
         levelId: null,
       },
-      selectableUnits: [],
-      selectableOrganizations: [],
-      unit: {},
       levels
     }
 
     if (id === "new") {
-      const orgs = await app.$axios.$get('/organizations')
-      const units = await app.$axios.$get('/units')
-      data.selectableOrganizations = orgs
-        .map(org => ({
-          label: org.name,
-          units: units.filter(unit => unit.organization_id === org.id)
-        }))
-        .filter(org => org.units.length)
-
       return data
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
-    data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
-
     data.project.startDate = new Date(data.project.startDate)
     data.project.endDate = new Date(data.project.endDate)
 
