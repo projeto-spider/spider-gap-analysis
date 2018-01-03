@@ -52,7 +52,7 @@
                   <a>Projetos</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/evidence-sources">
+                <nuxt-link tag="li" to="/role">
                   <a>Fontes de Evidência</a>
                 </nuxt-link>
 

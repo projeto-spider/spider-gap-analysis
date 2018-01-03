@@ -20,6 +20,7 @@ Route.group(() => {
   Route.resource('units', 'UnitController').apiOnly()
   Route.resource('units.levels', 'UnitLevelController').apiOnly()
   Route.resource('projects', 'ProjectController').apiOnly()
+  Route.resource('roles', 'RoleController').apiOnly()
 })
   .formats(['json'])
   .prefix('api')
