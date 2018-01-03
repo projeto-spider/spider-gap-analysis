@@ -29,6 +29,11 @@ class Unit extends Model {
   roles() {
     return this.hasMany('App/Models/Role', 'id', 'unitId')
   }
+
+  evidences() {
+    return this.hasMany('App/Models/Evidence', 'id', 'unitId')
+  }
+
 }
 
 module.exports = Unit

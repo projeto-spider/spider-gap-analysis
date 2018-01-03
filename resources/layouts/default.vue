@@ -60,6 +60,10 @@
                   <a>Equipe</a>
                 </nuxt-link>
 
+                <nuxt-link tag="li" to="/evidence">
+                  <a>Evidência</a>
+                </nuxt-link>
+
                 <nuxt-link tag="li" to="/evidences-and-projects">
                   <a>Evidências e Projetos</a>
                 </nuxt-link>
