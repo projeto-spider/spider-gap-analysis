@@ -56,7 +56,7 @@
                   <a>Fontes de Evidência</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/team">
+                <nuxt-link tag="li" to="/member">
                   <a>Equipe</a>
                 </nuxt-link>
 

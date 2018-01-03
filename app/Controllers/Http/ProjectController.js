@@ -27,6 +27,11 @@ class ProjectController {
     return await Project.all()
   }
 
+  async fromUnit ({ request }) {
+    return await Project.query()
+      .where('unitId', request.params.unitId)
+  }
+
   async store ({ request }) {
     const data = request.only(attrs)
     const unit = await Unit.findOrFail(+data.unitId)

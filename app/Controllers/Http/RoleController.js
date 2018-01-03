@@ -14,6 +14,12 @@ class RoleController {
     return await Role.all()
   }
 
+  async fromUnit ({ request }) {
+    return await Role.query()
+      .where('unitId', request.params.unitId)
+      .fetch()
+  }
+
   async store ({ request }) {
     const data = request.only(attrs)
     const unit = await Unit.findOrFail(+data.unitId)
