@@ -9,6 +9,8 @@
         <tr>
           <th>ID</th>
           <th>Nome</th>
+          <th>Projeto</th>
+          <th>Fonte de Evidência</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -16,6 +18,8 @@
         <tr v-for="member in members">
           <th>{{member.id}}</th>
           <td>{{member.name}}</td>
+          <td>{{member.project.name}}</td>
+          <td>{{member.role.name}}</td>
           <td>
             <nuxt-link :to="`/member/${member.id}`">
               <button class="button is-primary">Ver</button>

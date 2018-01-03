@@ -19,6 +19,7 @@ class MemberController {
     return await Member
       .query()
       .with('project')
+      .with('role')
       .fetch()
   }
 
