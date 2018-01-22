@@ -5,7 +5,7 @@
 ```sh
 cp .env.example .env
 npm install
-node ./ace migration:run
+npm run migrate
 ```
 
 ## Usage
