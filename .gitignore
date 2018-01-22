@@ -30,3 +30,6 @@ lib-cov
 
 # Database
 database/development.sqlite
+
+# Uploads
+public/uploads
