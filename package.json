@@ -12,13 +12,15 @@
     "build": "node ./ace nuxtbuild",
     "start": "cross-env NODE_ENV=production node server.js",
     "precommit": "npm run lint",
-    "lint": "standard && eslint --ext .js,.vue resources/"
+    "lint": "standard && eslint --ext .js,.vue resources/",
+    "migrate": "adonis migration:run"
   },
   "dependencies": {
     "@adonisjs/ace": "^4.0.7",
     "@adonisjs/auth": "^2.0.10",
     "@adonisjs/bodyparser": "^1.0.8",
     "@adonisjs/cors": "^1.0.2",
+    "@adonisjs/drive": "^1.0.1",
     "@adonisjs/fold": "^4.0.5",
     "@adonisjs/framework": "^4.0.27",
     "@adonisjs/ignitor": "^1.0.14",
@@ -31,7 +33,7 @@
     "cleave.js": "^1.0.7",
     "cross-env": "^3.1.4",
     "font-awesome": "^4.7.0",
-    "nuxt": "latest",
+    "form-data": "^2.3.1",
     "p-debounce": "^1.0.0",
     "sqlite3": "^3.1.13",
     "standard": "^8.6.0",
@@ -55,6 +57,7 @@
     "eslint-plugin-standard": "^2.0.1",
     "node-sass": "^4.7.2",
     "nodemon": "^1.11.0",
+    "nuxt": "^1.0.0-rc11",
     "sass-loader": "^6.0.6",
     "standard": "^8.6.0"
   }
