@@ -10,6 +10,10 @@ class Role extends Model {
   members() {
     return this.hasMany('App/Models/Member', 'id', 'roleId')
   }
+
+  evidences() {
+    return this.hasMany('App/Models/ProjectEvidence', 'id', 'roleId')
+  }
 }
 
 module.exports = Role

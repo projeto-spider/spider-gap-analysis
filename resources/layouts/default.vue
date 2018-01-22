@@ -64,11 +64,11 @@
                   <a>Evidência</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/evidences-and-projects">
+                <nuxt-link tag="li" to="/project-evidences">
                   <a>Evidências e Projetos</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/evidence-avaliation">
+                <nuxt-link tag="li" to="/evaluation">
                   <a>Avaliação das Evidências</a>
                 </nuxt-link>
               </ul>

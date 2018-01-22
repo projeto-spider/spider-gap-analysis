@@ -21,6 +21,7 @@ Route.group(() => {
   Route.resource('units.levels', 'UnitLevelController').apiOnly()
   Route.get('units/:unitId/projects', 'ProjectController.fromUnit')
   Route.resource('projects', 'ProjectController').apiOnly()
+  Route.resource('projects.evidences', 'ProjectEvidenceController').apiOnly()
   Route.resource('roles', 'RoleController').apiOnly()
   Route.get('units/:unitId/roles', 'RoleController.fromUnit')
   Route.resource('members', 'MemberController').apiOnly()

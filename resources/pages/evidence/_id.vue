@@ -15,7 +15,15 @@
             </b-field>
 
             <b-field label="Tipo da evidência" expanded>
-              <b-input v-model="evidence.type"d></b-input>
+              <b-select v-model="evidence.type" placeholder="Tipo de Evidência" expanded>
+                <option
+                  v-for="item in ['Diretas', 'Indiretas', 'Afirmações']"
+                  :value="item"
+                  :key="item"
+                >
+                  {{ item }}
+                </option>
+              </b-select>
             </b-field>
 
             <b-field label="Descrição" expanded>
