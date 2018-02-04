@@ -18,7 +18,6 @@ const attrs = [
 
 class ProjectEvidenceController {
   async index ({ request }) {
-    console.log('here');
     const proj = await Project.findOrFail(request.params.projects_id)
     return await ProjectEvidence.query().where({projectId: proj.id}).fetch()
   }
@@ -67,7 +66,6 @@ class ProjectEvidenceController {
 
     const file = Helpers.publicPath('uploads') + '/' + evi.filename
 
-    console.log({file});
     if (await Drive.exists(file)) {
       await Drive.delete(file)
     }
