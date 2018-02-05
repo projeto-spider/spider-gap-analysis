@@ -31,6 +31,8 @@
 
 <script>
 export default {
+  middleware: 'is-admin',
+
   async asyncData({ app }) {
     const organizations = await app.$axios.$get('/organizations')
 

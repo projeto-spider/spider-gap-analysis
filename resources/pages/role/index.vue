@@ -29,6 +29,8 @@
 
 <script>
 export default {
+  middleware: 'is-admin',
+
   async asyncData({ app }) {
     const roles = await app.$axios.$get('/roles')
 

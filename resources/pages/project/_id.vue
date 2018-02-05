@@ -180,6 +180,8 @@ const attrs = [
 ]
 
 export default {
+  middleware: 'is-admin',
+
   components: { UnitPicker },
 
   async asyncData({ app, params }) {

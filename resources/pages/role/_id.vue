@@ -48,6 +48,8 @@ import UnitPicker from '~/components/unit-picker.vue'
 import levels from '~/static/levels.json'
 
 export default {
+  middleware: 'is-admin',
+
   components: { UnitPicker },
 
   async asyncData({ app, params }) {

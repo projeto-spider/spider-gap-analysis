@@ -117,6 +117,8 @@ const emptyProjectEvidence = {
 }
 
 export default {
+  middleware: 'is-reviewer',
+
   async asyncData({ app, params }) {
     const {id} = params
 

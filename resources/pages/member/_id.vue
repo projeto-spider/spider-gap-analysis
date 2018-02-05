@@ -110,6 +110,8 @@ import ProjectPicker from '~/components/project-picker.vue'
 import RolePicker from '~/components/role-picker.vue'
 
 export default {
+  middleware: 'is-admin',
+
   components: { UnitPicker, ProjectPicker, RolePicker },
 
   async asyncData({ app, params }) {

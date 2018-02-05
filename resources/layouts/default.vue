@@ -7,17 +7,28 @@
           <nav class="navbar">
             <div class="container">
               <div class="navbar-brand">
-                <a class="navbar-item">
+                <router-link class="navbar-item" to="/">
                   Pré Avaliação MPS - SW
-                </a>
+                </router-link>
+
                 <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                   <span></span>
                   <span></span>
                   <span></span>
                 </span>
               </div>
+
               <div class="navbar-menu">
                 <div class="navbar-end">
+                  <span v-if="isLoggedIn" class="navbar-item">
+                    <button class="button is-danger" @click="logout">
+                      <span class="icon">
+                        <i class="fa fa-sign-out"></i>
+                      </span>
+                      <span>Logout</span>
+                    </button>
+                  </span>
+
                   <span class="navbar-item">
                     <a class="button is-info is-inverted" target="_blank" href="https://github.com/projeto-spider/spider-gap-analysis">
                       <span class="icon">
@@ -36,39 +47,39 @@
           <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
               <ul>
-                <nuxt-link tag="li" to="/" exact>
+                <nuxt-link tag="li" to="/" exact v-if="isAdmin">
                   <a>Home</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/organization">
+                <nuxt-link tag="li" to="/organization" v-if="isAdmin">
                   <a>Organizações</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/unit">
+                <nuxt-link tag="li" to="/unit" v-if="isAdmin">
                   <a>Unidade Organizacional</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/project">
+                <nuxt-link tag="li" to="/project" v-if="isAdmin">
                   <a>Projetos</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/role">
+                <nuxt-link tag="li" to="/role" v-if="isAdmin">
                   <a>Fontes de Evidência</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/member">
+                <nuxt-link tag="li" to="/member" v-if="isAdmin">
                   <a>Equipe</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/evidence">
+                <nuxt-link tag="li" to="/evidence" v-if="isAdmin">
                   <a>Evidência</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/project-evidences">
+                <nuxt-link tag="li" to="/project-evidences" v-if="isAdmin">
                   <a>Evidências e Projetos</a>
                 </nuxt-link>
 
-                <nuxt-link tag="li" to="/evaluation">
+                <nuxt-link tag="li" to="/evaluation" v-if="isAdmin || isReviewer">
                   <a>Avaliação das Evidências</a>
                 </nuxt-link>
               </ul>
@@ -105,7 +116,20 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['loggedUser', 'isLoggedIn', 'isAdmin', 'isReviewer']),
+  },
+
+  methods: {
+    async logout() {
+      await this.$store.dispatch('logout')
+      this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <style lang="sass" src="@/assets/overrides.scss"></style>

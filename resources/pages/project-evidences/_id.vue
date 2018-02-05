@@ -277,6 +277,8 @@ const emptyProjectEvidence = {
 }
 
 export default {
+  middleware: 'is-admin',
+
   async asyncData({ app, params }) {
     const {id} = params
 

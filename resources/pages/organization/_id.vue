@@ -122,6 +122,8 @@ const attrs = [
 ]
 
 export default {
+  middleware: 'is-admin',
+
   components: { Cleave },
 
   async asyncData ({ app, params, req }) {

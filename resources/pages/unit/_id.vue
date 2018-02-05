@@ -138,6 +138,8 @@ const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
 export default {
+  middleware: 'is-admin',
+
   async asyncData ({ app, params, req }) {
     const {id} = params
 
