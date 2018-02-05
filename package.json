@@ -13,7 +13,8 @@
     "start": "cross-env NODE_ENV=production node server.js",
     "precommit": "npm run lint",
     "lint": "standard && eslint --ext .js,.vue resources/",
-    "migrate": "adonis migration:run"
+    "migrate": "node ace migration:run",
+    "seed": "node ace seed"
   },
   "dependencies": {
     "@adonisjs/ace": "^4.0.7",
