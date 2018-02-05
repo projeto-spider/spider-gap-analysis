@@ -6,6 +6,7 @@
 cp .env.example .env
 npm install
 npm run migrate
+npm run seed
 ```
 
 ## Usage
