@@ -16,7 +16,8 @@ class NuxtController {
     }
   }
 
-  async render ({request: { request: req }, response: { response: res }}) {
+  async render ({request: { request: req }, response: { response: res }, auth }) {
+    req.auth = auth
     await new Promise((resolve, reject) => {
       this.nuxt.render(req, res, promise => {
         promise.then(resolve).catch(reject)
