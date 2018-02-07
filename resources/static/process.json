@@ -131,5 +131,19 @@
     "description": "Gerência de Riscos",
     "abbr": "GRI",
     "proposal": "O propósito do processo Gerência de Riscos é identificar, analisar, tratar, monitorar e reduzir continuamente os riscos em nível organizacional e de projeto."
+  },
+  {
+    "id": 20,
+    "levelId": 6,
+    "description": "Desempenho do Processo Organizacional",
+    "abbr": "DEP",
+    "proposal": "O propósito do processo Desempenho do Processo Organizacional é estabelecer e manter um entendimento quantitativo do desempenho dos processos-padrão da organização para apoiar os objetivos para qualidade e para o desempenho dos processos. Também é propósito deste processo fornecer dados, linhas-básicas (baselines) e modelos para gerenciar quantitativamente os projetos da organização."
+  },
+  {
+    "id": 21,
+    "levelId": 6,
+    "description": "Gerenciado Quantitativamente",
+    "abbr": "GQP",
+    "proposal": "O propósito do processo Gerência Quantitativa do Projeto é gerenciar quantitativamente o processo definido para o projeto de forma a alcançar os objetivos para qualidade e para o desempenho do processo estabelecidos para o projeto."
   }
 ]

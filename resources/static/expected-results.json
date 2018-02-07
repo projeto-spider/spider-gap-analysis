@@ -1158,7 +1158,98 @@
     "id": 167,
     "processId": 19,
     "abbr": "GRI 9",
-    "description": "Ações apropriadas são executadas para corrigir ou evitar o impacto do risco, baseadas na sua prioridade, probabilidade, consequência ou outros parâmetros definidos",
+    "description": "A partir do conjunto de processos-padrão da organização, são selecionados os processos e/ou elementos de processos que serão objeto de análise de desempenho;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 168,
+    "processId": 20,
+    "abbr": "DEP 1",
+    "description": "A partir do conjunto de processos-padrão da organização, são selecionados os processos e/ou elementos de processos que serão objeto de análise de desempenho;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 169,
+    "processId": 20,
+    "abbr": "DEP 2",
+    "description": "Medidas para análise do desempenho dos processos da organização são estabelecidas e mantidas;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 170,
+    "processId": 20,
+    "abbr": "DEP 3",
+    "description": "Objetivos quantitativos para qualidade e para o desempenho dos processos da organização são definidos e mantidos;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 171,
+    "processId": 20,
+    "abbr": "DEP 4",
+    "description": "Linhas bases (baselines) de desempenho dos processos da organização são estabelecidas;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 172,
+    "processId": 20,
+    "abbr": "DEP 5",
+    "description": "Modelos de desempenho do processo para o conjunto de processospadrão da organização são estabelecidos e mantidos.",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 173,
+    "processId": 21,
+    "abbr": "GQP 1",
+    "description": "Os objetivos para qualidade e para o desempenho do processo para o projeto são estabelecidos e mantidos;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 174,
+    "processId": 21,
+    "abbr": "GQP 2",
+    "description": "Os sub-processos mais adequados para compor o processo definido para o projeto são selecionados com base na estabilidade histórica, em dados de capacidade e em critérios previamente estabelecidos;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 175,
+    "processId": 21,
+    "abbr": "GQP 3",
+    "description": "Sub-processos do processo definido para o projeto e que serão gerenciados estatisticamente são escolhidos a partir de critérios previamente estabelecidos;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 176,
+    "processId": 21,
+    "abbr": "GQP 4",
+    "description": "O projeto é monitorado para determinar se seus objetivos para qualidade e para o desempenho do processo serão atingidos e ações corretivas são identificadas quando necessário;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 176,
+    "processId": 21,
+    "abbr": "GQP 5",
+    "description": "Medidas e técnicas de análise para gerenciar estatisticamente os subprocessos escolhidos são selecionadas;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 177,
+    "processId": 21,
+    "abbr": "GQP 6",
+    "description": "O entendimento da variação dos sub-processos escolhidos para gerência quantitativa , utilizando as medidas e técnicas de análise selecionadas, é estabelecido e mantido;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 178,
+    "processId": 21,
+    "abbr": "GQP 7",
+    "description": "O desempenho dos sub-processos escolhidos para gerência quantitativa é monitorado para determinar a sua capacidade de satisfazer os seus objetivos para qualidade e para o desempenho e ações são identificadas quando for necessário tratar deficiências dos sub-processos;",
+    "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
+  },
+  {
+    "id": 179,
+    "processId": 21,
+    "abbr": "GQP 8",
+    "description": "Dados estatísticos e de gerência da qualidade são incorporados ao repositório de medidas da organização.",
     "evidence": "As evidências apresentadas para este resultado permitem assegurar que foram executadas as ações definidas nas estratégias para a gerência de riscos do projeto com base nos parâmetros definidos para o risco (por exemplo, prioridade, probabilidade, consequência, entre outros)?"
   }
 ]

@@ -635,5 +635,75 @@
     "abbr": "AP 2.1",
     "description": "A execução do processo é gerenciada",
     "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) existe uma política organizacional estabelecida e mantida para o processo; (ii) a execução do processo é planejada  (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas);  (iii) a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados; (iv) as pessoas que executam o processo estão preparadas para  executar suas responsabilidades; (v) as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas;  (vi) (a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades."
+  },
+  {
+    "id": 10,
+    "processId": 20,
+    "abbr": "AP 1.1",
+    "description": "O processo é executado",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i)  o processo produz os resultados definidos."
+  },
+  {
+    "id": 11,
+    "processId": 20,
+    "abbr": "AP 2.1",
+    "description": "A execução do processo é gerenciada",
+    "evidence": "As evidências apresentadas devem assegurar que: (i) existe uma política organizacional estabelecida e mantida para o processo; (ii) a execução do processo é planejada  (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas);  (iii) a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados; (iv) as pessoas que executam o processo estão preparadas para  executar suas responsabilidades; (v) as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas;  (vi) (a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades."
+  },
+  {
+    "id": 12,
+    "processId": 20,
+    "abbr": "AP 2.2",
+    "description": "Os produtos de trabalho do processo são gerenciados",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os requisitos para documentação e controle dos produtos de trabalho do processo são identificados; (ii) os produtos de trabalho do processo estão identificados, documentados e sob os níveis de controle especificados; (iii) os produtos de trabalho são avaliados objetivamente com relação à aderência aos padrões, procedimentos e requisitos aplicáveis e são tratadas as não conformidades."
+  },
+  {
+    "id": 13,
+    "processId": 20,
+    "abbr": "AP 3.1",
+    "description": "O processo é definido",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) existe a definição de um processo padrão, o que inclui diretrizes para a sua adaptação a situações específicas, a sequência de execução, a interação deste processo com os outros processos, os papéis e competências, a infraestrutura e o ambiente de trabalho requeridos para executar o processo; (ii) métodos adequados para monitorar a efetividade e adequação do processo são identificados."
+  },
+  {
+    "id": 14,
+    "processId": 20,
+    "abbr": "AP 3.2",
+    "description": "O processo está implementado",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) um processo definido baseado nas diretrizes para seleção e/ou adaptação do processo padrão está  implementado; (ii) a infraestrutura e o ambiente de trabalho requeridos para executar o processo definido estão disponibilizados, gerenciados e mantidos; (iii) experiências e dados apropriados são coletados, analisados e utilizados para entendimento do comportamento e adequação do processo, e para a identificação de oportunidades de melhoria no processo."
+  },
+  {
+    "id": 15,
+    "processId": 21,
+    "abbr": "AP 1.1",
+    "description": "O processo é executado",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i)  o processo produz os resultados definidos."
+  },
+  {
+    "id": 16,
+    "processId": 21,
+    "abbr": "AP 2.1",
+    "description": "A execução do processo é gerenciada",
+    "evidence": "As evidências apresentadas devem assegurar que: (i) existe uma política organizacional estabelecida e mantida para o processo; (ii) a execução do processo é planejada  (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas);  (iii) a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados; (iv) as pessoas que executam o processo estão preparadas para  executar suas responsabilidades; (v) as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas;  (vi) (a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades."
+  },
+  {
+    "id": 17,
+    "processId": 21,
+    "abbr": "AP 2.2",
+    "description": "Os produtos de trabalho do processo são gerenciados",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os requisitos para documentação e controle dos produtos de trabalho do processo são identificados; (ii) os produtos de trabalho do processo estão identificados, documentados e sob os níveis de controle especificados; (iii) os produtos de trabalho são avaliados objetivamente com relação à aderência aos padrões, procedimentos e requisitos aplicáveis e são tratadas as não conformidades."
+  },
+  {
+    "id": 18,
+    "processId": 21,
+    "abbr": "AP 3.1",
+    "description": "O processo é definido",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) existe a definição de um processo padrão, o que inclui diretrizes para a sua adaptação a situações específicas, a sequência de execução, a interação deste processo com os outros processos, os papéis e competências, a infraestrutura e o ambiente de trabalho requeridos para executar o processo; (ii) métodos adequados para monitorar a efetividade e adequação do processo são identificados."
+  },
+  {
+    "id": 19,
+    "processId": 21,
+    "abbr": "AP 3.2",
+    "description": "O processo está implementado",
+    "evidence": "As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) um processo definido baseado nas diretrizes para seleção e/ou adaptação do processo padrão está  implementado; (ii) a infraestrutura e o ambiente de trabalho requeridos para executar o processo definido estão disponibilizados, gerenciados e mantidos; (iii) experiências e dados apropriados são coletados, analisados e utilizados para entendimento do comportamento e adequação do processo, e para a identificação de oportunidades de melhoria no processo."
   }
 ]
