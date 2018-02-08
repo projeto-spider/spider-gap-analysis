@@ -176,10 +176,15 @@ export default {
                     level: level.level,
                     process: process.abbr,
                     result: result.abbr,
-                    attribute: attributes
-                        .filter(attr => attr.processId === process.id)
-                        .map(attr => attr.abbr)
-                        .join(', ')
+                    attribute:
+                      // TODO: refactor this relationship
+                      // This is obviously a quick fix
+                      level.id === 1 // G
+                        ? 'AP 1.1, AP 2.1'
+                        : attributes
+                            .filter(attr => attr.processId === process.id)
+                            .map(attr => attr.abbr)
+                            .join(', ')
                   })
                 )
               )
