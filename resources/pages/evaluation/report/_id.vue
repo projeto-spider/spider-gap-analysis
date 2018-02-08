@@ -1,111 +1,28 @@
 <template>
-  <section class="container">
-    <strong>Avaliação</strong>
-
-    <br></br>
-
-    <router-link class="button" :to="`/evaluation/report/${$route.params.id}`" target="_blank">
-      Relatório
-    </router-link>
-
-    <br></br>
-
-    <div class="card">
+  <div class="container is-fluid">
+    <div class="card" v-for="evidence in filteredRows">
       <div class="card-content">
-        <div class="content">
-          <b-field>
-            <b-checkbox v-model="selectedLevels"
-              v-for="level in levels"
-              v-if="availableLevels.includes(level.id)"
-              :key="level.id"
-              :native-value="level.id"
-              type="is-success"
-              >
-              <span>[{{level.level}}] {{level.title}}</span>
-            </b-checkbox>
-          </b-field>
-          <br/>
-
-          <b-field>
-            <b-checkbox v-model="selectedProcesses"
-              v-for="process in process"
-              v-if="availableProcesses.includes(process.id) && availableLevels.includes(process.levelId)"
-              :key="process.id"
-              :native-value="process.id"
-              type="is-success"
-              >
-              <span>{{process.abbr}}</span>
-            </b-checkbox>
-          </b-field>
+        <div class="media">
+          <div class="media-left">
+            <span v-if="evidence.original.approval === 2" class="tag is-primary is-medium">Verde</span>
+            <span v-else-if="evidence.original.approval === 1" class="tag is-warning is-medium">Amarelo</span>
+            <span v-else class="tag is-danger is-medium">Vermelho</span>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{evidence.reference.abbr}}</p>
+            <p class="subtitle is-6">Nível {{evidence.level.level}}</p>
+            <div class="content" v-if="evidence.original.feedback">
+              {{evidence.original.feedback}}
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
-
-    <br/>
-
-    <div class="columns">
-      <div class="column">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Nível</th>
-              <th>Identificador</th>
-              <th>Tipo</th>
-              <th>Evidência</th>
-              <th>Arquivo</th>
-              <th>Ações</th>
-              <th>Feedback</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr v-for="evidence in filteredRows">
-              <td>Nível {{evidence.level.level}}</td>
-              <td>
-                <span>{{evidence.reference.abbr}}</span>
-              </td>
-              <td>{{evidence.type === 'expectedResult' ? 'Resultado Esperado' : 'Atributo de Processo'}}</td>
-              <td>{{evidence.evidence.name}}</td>
-              <td>
-                <a :href="`/uploads/${evidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
-              </td>
-              <td>
-                <b-field>
-                  <b-radio-button v-model="evidence.original.approval" :native-value="0" type="is-danger" @input="updateApprovalStatus(evidence.original)">
-                    <b-icon icon="close"></b-icon>
-                    <span>Vermelho</span>
-                  </b-radio-button>
-
-                  <b-radio-button v-model="evidence.original.approval" :native-value="1" type="is-warning" @input="updateApprovalStatus(evidence.original)">
-                    Amarelo
-                  </b-radio-button>
-
-                  <b-radio-button v-model="evidence.original.approval" :native-value="2" type="is-success" @input="updateApprovalStatus(evidence.original)">
-                    <b-icon icon="check"></b-icon>
-                    <span>Verde</span>
-                  </b-radio-button>
-                </b-field>
-              </td>
-              <td>
-                <b-field v-if="evidence.original.approval < 2">
-                  <b-input
-                    v-model="evidence.original.feedback"
-                    @input="updateFeedback(evidence.original)"
-                    maxlength="200"
-                    type="textarea"
-                  ></b-input>
-                </b-field>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import FormData from 'form-data'
 import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import process from '~/static/process.json'
@@ -127,6 +44,8 @@ const emptyProjectEvidence = {
 }
 
 export default {
+  layout: 'report',
+
   middleware: 'is-reviewer',
 
   async asyncData({ app, params }) {
@@ -228,3 +147,28 @@ export default {
   }
 }
 </script>
+
+<style>
+* {
+  -webkit-print-color-adjust: exact;
+}
+
+body {
+  padding: 10px;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.tag {
+  min-width: 50px;
+}
+
+@media print
+{
+  .card{
+    page-break-inside: avoid;
+  }
+}
+</style>
