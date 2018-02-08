@@ -174,7 +174,7 @@ export default {
 
   head () {
     return {
-      title: 'Relatório'
+      title: 'Avaliação'
     }
   },
 
