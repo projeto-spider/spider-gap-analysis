@@ -13,7 +13,8 @@ const attrs = [
   'filename',
   'type',
   'typeId',
-  'approval'
+  'approval',
+  'feedback'
 ]
 
 class ProjectEvidenceController {

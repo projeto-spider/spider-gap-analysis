@@ -47,6 +47,7 @@
               <th>Evidência</th>
               <th>Arquivo</th>
               <th>Ações</th>
+              <th>Feedback</th>
             </tr>
           </thead>
 
@@ -78,12 +79,15 @@
                   </b-radio-button>
                 </b-field>
               </td>
-              <td v-if="false">
-                <template v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)">
-                  <button @click="openEvidence('expectedResult', result.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('expectedResult', result.id)"  class="button is-danger">Excluir</button>
-                </template>
-                <button v-else @click="openModal('expectedResult', result.id)" class="button is-secondary">Inserir Evidência</button>
+              <td>
+                <b-field v-if="evidence.original.approval < 2">
+                  <b-input
+                    v-model="evidence.original.feedback"
+                    @input="updateFeedback(evidence.original)"
+                    maxlength="200"
+                    type="textarea"
+                  ></b-input>
+                </b-field>
               </td>
             </tr>
           </tbody>
@@ -206,6 +210,12 @@ export default {
     updateApprovalStatus(evidence) {
       this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
         approval: evidence.approval
+      })
+    },
+
+    updateFeedback(evidence) {
+      this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
+        feedback: evidence.feedback
       })
     },
   }

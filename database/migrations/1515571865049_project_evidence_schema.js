@@ -16,6 +16,7 @@ class ProjectEvidenceSchema extends Schema {
       table.string('type').notNullable()
       table.integer('typeId').notNullable()
       table.string('filename')
+      table.string('feedback')
       table.integer('approval').notNullable().defaultTo(0)
       table.timestamps()
     })
