@@ -12,14 +12,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="result in expectedResults.filter(({id}) => unit.expectedResults.includes(id))">
+            <tr v-for="result in processAttributes">
               <td>{{result.abbr}}</td>
               <td>
-                <template v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)">
-                  <button @click="openEvidence('expectedResult', result.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('expectedResult', result.id)"  class="button is-danger">Excluir</button>
+                <template v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == result.id)">
+                  <button @click="openEvidence('processAttribute', result.id)"  class="button is-primary">Ver Evidência</button>
+                  <button @click="destroy('processAttribute', result.id)"  class="button is-danger">Excluir</button>
                 </template>
-                <button v-else @click="openModal('expectedResult', result.id)" class="button is-secondary">Inserir Evidência</button>
+                <button v-else @click="openModal('processAttribute', result.id)" class="button is-secondary">Inserir Evidência</button>
               </td>
             </tr>
           </tbody>
@@ -35,14 +35,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="result in processAttributes.filter(({levelId}) => selectedLevels.includes(levelId))">
-              <td>{{result.processName}} {{result.abbr}}</td>
+            <tr v-for="result in expectedResults.filter(({id}) => unit.expectedResults.includes(id))">
+              <td>{{result.abbr}}</td>
               <td>
-                <template v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == result.id)">
-                  <button @click="openEvidence('processAttribute', result.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('processAttribute', result.id)"  class="button is-danger">Excluir</button>
+                <template v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)">
+                  <button @click="openEvidence('expectedResult', result.id)"  class="button is-primary">Ver Evidência</button>
+                  <button @click="destroy('expectedResult', result.id)"  class="button is-danger">Excluir</button>
                 </template>
-                <button v-else @click="openModal('processAttribute', result.id)" class="button is-secondary">Inserir Evidência</button>
+                <button v-else @click="openModal('expectedResult', result.id)" class="button is-secondary">Inserir Evidência</button>
               </td>
             </tr>
           </tbody>
@@ -285,7 +285,6 @@ export default {
     const data = {
       isModalActive: false,
       expectedResults,
-      processAttributes,
       project: {},
       unit: {},
       evidences: [],
@@ -305,6 +304,17 @@ export default {
     )
 
     return data
+  },
+
+  computed: {
+    processAttributes() {
+      const levels = new Set(this.selectedLevels)
+      return processAttributes
+        .filter(attr => levels.has(attr.levelId))
+        .filter((attr, i, attrs) =>
+          !attrs.slice(i + 1).some(other => other.abbr === attr.abbr)
+        )
+    },
   },
 
   head () {

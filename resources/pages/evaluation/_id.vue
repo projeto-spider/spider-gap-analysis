@@ -54,7 +54,6 @@
             <tr v-for="evidence in filteredRows">
               <td>Nível {{evidence.level.level}}</td>
               <td>
-                <span v-if="evidence.type === 'processAttribute'">{{evidence.process.abbr}} </span>
                 <span>{{evidence.reference.abbr}}</span>
               </td>
               <td>{{evidence.type === 'expectedResult' ? 'Resultado Esperado' : 'Atributo de Processo'}}</td>
@@ -170,6 +169,13 @@ export default {
 
   computed: {
     filteredRows() {
+      const validLevels = new Set(this.selectedLevels)
+      const validProcessAttributes = new Set(
+        processAttributes
+          .filter(attr => validLevels.has(attr.levelId))
+          .map(pa => pa.attr)
+      )
+
       return this.projectEvidences
         .map(evi => {
           const data = Object.assign({}, evi)
@@ -187,15 +193,10 @@ export default {
           return data
         })
         .filter(evi => {
-          if (evi.type === 'expectedResult' && !this.unit.expectedResults.includes(evi.typeId)) {
-            return false
+          if (evi.type === 'expectedResult') {
+            return this.unit.expectedResults.includes(evi.typeId)
           }
-          if (!this.selectedLevels.length || !this.selectedLevels.includes(evi.level.id)) {
-            return false
-          }
-          if (!this.selectedProcesses.length || !this.selectedProcesses.includes(evi.process.id)) {
-            return false
-          }
+          // TODO: properly handle this filter
           return true
         })
     },
