@@ -8,16 +8,16 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Organização</th>
           <th>Nome</th>
-          <th>Coordenador</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="unit in units">
           <th>{{unit.id}}</th>
+          <td>{{organizations[unit.organization_id].name}}</td>
           <td>{{unit.name}}</td>
-          <td>{{unit.coordinator}}</td>
           <td>
             <nuxt-link :to="`/unit/${unit.id}`">
               <button class="button is-primary">Ver</button>
@@ -35,9 +35,15 @@ export default {
 
   async asyncData({ app }) {
     const units = await app.$axios.$get('/units')
+    const organizations = (await app.$axios.$get('/organizations'))
+      .reduce((acc, org) => {
+        acc[org.id] = org
+        return acc
+      }, {})
 
     return {
-      units
+      units,
+      organizations
     }
   }
 }
