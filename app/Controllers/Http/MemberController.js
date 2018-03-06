@@ -35,7 +35,7 @@ class MemberController {
         throw {status: 400, message: 'Invalid roleId'}
       })
 
-    return await proj.members().create(data)
+    return await role.members().create(data)
   }
 
   async show ({ request }) {
