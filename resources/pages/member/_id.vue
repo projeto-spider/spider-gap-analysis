@@ -198,9 +198,9 @@ export default {
     },
 
     async destroy() {
-      const {id} = this.project
+      const {id} = this.member
 
-      const data = await this.$axios.$delete(`/projects/${id}`)
+      const data = await this.$axios.$delete(`/members/${id}`)
         .catch(err => {
           this.$snackbar.open({
             message: 'Falha ao deletar project',
@@ -216,7 +216,7 @@ export default {
         position: 'is-bottom-left',
       })
 
-      this.$router.push('/project/')
+      this.$router.push('/member/')
     }
   }
 }
