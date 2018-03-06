@@ -24,6 +24,7 @@
               <b-select v-model="project.levelId" placeholder="Nível do Projeto" expanded required>
                 <option
                   v-for="level in levels"
+                  v-if="selectedLevels.includes(level.id)"
                   :value="level.id"
                   :key="level.id"
                 >
@@ -218,6 +219,9 @@ export default {
     data.project = await app.$axios.$get(`/projects/${id}`)
     data.project.startDate = new Date(data.project.startDate)
     data.project.endDate = new Date(data.project.endDate)
+    data.selectedLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
+      r.map(level => level.level_id)
+    )
 
     return data
   },
