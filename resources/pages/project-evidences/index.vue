@@ -8,16 +8,18 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Organização</th>
+          <th>Unidade Organizacional</th>
           <th>Nome</th>
-          <th>Coordenador</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="proj in projects">
           <th>{{proj.id}}</th>
+          <td>{{organizations[units[proj.unitId].organization_id].name}}</td>
+          <td>{{units[proj.unitId].name}}</td>
           <td>{{proj.name}}</td>
-          <td>{{proj.manager}}</td>
           <td>
             <nuxt-link :to="`/project-evidences/${proj.id}`">
               <button class="button is-primary">Ver Evidências</button>
@@ -35,9 +37,21 @@ export default {
 
   async asyncData({ app }) {
     const projects = await app.$axios.$get('/projects')
+    const units = (await app.$axios.$get('/units'))
+      .reduce((acc, unit) => {
+        acc[unit.id] = unit
+        return acc
+      }, {})
+    const organizations = (await app.$axios.$get('/organizations'))
+      .reduce((acc, org) => {
+        acc[org.id] = org
+        return acc
+      }, {})
 
     return {
-      projects
+      projects,
+      units,
+      organizations
     }
   }
 }
