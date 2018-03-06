@@ -105,7 +105,7 @@
               </div>
               <div class="column">
                 <p>Mestrado Profissional em Computação Aplicada</p>
-                <p>Mestrando: Silvia M. F. Brabo</p>
+                <p>Mestranda: Silvia M. F. Brabo</p>
               </div>
             </div>
           </div>
