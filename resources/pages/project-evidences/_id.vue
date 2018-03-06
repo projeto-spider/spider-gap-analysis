@@ -65,7 +65,7 @@
               </b-select>
             </b-field>
 
-            <b-field label="Evidência">
+            <b-field label="Fonte de Evidência">
               <b-select v-model="newEvidence.roleId" placeholder="Selecione uma fonte de evidência">
                 <option
                   v-for="option in roles"
