@@ -45,7 +45,7 @@
             <h3>Endereço</h3>
 
             <b-field expanded>
-              <b-input placeholder="CEP" v-model="cep" expanded></b-input>
+              <b-input @input="findAddress" placeholder="CEP" v-model="cep" v-cleave="{blocks: [5, 3], delimiters: ['-']}" expanded></b-input>
 
               <p class="control">
                 <button @click="findAddress" class="button is-info">Buscar</button>
@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import Cleave from '~/components/cleave.vue'
 import cep from 'cep-promise'
 import debounce from 'p-debounce'
 
@@ -123,8 +122,6 @@ const attrs = [
 
 export default {
   middleware: 'is-admin',
-
-  components: { Cleave },
 
   async asyncData ({ app, params, req }) {
     const { id } = params

@@ -57,6 +57,7 @@ module.exports = {
   ** Plugins
   */
   plugins: [
-    '~plugins/buefy'
+    '~plugins/buefy',
+    '~plugins/cleave',
   ]
 }

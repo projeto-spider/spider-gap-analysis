@@ -62,7 +62,7 @@
               </b-field>
 
               <b-field label="CPF do Colaborador" expanded>
-                <b-input v-model="member.cpf"d></b-input>
+                <b-input v-model="member.cpf"d v-cleave="{blocks: [3, 3, 3, 2], delimiters: ['.', '.', '-']}"></b-input>
               </b-field>
             </b-field>
 
@@ -72,7 +72,7 @@
               </b-field>
 
               <b-field label="Telefone" expanded>
-                <b-input v-model="member.telephone"d></b-input>
+                <b-input v-model="member.telephone" v-cleave="{phone: true, phoneRegionCode: 'BR'}"></b-input>
               </b-field>
             </b-field>
 
@@ -108,6 +108,7 @@
 import UnitPicker from '~/components/unit-picker.vue'
 import ProjectPicker from '~/components/project-picker.vue'
 import RolePicker from '~/components/role-picker.vue'
+require('cleave.js/dist/addons/cleave-phone.br.js')
 
 export default {
   middleware: 'is-admin',
