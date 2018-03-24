@@ -9,7 +9,7 @@
             <h3>Unidade Organizacional</h3>
 
             <b-field label="Organização" expanded>
-              <b-select v-if="!editing" v-model="organization_id" placeholder="Organização" expanded required>
+              <b-select v-if="!editing" v-model="organizationId" placeholder="Organização" expanded required>
                 <option
                   v-for="org in selectableOrganizations"
                   :value="org.id"
@@ -124,7 +124,7 @@ import expectedResults from '~/static/expected-results.json'
 import attributes from '~/static/process-attributes.json'
 
 const attrs = [
-  'organization_id',
+  'organizationId',
   'name',
   'description',
   'activity',
@@ -145,7 +145,7 @@ export default {
 
     const data = {
       id,
-      organization_id: null,
+      organizationId: null,
       name: '',
       description: '',
       manager: '',
@@ -199,7 +199,7 @@ export default {
     }
 
     const unit = await app.$axios.$get(`/units/${id}`)
-    const organization = await app.$axios.$get(`/organizations/${unit.organization_id}`)
+    const organization = await app.$axios.$get(`/organizations/${unit.organizationId}`)
     const selectedLevels = await app.$axios.$get(`/units/${id}/levels`).then(r =>
       r.map(level => level.level_id)
     )

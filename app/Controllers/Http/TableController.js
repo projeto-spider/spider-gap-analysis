@@ -14,7 +14,7 @@ class TableController {
   async units() {
     return await Unit.query()
       .select('units.id', 'units.name', 'organizations.name as organizationName')
-      .innerJoin('organizations', 'units.organization_id', 'organizations.id')
+      .innerJoin('organizations', 'units.organizationId', 'organizations.id')
   }
 
   async projects() {
@@ -26,7 +26,7 @@ class TableController {
         'units.name as unitName'
       )
       .innerJoin('units', 'projects.unitId', 'units.id')
-      .innerJoin('organizations', 'units.organization_id', 'organizations.id')
+      .innerJoin('organizations', 'units.organizationId', 'organizations.id')
   }
 
   async members() {

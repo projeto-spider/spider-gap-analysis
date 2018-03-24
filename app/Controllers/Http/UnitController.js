@@ -4,7 +4,7 @@ const Organization = use('App/Models/Organization')
 const Unit = use('App/Models/Unit')
 
 const attrs = [
-  'organization_id',
+  'organizationId',
   'name',
   'description',
   'activity',
@@ -21,9 +21,9 @@ class UnitController {
 
   async store ({ request }) {
     const data = request.only(attrs)
-    const org = await Organization.findOrFail(data.organization_id)
+    const org = await Organization.findOrFail(data.organizationId)
       .catch(() => {
-        throw {status: 400, message: 'Invalid organization_id'}
+        throw {status: 400, message: 'Invalid organizationId'}
       })
 
     return await org.units().create(data)

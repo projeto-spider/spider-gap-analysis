@@ -53,7 +53,7 @@ export default {
     this.organizations = orgs
       .map(org => ({
         label: org.name,
-        units: units.filter(unit => unit.organization_id === org.id)
+        units: units.filter(unit => unit.organizationId === org.id)
       }))
       .filter(org => org.units.length)
 

@@ -18,7 +18,7 @@ class UnitLevelController {
     const data = request.only(attrs)
     const unit = await Unit.findOrFail(data.unit_id)
       .catch(() => {
-        throw {status: 400, message: 'Invalid organization_id'}
+        throw {status: 400, message: 'Invalid organizationId'}
       })
 
     const exists = await UnitLevel.query().where({
