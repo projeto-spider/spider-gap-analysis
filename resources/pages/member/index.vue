@@ -18,8 +18,8 @@
         <tr v-for="member in members">
           <th>{{member.id}}</th>
           <td>{{member.name}}</td>
-          <td>{{member.project.name}}</td>
-          <td>{{member.role.name}}</td>
+          <td>{{member.projectName}}</td>
+          <td>{{member.roleName}}</td>
           <td>
             <nuxt-link :to="`/member/${member.id}`">
               <button class="button is-primary">Ver</button>
@@ -36,7 +36,7 @@ export default {
   middleware: 'is-admin',
 
   async asyncData({ app }) {
-    const members = await app.$axios.$get('/members')
+    const members = await app.$axios.$get('/tables/members')
 
     return {
       members

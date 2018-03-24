@@ -34,7 +34,7 @@ export default {
   middleware: 'is-admin',
 
   async asyncData({ app }) {
-    const organizations = await app.$axios.$get('/organizations')
+    const organizations = await app.$axios.$get('/tables/organizations')
 
     return {
       organizations

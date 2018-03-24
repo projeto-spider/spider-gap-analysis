@@ -16,7 +16,7 @@
       <tbody>
         <tr v-for="unit in units">
           <th>{{unit.id}}</th>
-          <td>{{organizations[unit.organization_id].name}}</td>
+          <td>{{unit.organizationName}}</td>
           <td>{{unit.name}}</td>
           <td>
             <nuxt-link :to="`/unit/${unit.id}`">
@@ -34,16 +34,10 @@ export default {
   middleware: 'is-admin',
 
   async asyncData({ app }) {
-    const units = await app.$axios.$get('/units')
-    const organizations = (await app.$axios.$get('/organizations'))
-      .reduce((acc, org) => {
-        acc[org.id] = org
-        return acc
-      }, {})
+    const units = await app.$axios.$get('tables/units')
 
     return {
-      units,
-      organizations
+      units
     }
   }
 }

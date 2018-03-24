@@ -17,8 +17,8 @@
       <tbody>
         <tr v-for="project in projects">
           <th>{{project.id}}</th>
-          <td>{{organizations[units[project.unitId].organization_id].name}}</td>
-          <td>{{units[project.unitId].name}}</td>
+          <td>{{project.organizationName}}</td>
+          <td>{{project.unitName}}</td>
           <td>{{project.name}}</td>
           <td>
             <nuxt-link :to="`/evaluation/${project.id}`">
@@ -36,22 +36,10 @@ export default {
   middleware: 'is-reviewer',
 
   async asyncData({ app }) {
-    const projects = await app.$axios.$get('/projects')
-    const units = (await app.$axios.$get('/units'))
-      .reduce((acc, unit) => {
-        acc[unit.id] = unit
-        return acc
-      }, {})
-    const organizations = (await app.$axios.$get('/organizations'))
-      .reduce((acc, org) => {
-        acc[org.id] = org
-        return acc
-      }, {})
+    const projects = await app.$axios.$get('/tables/projects')
 
     return {
       projects,
-      units,
-      organizations
     }
   }
 }

@@ -29,6 +29,11 @@ Route.group(() => {
   Route.get('me', 'UserController.me').middleware('auth')
   Route.post('login', 'UserController.login')
   Route.post('logout', 'UserController.logout')
+
+  Route.get('tables/organizations', 'TableController.organizations')
+  Route.get('tables/units', 'TableController.units')
+  Route.get('tables/projects', 'TableController.projects')
+  Route.get('tables/members', 'TableController.members')
 })
   .formats(['json'])
   .prefix('api')
