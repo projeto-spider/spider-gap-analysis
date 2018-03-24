@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <nuxt-link class="button" to="/project/new">
-      Nova
+      Novo
     </nuxt-link>
 
     <table class="table is-fullwidth">
