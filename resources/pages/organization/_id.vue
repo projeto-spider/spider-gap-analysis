@@ -179,40 +179,20 @@ export default {
 
     async create() {
       const {id} = await this.$axios.$post('/organizations', this.organization)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao criar organização',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao criar organização'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
+
       this.$router.push(`/organization/${id}`)
     },
 
     async update() {
       const { id } = this.organization
       const data = await this.$axios.$put(`/organizations/${id}`, this.organization)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar organização',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar organização'))
 
-      this.$snackbar.open({
-        message: 'Atualizado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Atualizado com sucesso')
+
       data.fundationDate = new Date(data.fundationDate)
       Object.assign(this, data)
     },
@@ -220,20 +200,9 @@ export default {
     async destroy() {
       const { id } = this.organization
       const data = await this.$axios.$delete(`/organizations/${id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar organização',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar organização'))
 
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.$router.push('/organization/')
     },

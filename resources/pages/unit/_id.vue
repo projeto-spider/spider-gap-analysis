@@ -227,20 +227,10 @@ export default {
   methods: {
     async create() {
       const {id} = await this.$axios.$post('/units', this.unit)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao criar unidade',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao criar unidade'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
+
       this.$router.push(`/unit/${id}`)
     },
 
@@ -251,14 +241,8 @@ export default {
         .filter(({levelId}) => this.selectedLevels.includes(levelId))
         .map(er => er.id)
       const data = await this.$axios.$put(`/units/${id}`, updatedData)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar unidade',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar unidade'))
+
       const newLevels = this.selectedLevels
         .filter(level => !this.originallySelectedLevels.includes(level))
         .map(level =>
@@ -266,36 +250,27 @@ export default {
             unit_id: id,
             level_id: level
           })
-          .catch(() => {
+          .catch(err => {
             const levelName = levels.find(l => l.id === level).title
-            this.$snackbar.open({
-              message: 'Falha ao adicionar nível ' + levelName,
-              type: 'is-danger',
-              position: 'is-bottom-left',
-            })
+            this.$fail('Falha ao adicionar nível ' + levelName)
+            throw err
           })
         )
       const levelsToRemove = this.originallySelectedLevels
         .filter(level => !this.selectedLevels.includes(level))
         .map(level =>
           this.$axios.$delete(`/units/${id}/levels/${level}`)
-          .catch(() => {
+          .catch(err => {
             const levelName = levels.find(l => l.id === level).title
-            this.$snackbar.open({
-              message: 'Falha ao remover nível ' + levelName,
-              type: 'is-danger',
-              position: 'is-bottom-left',
-            })
+            this.$fail('Falha ao adicionar nível ' + levelName)
+            throw err
           })
         )
 
       await Promise.all(newLevels.concat(levelsToRemove))
 
-      this.$snackbar.open({
-        message: 'Atualizado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Atualizado com sucesso')
+
       data.fundationDate = new Date(data.fundationDate)
       Object.assign(this.unit, data)
       this.selectedResults = this.scope
@@ -305,20 +280,9 @@ export default {
     async destroy() {
       const { id } = this.unit
       const data = await this.$axios.$delete(`/units/${id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar unidade',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar unidade'))
 
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.$router.push('/unit/')
     },

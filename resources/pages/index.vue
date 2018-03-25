@@ -46,19 +46,9 @@ export default {
     async login() {
       const { username, password } = this
       await this.$store.dispatch('login', { username, password })
-        .catch(() => {
-          throw this.$snackbar.open({
-            message: 'Falha no login',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-        })
+        .catch(this.$translateError('Falha no login'))
 
-      this.$snackbar.open({
-        message: 'Login com sucesso!',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Login com sucesso!')
 
       this.$router.push({ path: '/about', success: true})
     },

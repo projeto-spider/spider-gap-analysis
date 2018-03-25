@@ -59,5 +59,6 @@ module.exports = {
   plugins: [
     '~plugins/buefy',
     '~plugins/cleave',
+    '~plugins/toast',
   ]
 }

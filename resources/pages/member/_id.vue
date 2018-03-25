@@ -158,20 +158,10 @@ export default {
   methods: {
     async create() {
       const {id} = await this.$axios.$post('/members', this.member)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao processar dados',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao processar dados'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
+
       this.$router.push(`/member/${id}`)
     },
 
@@ -179,21 +169,10 @@ export default {
       const {id} = this.member
 
       const data = await this.$axios.$put(`/members/${id}`, this.member)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar'))
 
 
-      this.$snackbar.open({
-        message: 'Atualizado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Atualizado com sucesso')
 
       Object.assign(this.member, data)
     },
@@ -202,20 +181,9 @@ export default {
       const {id} = this.member
 
       const data = await this.$axios.$delete(`/members/${id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao deletar project',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao deletar projeto'))
 
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.$router.push('/member/')
     }

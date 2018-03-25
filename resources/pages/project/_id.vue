@@ -250,20 +250,10 @@ export default {
   methods: {
     async create() {
       const {id} = await this.$axios.$post('/projects', this.project)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao criar projeto',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao criar projeto'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
+
       this.$router.push(`/project/${id}`)
     },
 
@@ -271,21 +261,10 @@ export default {
       const {id} = this.project
 
       const data = await this.$axios.$put(`/projects/${id}`, this.project)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar projeto',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar projeto'))
 
 
-      this.$snackbar.open({
-        message: 'Atualizado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Atualizado com sucesso')
 
       data.startDate = new Date(data.startDate)
       data.endDate = new Date(data.endDate)
@@ -296,20 +275,9 @@ export default {
       const {id} = this.project
 
       const data = await this.$axios.$delete(`/projects/${id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao deletar project',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao deletar project'))
 
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.$router.push('/project/')
     }

@@ -89,20 +89,10 @@ export default {
   methods: {
     async create() {
       const {id} = await this.$axios.$post('/roles', this.role)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao criar projeto',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao criar projeto'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
+
       this.$router.push(`/role/${id}`)
     },
 
@@ -110,21 +100,9 @@ export default {
       const {id} = this.role
 
       const data = await this.$axios.$put(`/roles/${id}`, this.role)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao atualizar projeto',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao atualizar projeto'))
 
-
-      this.$snackbar.open({
-        message: 'Atualizado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Atualizado com sucesso')
 
       data.startDate = new Date(data.startDate)
       data.endDate = new Date(data.endDate)
@@ -135,22 +113,9 @@ export default {
       const {id} = this.role
 
       const data = await this.$axios.$delete(`/roles/${id}`)
+        .catch(this.$translateError('Falha ao deletar fonte de evidência'))
 
-      const data = await this.$axios.$delete(`/projects/${id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao deletar project',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
-
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.$router.push('/role/')
     }

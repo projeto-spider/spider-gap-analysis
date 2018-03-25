@@ -356,20 +356,9 @@ export default {
       form.append('file', this.dropFiles[0])
 
       const created = await this.$axios.$post(`/projects/${this.$route.params.id}/evidences`, form)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao criar',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao criar'))
 
-      this.$snackbar.open({
-        message: 'Criado com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Criado com sucesso')
 
       this.projectEvidences.push(created)
       this.closeModal()
@@ -380,20 +369,9 @@ export default {
       const {id: projectId} = this.$route.params
 
       const data = await this.$axios.$delete(`/projects/${projectId}/evidences/${evidence.id}`)
-        .catch(err => {
-          this.$snackbar.open({
-            message: 'Falha ao deletar',
-            type: 'is-danger',
-            position: 'is-bottom-left',
-          })
-          throw err
-        })
+        .catch(this.$translateError('Falha ao deletar'))
 
-      this.$snackbar.open({
-        message: 'Excluído com sucesso',
-        type: 'is-success',
-        position: 'is-bottom-left',
-      })
+      this.$success('Excluído com sucesso')
 
       this.projectEvidences = this.projectEvidences.filter(ev => ev.id !== evidence.id)
     }
