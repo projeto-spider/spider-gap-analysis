@@ -132,7 +132,9 @@ export default {
     },
 
     async destroy() {
-      const {id} = this.project
+      const {id} = this.role
+
+      const data = await this.$axios.$delete(`/roles/${id}`)
 
       const data = await this.$axios.$delete(`/projects/${id}`)
         .catch(err => {
@@ -150,7 +152,7 @@ export default {
         position: 'is-bottom-left',
       })
 
-      this.$router.push('/project/')
+      this.$router.push('/role/')
     }
   }
 }
