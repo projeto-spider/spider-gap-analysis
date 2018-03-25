@@ -8,7 +8,7 @@ class Organization extends Model {
   }
 
   units() {
-    return this.hasMany('App/Models/Unit')
+    return this.hasMany('App/Models/Unit', 'id', 'organizationId')
   }
 }
 
