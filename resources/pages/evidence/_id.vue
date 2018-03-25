@@ -40,7 +40,7 @@
               Atualizar
             </button>
 
-            <button @click="destroy" class="button is-danger">
+            <button type="button" @click="destroy" class="button is-danger">
               Excluir
             </button>
           </div>
@@ -140,7 +140,9 @@ export default {
     },
 
     async destroy() {
-      const {id} = this.project
+      const {id} = this.evidence
+
+      const data = await this.$axios.$delete(`/evidences/${id}`)
 
       const data = await this.$axios.$delete(`/projects/${id}`)
         .catch(err => {
@@ -158,7 +160,7 @@ export default {
         position: 'is-bottom-left',
       })
 
-      this.$router.push('/project/')
+      this.$router.push('/evidence/')
     }
   }
 }
