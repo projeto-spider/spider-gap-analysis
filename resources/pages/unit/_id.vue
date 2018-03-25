@@ -303,7 +303,7 @@ export default {
     },
 
     async destroy() {
-      const id = this.id
+      const { id } = this.unit
       const data = await this.$axios.$delete(`/units/${id}`)
         .catch(err => {
           this.$snackbar.open({
