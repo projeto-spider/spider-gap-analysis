@@ -9,7 +9,7 @@
             <h3>Unidade Organizacional</h3>
 
             <b-field label="Organização" expanded>
-              <b-select v-if="!editing" v-model="organizationId" placeholder="Organização" expanded required>
+              <b-select v-if="!editing" v-model="unit.organizationId" placeholder="Organização" expanded required>
                 <option
                   v-for="org in selectableOrganizations"
                   :value="org.id"
@@ -23,27 +23,27 @@
             </b-field>
 
             <b-field label="Nome" expanded>
-              <b-input v-model="name" required></b-input>
+              <b-input v-model="unit.name" required></b-input>
             </b-field>
 
             <b-field grouped>
               <b-field label="Gerente" expanded>
-                <b-input v-model="manager" required></b-input>
+                <b-input v-model="unit.manager" required></b-input>
               </b-field>
 
               <b-field label="Coordenador" expanded>
-                <b-input v-model="coordinator" required></b-input>
+                <b-input v-model="unit.coordinator" required></b-input>
               </b-field>
             </b-field>
 
             <b-field grouped>
               <b-field label="Número Total de Colaboradores" expanded>
-                <b-input v-model="colaborators" type="number"></b-input>
+                <b-input v-model="unit.colaborators" type="number"></b-input>
               </b-field>
             </b-field>
 
             <b-field label="Descrição das atividades da Organização" expanded>
-              <b-input type="textarea" v-model="description"></b-input>
+              <b-input type="textarea" v-model="unit.description"></b-input>
             </b-field>
           </div>
         </div>
@@ -123,17 +123,6 @@ import processes from '~/static/process.json'
 import expectedResults from '~/static/expected-results.json'
 import attributes from '~/static/process-attributes.json'
 
-const attrs = [
-  'organizationId',
-  'name',
-  'description',
-  'activity',
-  'manager',
-  'coordinator',
-  'colaborators',
-  'expectedResults'
-]
-
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
@@ -144,19 +133,21 @@ export default {
     const {id} = params
 
     const data = {
-      id,
-      organizationId: null,
-      name: '',
-      description: '',
-      manager: '',
-      coordinator: '',
-      colaborators: 0,
+      unit: {
+        id,
+        organizationId: null,
+        name: '',
+        description: '',
+        manager: '',
+        coordinator: '',
+        colaborators: 0,
+        expectedResults: [],
+      },
       selectableOrganizations: [],
       organizationName: false,
       originallySelectedLevels: [],
       selectedLevels: [],
       selectedResults: [],
-      expectedResults: [],
       levels: levels
         .sort((a, b) =>
           a.level.charCodeAt(0) - b.level.charCodeAt(0)
@@ -204,7 +195,7 @@ export default {
       r.map(level => level.level_id)
     )
 
-    Object.assign(data, unit)
+    Object.assign(data.unit, unit)
     data.organizationName = organization.name
     data.originallySelectedLevels = selectedLevels
     data.selectedLevels = selectedLevels
@@ -214,7 +205,7 @@ export default {
 
   created() {
     this.selectedResults = this.scope
-      .filter(({id}) => this.expectedResults.includes(id))
+      .filter(({id}) => this.unit.expectedResults.includes(id))
   },
 
   head () {
@@ -225,7 +216,7 @@ export default {
 
   computed: {
     editing() {
-      return this.id !== 'new'
+      return this.unit.id !== 'new'
     },
 
     filteredScope() {
@@ -235,7 +226,7 @@ export default {
 
   methods: {
     async create() {
-      const {id} = await this.$axios.$post('/units', this.attrs())
+      const {id} = await this.$axios.$post('/units', this.unit)
         .catch(err => {
           this.$snackbar.open({
             message: 'Falha ao criar unidade',
@@ -254,8 +245,8 @@ export default {
     },
 
     async update() {
-      const id = this.id
-      const updatedData = this.attrs()
+      const { id } = this.unit
+      const updatedData = Object.assign({}, this.unit)
       updatedData.expectedResults = this.selectedResults
         .filter(({levelId}) => this.selectedLevels.includes(levelId))
         .map(er => er.id)
@@ -306,7 +297,7 @@ export default {
         position: 'is-bottom-left',
       })
       data.fundationDate = new Date(data.fundationDate)
-      Object.assign(this, data)
+      Object.assign(this.unit, data)
       this.selectedResults = this.scope
         .filter(({id}) => this.expectedResults.includes(id))
     },
@@ -337,13 +328,6 @@ export default {
         this.selectedResults = this.scope
           .filter(({id}) => this.expectedResults.includes(id))
       },
-    },
-
-    attrs() {
-      return attrs.reduce((acc, attr) => {
-        acc[attr] = this[attr]
-        return acc
-      }, {})
     }
   }
 }

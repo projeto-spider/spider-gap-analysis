@@ -10,13 +10,13 @@
 
             <b-field grouped>
               <b-field label="Razão Social" expanded>
-                <b-input v-model="name" required></b-input>
+                <b-input v-model="organization.name" required></b-input>
               </b-field>
 
               <b-field label="Data Fundação" expanded>
                 <b-datepicker
-                  v-if="isClient && fundationDate instanceof Date"
-                  v-model="fundationDate"
+                  v-if="isClient && organization.fundationDate instanceof Date"
+                  v-model="organization.fundationDate"
                 ></b-datepicker>
                 <b-input disabled v-else></b-input>
               </b-field>
@@ -24,16 +24,16 @@
 
             <b-field grouped>
               <b-field label="Número Total de Colaboradores" expanded>
-                <b-input v-model="colaborators" type="number"></b-input>
+                <b-input v-model="organization.colaborators" type="number"></b-input>
               </b-field>
 
               <b-field label="Número de Colaboradores envolvidos com Software" expanded>
-                <b-input v-model="softwareColaborators" type="number"></b-input>
+                <b-input v-model="organization.softwareColaborators" type="number"></b-input>
               </b-field>
             </b-field>
 
             <b-field label="Descrição das atividades da Organização" expanded>
-              <b-input type="textarea" v-model="description"></b-input>
+              <b-input type="textarea" v-model="organization.description"></b-input>
             </b-field>
           </div>
         </div>
@@ -45,7 +45,7 @@
             <h3>Endereço</h3>
 
             <b-field expanded>
-              <b-input @input="findAddress" placeholder="CEP" v-model="cep" v-cleave="{blocks: [5, 3], delimiters: ['-']}" expanded></b-input>
+              <b-input @input="findAddress" placeholder="CEP" v-model="organization.cep" v-cleave="{blocks: [5, 3], delimiters: ['-']}" expanded></b-input>
 
               <p class="control">
                 <button @click="findAddress" class="button is-info">Buscar</button>
@@ -53,26 +53,26 @@
             </b-field>
 
             <b-field label="Endereço" expanded>
-              <b-input required v-model="address"></b-input>
+              <b-input required v-model="organization.address"></b-input>
             </b-field>
 
             <b-field grouped>
               <b-field label="Complemento" expanded>
-                <b-input v-model="complement"></b-input>
+                <b-input v-model="organization.complement"></b-input>
               </b-field>
 
               <b-field label="Estado" expanded>
-                <b-input required v-model="state"></b-input>
+                <b-input required v-model="organization.state"></b-input>
               </b-field>
             </b-field>
 
             <b-field grouped>
               <b-field label="Bairro" expanded>
-                <b-input required v-model="neighborhood"></b-input>
+                <b-input required v-model="organization.neighborhood"></b-input>
               </b-field>
 
               <b-field label="Município" expanded>
-                <b-input required v-model="city"></b-input>
+                <b-input required v-model="organization.city"></b-input>
               </b-field>
             </b-field>
           </div>
@@ -106,20 +106,6 @@ import debounce from 'p-debounce'
 
 const cepDebouced = debounce(cep, 300)
 
-const attrs = [
-  'name',
-  'fundationDate',
-  'colaborators',
-  'softwareColaborators',
-  'description',
-  'cep',
-  'address',
-  'state',
-  'city',
-  'complement',
-  'neighborhood'
-]
-
 export default {
   middleware: 'is-admin',
 
@@ -127,18 +113,20 @@ export default {
     const { id } = params
 
     const data = {
-      id,
-      name: '',
-      fundationDate: new Date(),
-      colaborators: 0,
-      softwareColaborators: 0,
-      description: '',
-      cep: '',
-      address: '',
-      state: '',
-      city: '',
-      complement: '',
-      neighborhood: '',
+      organization: {
+        id,
+        name: '',
+        fundationDate: new Date(),
+        colaborators: 0,
+        softwareColaborators: 0,
+        description: '',
+        cep: '',
+        address: '',
+        state: '',
+        city: '',
+        complement: '',
+        neighborhood: '',
+      },
       isClient: false
     }
 
@@ -152,7 +140,7 @@ export default {
       fundationDate: new Date(org.fundationDate),
     })
 
-    Object.assign(data, org)
+    Object.assign(data.organization, org)
 
     return data
   },
@@ -173,24 +161,24 @@ export default {
 
   computed: {
     editing() {
-      return this.id !== 'new'
+      return this.organization.id !== 'new'
     },
   },
 
   methods: {
     findAddress() {
-      cepDebouced(this.cep.replace('-', ''))
+      cepDebouced(this.organization.cep.replace('-', ''))
         .then(data => {
-          this.state = data.state
-          this.city = data.city
-          this.address = data.street
-          this.neighborhood = data.neighborhood
+          this.organization.state = data.state
+          this.organization.city = data.city
+          this.organization.address = data.street
+          this.organization.neighborhood = data.neighborhood
         })
         .catch(() => {})
     },
 
     async create() {
-      const {id} = await this.$axios.$post('/organizations', this.attrs())
+      const {id} = await this.$axios.$post('/organizations', this.organization)
         .catch(err => {
           this.$snackbar.open({
             message: 'Falha ao criar organização',
@@ -209,8 +197,8 @@ export default {
     },
 
     async update() {
-      const id = this.id
-      const data = await this.$axios.$put(`/organizations/${id}`, this.attrs())
+      const { id } = this.organization
+      const data = await this.$axios.$put(`/organizations/${id}`, this.organization)
         .catch(err => {
           this.$snackbar.open({
             message: 'Falha ao atualizar organização',
@@ -249,13 +237,6 @@ export default {
 
       this.$router.push('/organization/')
     },
-
-    attrs() {
-      return attrs.reduce((acc, attr) => {
-        acc[attr] = this[attr]
-        return acc
-      }, {})
-    }
   }
 }
 </script>
