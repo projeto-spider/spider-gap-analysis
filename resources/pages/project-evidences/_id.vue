@@ -244,7 +244,7 @@
               Atualizar
             </button>
 
-            <button @click="destroy" class="button is-danger">
+            <button type="button" @click="destroy" class="button is-danger">
               Excluir
             </button>
           </div>
