@@ -218,7 +218,7 @@ export default {
     },
 
     async destroy() {
-      const id = this.id
+      const { id } = this.organization
       const data = await this.$axios.$delete(`/organizations/${id}`)
         .catch(err => {
           this.$snackbar.open({
