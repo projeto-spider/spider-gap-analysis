@@ -78,7 +78,7 @@
               :native-value="level.id"
               type="is-success"
               >
-              <span>[{{level.level}}] {{level.title}}</span>
+              <span>[{{level.id}}] {{level.title}}</span>
             </b-checkbox>
           </b-field>
         </div>
@@ -103,7 +103,10 @@
               </b-table-column>
 
               <b-table-column label="Atributo do Processo">
-                {{ props.row.attribute }}
+                {{ Array.isArray(props.row.attributes)
+                    ? props.row.attributes.join(', ')
+                    : props.row.attributes[props.row.level].join(', ')
+                }}
               </b-table-column>
 
               <b-table-column label="Resultados Esperados">
@@ -148,37 +151,30 @@ export default {
       originallySelectedLevels: [],
       selectedLevels: [],
       selectedResults: [],
-      levels: levels
+      levels: Object.values(levels)
         .sort((a, b) =>
-          a.level.charCodeAt(0) - b.level.charCodeAt(0)
+          a.id - b.id
         ),
       scope: flatten(
-        levels
+        Object.values(levels)
           .map(level =>
             flatten(
-              processes
-              .filter(p => p.levelId === level.id)
-              .map(process =>
-                expectedResults
-                  .filter(result => result.processId === process.id)
-                  .map(result => ({
-                    id: result.id,
-                    levelId: level.id,
-                    level: level.level,
-                    process: process.abbr,
-                    result: result.abbr,
-                    attribute:
-                      // TODO: refactor this relationship
-                      // This is obviously a quick fix
-                      level.id === 1 // G
-                        ? 'AP 1.1, AP 2.1'
-                        : attributes
-                            .filter(attr => attr.processId === process.id)
-                            .map(attr => attr.abbr)
-                            .join(', ')
-                  })
+              Object.values(processes)
+                // GPR appears in multiple levels
+                .filter(p => p.levels ? p.levels.includes(level.id) : p.level === level.id)
+                .map(process =>
+                  Object.values(expectedResults)
+                    .filter(r => r.process === process.id)
+                    .map(result => ({
+                      id: result.id,
+                      levelId: level.id,
+                      level: level.id,
+                      process: process.id,
+                      result: result.id,
+                      requiresLevel: result.requiresLevel,
+                      attributes: level.attributes
+                    }))
                 )
-              )
             )
           )
       )
@@ -220,7 +216,16 @@ export default {
     },
 
     filteredScope() {
-      return this.scope.filter(({levelId}) => this.selectedLevels.includes(levelId))
+      const filteredByLevel = this.scope
+        .filter(({levelId, requiresLevel}) =>
+          this.selectedLevels.includes(levelId) &&
+          (requiresLevel ? this.selectedLevels.includes(requiresLevel) : true)
+        )
+
+      return filteredByLevel
+        .filter(({result}, i, xs) =>
+          !xs.slice(i + 1).some(x => x.result === result)
+        )
     },
   },
 

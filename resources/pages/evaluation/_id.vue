@@ -24,7 +24,7 @@
               :native-value="level.id"
               type="is-success"
               >
-              <span>[{{level.level}}] {{level.title}}</span>
+              <span>[{{level.id}}] {{level.title}}</span>
             </b-checkbox>
           </b-field>
           <br/>
@@ -37,7 +37,7 @@
               :native-value="process.id"
               type="is-success"
               >
-              <span>{{process.abbr}}</span>
+              <span>{{process.id}}</span>
             </b-checkbox>
           </b-field>
         </div>
@@ -62,38 +62,38 @@
           </thead>
 
           <tbody>
-            <tr v-for="evidence in filteredRows">
-              <td>Nível {{evidence.level.level}}</td>
+            <tr v-for="projectEvidence in filteredRows">
+              <td>Nível {{projectEvidence.level}}</td>
               <td>
-                <span>{{evidence.reference.abbr}}</span>
+                <span>{{projectEvidence.id}}</span>
               </td>
-              <td>{{evidence.type === 'expectedResult' ? 'Resultado Esperado' : 'Atributo de Processo'}}</td>
-              <td>{{evidence.evidence.name}}</td>
+              <td>{{projectEvidence.type === 'expectedResult' ? 'Resultado Esperado' : 'Atributo de Processo'}}</td>
+              <td>{{projectEvidence.evidence}}</td>
               <td>
-                <a :href="`/uploads/${evidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
+                <a :href="`/uploads/${projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
               </td>
               <td>
                 <b-field>
-                  <b-radio-button v-model="evidence.original.approval" :native-value="0" type="is-danger" @input="updateApprovalStatus(evidence.original)">
+                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="0" type="is-danger" @input="updateApprovalStatus(projectEvidence.original)">
                     <b-icon icon="close"></b-icon>
                     <span>Vermelho</span>
                   </b-radio-button>
 
-                  <b-radio-button v-model="evidence.original.approval" :native-value="1" type="is-warning" @input="updateApprovalStatus(evidence.original)">
+                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="1" type="is-warning" @input="updateApprovalStatus(projectEvidence.original)">
                     Amarelo
                   </b-radio-button>
 
-                  <b-radio-button v-model="evidence.original.approval" :native-value="2" type="is-success" @input="updateApprovalStatus(evidence.original)">
+                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="2" type="is-success" @input="updateApprovalStatus(projectEvidence.original)">
                     <b-icon icon="check"></b-icon>
                     <span>Verde</span>
                   </b-radio-button>
                 </b-field>
               </td>
               <td>
-                <b-field v-if="evidence.original.approval < 2">
+                <b-field v-if="projectEvidence.original.approval < 2">
                   <b-input
-                    v-model="evidence.original.feedback"
-                    @input="updateFeedback(evidence.original)"
+                    v-model="projectEvidence.original.feedback"
+                    @input="updateFeedback(projectEvidence.original)"
                     maxlength="200"
                     type="textarea"
                   ></b-input>
@@ -113,11 +113,6 @@ import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import process from '~/static/process.json'
 import processAttributes from '~/static/process-attributes.json'
-processAttributes.forEach(attr => {
-  const p = process.find(p => p.id === attr.processId)
-  attr.processName = p.abbr
-  attr.levelId = p.levelId
-})
 
 const emptyProjectEvidence = {
   projectId: 0,
@@ -139,12 +134,13 @@ export default {
       levels,
       process,
       isModalActive: false,
-      expectedResults,
-      processAttributes,
+      expectedResults: Object.values(expectedResults),
+      processAttributes: [],
       project: {},
       organization: {},
       unit: {},
       evidences: [],
+      evidencesDb: {},
       selectedLevels: [],
       selectedProcesses: [],
       availableLevels: [],
@@ -158,18 +154,23 @@ export default {
     data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
     data.organization = await app.$axios.$get(`/organizations/${data.unit.organizationId}`)
     data.evidences = await app.$axios.$get('/evidences')
+    data.evidencesDb = data.evidences
+      .reduce((acc, evidence) => {
+        acc[evidence.id] = evidence
+        return acc
+      }, {})
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
     data.availableLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id)
+      r.map(level => level.level_id).sort()
     )
+
+    data.processAttributes = levels[data.project.levelId].attributes
+      .map(attrId => processAttributes[attrId])
+
     data.availableProcesses = [...new Set(
       data.projectEvidences
-        .map(evi => {
-            return evi.type === 'expectedResult'
-              ? expectedResults.find(er => er.id === evi.typeId).processId
-              : processAttributes.find(pa => pa.id === evi.typeId).processId
-        })
+        .map(evi => evi.typeId)
     )]
     data.selectedLevels = data.availableLevels.slice()
     data.selectedProcesses = data.availableProcesses.slice()
@@ -187,34 +188,45 @@ export default {
     filteredRows() {
       const validLevels = new Set(this.selectedLevels)
       const validProcessAttributes = new Set(
-        processAttributes
-          .filter(attr => validLevels.has(attr.levelId))
-          .map(pa => pa.attr)
+        levels[this.project.levelId].attributes
       )
 
       return this.projectEvidences
-        .map(evi => {
-          const data = Object.assign({}, evi)
-          data.original = evi
-          const evidence = this.evidences.filter(e => e.id === evi.evidenceId)[0]
+        .map(projectEvidence => {
+          const { type, filename, evidenceId } = projectEvidence
+          const id = projectEvidence.typeId
 
-          data.evidence = evidence
-          data.reference = data.type === 'expectedResult'
-            ? expectedResults.find(er => er.id === data.typeId)
-            : processAttributes.find(pa => pa.id === data.typeId)
+          const maybeProcess = type === 'expectedResult'
+            ? expectedResults[id] && process[expectedResults[id].process]
+            : false
 
-          data.process = process.find(p => p.id === data.reference.processId)
-          data.level = levels.find(({id}) => id === data.process.levelId)
+          const getLevelFromProcess = process =>
+            process.levels
+              ? process.levels[process.levels.length - 1]
+              : process.level
 
-          return data
-        })
-        .filter(evi => {
-          if (evi.type === 'expectedResult') {
-            return this.unit.expectedResults.includes(evi.typeId)
+          const level = type === 'expectedResult'
+            ? (maybeProcess ? getLevelFromProcess(maybeProcess) : '-')
+            : this.project.levelId
+
+          // Blank invalid
+          if (
+            (!expectedResults[id] && !processAttributes[id]) ||
+            !this.evidencesDb[evidenceId]
+          ) return
+
+          const evidence = this.evidencesDb[evidenceId].name
+
+          return {
+            type,
+            id,
+            level,
+            filename,
+            evidence,
+            original: projectEvidence
           }
-          // TODO: properly handle this filter
-          return true
         })
+        .filter(projectEvidence => projectEvidence)
     },
   },
 

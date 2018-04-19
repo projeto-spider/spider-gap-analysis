@@ -7,7 +7,6 @@ class Unit extends Model {
     return str
       .split(',')
       .filter(x => x)
-      .map(Number)
   }
 
   setExpectedResults(arr) {

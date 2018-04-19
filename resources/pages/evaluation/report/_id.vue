@@ -29,19 +29,19 @@
 
     <br>
 
-    <div class="card" v-for="evidence in filteredRows">
+    <div class="card" v-for="projectEvidence in filteredRows">
       <div class="card-content">
         <div class="media">
           <div class="media-left media-left-approval">
-            <span v-if="evidence.original.approval === 2" class="tag is-primary is-medium">Verde</span>
-            <span v-else-if="evidence.original.approval === 1" class="tag is-warning is-medium">Amarelo</span>
+            <span v-if="projectEvidence.original.approval === 2" class="tag is-primary is-medium">Verde</span>
+            <span v-else-if="projectEvidence.original.approval === 1" class="tag is-warning is-medium">Amarelo</span>
             <span v-else class="tag is-danger is-medium">Vermelho</span>
           </div>
           <div class="media-content">
-            <p class="title is-4">{{evidence.reference.abbr}}</p>
-            <p class="subtitle is-6">Nível {{evidence.level.level}}</p>
-            <div class="content" v-if="evidence.original.feedback">
-              {{evidence.original.feedback}}
+            <p class="title is-4">{{projectEvidence.id}}</p>
+            <p class="subtitle is-6">Nível {{projectEvidence.level}}</p>
+            <div class="content" v-if="projectEvidence.original.feedback">
+              {{projectEvidence.original.feedback}}
             </div>
           </div>
         </div>
@@ -55,11 +55,6 @@ import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import process from '~/static/process.json'
 import processAttributes from '~/static/process-attributes.json'
-processAttributes.forEach(attr => {
-  const p = process.find(p => p.id === attr.processId)
-  attr.processName = p.abbr
-  attr.levelId = p.levelId
-})
 
 const emptyProjectEvidence = {
   projectId: 0,
@@ -80,11 +75,11 @@ export default {
     const {id} = params
 
     const data = {
-      levels,
-      process,
+      levels: Object.values(levels),
+      process: Object.values(process),
       isModalActive: false,
-      expectedResults,
-      processAttributes,
+      expectedResults: Object.values(expectedResults),
+      processAttributes: Object.values(processAttributes),
       project: {},
       organization: {},
       unit: {},
@@ -104,22 +99,23 @@ export default {
     data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
     data.organization = await app.$axios.$get(`/organizations/${data.unit.organizationId}`)
     data.evidences = await app.$axios.$get('/evidences')
+    data.evidencesDb = data.evidences
+      .reduce((acc, evidence) => {
+        acc[evidence.id] = evidence
+        return acc
+      }, {})
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
     data.availableLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id)
+      r.map(level => level.level_id).sort()
     )
     data.availableProcesses = [...new Set(
       data.projectEvidences
-        .map(evi => {
-            return evi.type === 'expectedResult'
-              ? expectedResults.find(er => er.id === evi.typeId).processId
-              : processAttributes.find(pa => pa.id === evi.typeId).processId
-        })
+        .map(evi => evi.typeId)
     )]
     data.selectedProcesses = data.availableProcesses.slice()
-    data.selectedLevels = Object.values(levels).filter(l => data.availableLevels.includes(l.id)).map(l => l.level).sort()
-    data.excludedLevels = Object.values(levels).filter(l => !data.availableLevels.includes(l.id)).map(l => l.level).sort()
+    data.selectedLevels = data.availableLevels.slice()
+    data.excludedLevels = Object.values(levels).filter(l => !data.availableLevels.includes(l.id)).map(l => l.id).sort()
 
     data.countColors = data.projectEvidences
       .reduce((acc, evi) => {
@@ -140,34 +136,45 @@ export default {
     filteredRows() {
       const validLevels = new Set(this.selectedLevels)
       const validProcessAttributes = new Set(
-        processAttributes
-          .filter(attr => validLevels.has(attr.levelId))
-          .map(pa => pa.attr)
+        levels[this.project.levelId].attributes
       )
 
       return this.projectEvidences
-        .map(evi => {
-          const data = Object.assign({}, evi)
-          data.original = evi
-          const evidence = this.evidences.filter(e => e.id === evi.evidenceId)[0]
+        .map(projectEvidence => {
+          const { type, filename, evidenceId } = projectEvidence
+          const id = projectEvidence.typeId
 
-          data.evidence = evidence
-          data.reference = data.type === 'expectedResult'
-            ? expectedResults.find(er => er.id === data.typeId)
-            : processAttributes.find(pa => pa.id === data.typeId)
+          const maybeProcess = type === 'expectedResult'
+            ? expectedResults[id] && process[expectedResults[id].process]
+            : false
 
-          data.process = process.find(p => p.id === data.reference.processId)
-          data.level = levels.find(({id}) => id === data.process.levelId)
+          const getLevelFromProcess = process =>
+            process.levels
+              ? process.levels[process.levels.length - 1]
+              : process.level
 
-          return data
-        })
-        .filter(evi => {
-          if (evi.type === 'expectedResult') {
-            return this.unit.expectedResults.includes(evi.typeId)
+          const level = type === 'expectedResult'
+            ? (maybeProcess ? getLevelFromProcess(maybeProcess) : '-')
+            : this.project.levelId
+
+          // Blank invalid
+          if (
+            (!expectedResults[id] && !processAttributes[id]) ||
+            !this.evidencesDb[evidenceId]
+          ) return
+
+          const evidence = this.evidencesDb[evidenceId].name
+
+          return {
+            type,
+            id,
+            level,
+            filename,
+            evidence,
+            original: projectEvidence
           }
-          // TODO: properly handle this filter
-          return true
         })
+        .filter(projectEvidence => projectEvidence)
     },
   },
 

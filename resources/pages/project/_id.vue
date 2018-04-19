@@ -28,7 +28,7 @@
                   :value="level.id"
                   :key="level.id"
                 >
-                  {{ "[" + level.level + "] " + level.title }}
+                  {{ "[" + level.id + "] " + level.title }}
                 </option>
               </b-select>
 
@@ -209,7 +209,9 @@ export default {
         justification: '',
         levelId: null,
       },
-      levels
+      levels: Object.values(levels),
+      // TODO: use only levels from the Unit
+      selectedLevels: Object.values(levels).map(l => l.id),
     }
 
     if (id === "new") {

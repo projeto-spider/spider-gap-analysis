@@ -15,14 +15,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="result in processAttributes">
-              <td>{{result.abbr}}</td>
+            <tr v-for="attr in processAttributes">
+              <td>{{attr.id}}</td>
               <td>
-                <template v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == result.id)">
-                  <button @click="openEvidence('processAttribute', result.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('processAttribute', result.id)"  class="button is-danger">Excluir</button>
+                <template v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == attr.id)">
+                  <button @click="openEvidence('processAttribute', attr.id)"  class="button is-primary">Ver Evidência</button>
+                  <button @click="destroy('processAttribute', attr.id)"  class="button is-danger">Excluir</button>
                 </template>
-                <button v-else @click="openModal('processAttribute', result.id)" class="button is-secondary">Inserir Evidência</button>
+                <button v-else @click="openModal('processAttribute', attr.id)" class="button is-secondary">Inserir Evidência</button>
               </td>
             </tr>
           </tbody>
@@ -39,7 +39,7 @@
           </thead>
           <tbody>
             <tr v-for="result in expectedResults.filter(({id}) => unit.expectedResults.includes(id))">
-              <td>{{result.abbr}}</td>
+              <td>{{result.id}}</td>
               <td>
                 <template v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)">
                   <button @click="openEvidence('expectedResult', result.id)"  class="button is-primary">Ver Evidência</button>
@@ -260,14 +260,10 @@
 
 <script>
 import FormData from 'form-data'
+import levels from '~/static/levels.json'
 import expectedResults from '~/static/expected-results.json'
 import process from '~/static/process.json'
 import processAttributes from '~/static/process-attributes.json'
-processAttributes.forEach(attr => {
-  const p = process.find(p => p.id === attr.processId)
-  attr.processName = p.abbr
-  attr.levelId = p.levelId
-})
 
 const emptyProjectEvidence = {
   projectId: 0,
@@ -287,7 +283,8 @@ export default {
 
     const data = {
       isModalActive: false,
-      expectedResults,
+      expectedResults: Object.values(expectedResults),
+      processAttributes: [],
       project: {},
       organization: {},
       unit: {},
@@ -305,21 +302,13 @@ export default {
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
     data.selectedLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id)
+      r.map(level => level.level_id).sort()
     )
 
-    return data
-  },
+    data.processAttributes = levels[data.project.levelId].attributes
+      .map(attrId => processAttributes[attrId])
 
-  computed: {
-    processAttributes() {
-      const levels = new Set(this.selectedLevels)
-      return processAttributes
-        .filter(attr => levels.has(attr.levelId))
-        .filter((attr, i, attrs) =>
-          !attrs.slice(i + 1).some(other => other.abbr === attr.abbr)
-        )
-    },
+    return data
   },
 
   head () {

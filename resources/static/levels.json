@@ -1,35 +1,80 @@
-[{
-  "id": 1,
-  "level": "G",
-  "title": "Parcialmente Gerenciado"
-},
 {
-  "id": 2,
-  "level": "F",
-  "title": "Gerenciado"
-},
-{
-  "id": 3,
-  "level": "E",
-  "title": "Parcialmente Definido"
-},
-{
-  "id": 4,
-  "level": "D",
-  "title": "Largamente Definido"
-},
-{
-  "id": 5,
-  "level": "C",
-  "title": "Definido"
-},
-{
-  "id": 6,
-  "level": "B",
-  "title": "Gerenciado Quantitativamente"
-},
-{
-  "id": 7,
-  "level": "A",
-  "title": "Em Otimização"
-}]
+  "G":{
+    "id":"G",
+    "title":"Parcialmente Gerenciado",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1"
+    ]
+  },
+  "F":{
+    "id":"F",
+    "title":"Gerenciado",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2"
+    ]
+  },
+  "E":{
+    "id":"E",
+    "title":"Parcialmente Definido",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2",
+      "AP 3.1",
+      "AP 3.2"
+    ]
+  },
+  "D":{
+    "id":"D",
+    "title":"Largamente Definido",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2",
+      "AP 3.1",
+      "AP 3.2"
+    ]
+  },
+  "C":{
+    "id":"C",
+    "title":"Definido",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2",
+      "AP 3.1",
+      "AP 3.2"
+    ]
+  },
+  "B":{
+    "id":"B",
+    "title":"Gerenciado Quantitativamente",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2",
+      "AP 3.1",
+      "AP 3.2",
+      "AP 4.1",
+      "AP 4.2"
+    ]
+  },
+  "A":{
+    "id":"A",
+    "title":"Em Otimização",
+    "attributes":[
+      "AP 1.1",
+      "AP 2.1",
+      "AP 2.2",
+      "AP 3.1",
+      "AP 3.2",
+      "AP 4.1",
+      "AP 4.2",
+      "AP 5.1",
+      "AP 5.2"
+    ]
+  }
+}
