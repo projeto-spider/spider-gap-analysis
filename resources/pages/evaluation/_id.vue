@@ -1,7 +1,7 @@
 <template>
   <section class="container">
-    <h2 class="title">{{organization.name}}</h2>
-    <h3 class="subtitle">{{unit.name}}</h3>
+    <h2 class="title">{{project.name}}</h2>
+    <h3 class="subtitle">{{organization.name}} - {{unit.name}}</h3>
 
     <strong>Avaliação</strong>
 
