@@ -36,6 +36,7 @@
     "font-awesome": "^4.7.0",
     "form-data": "^2.3.1",
     "p-debounce": "^1.0.0",
+    "roman-numerals": "^0.3.2",
     "sqlite3": "^3.1.13",
     "standard": "^8.6.0",
     "youch": "^2.0.4"
