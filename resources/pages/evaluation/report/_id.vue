@@ -91,9 +91,7 @@ export default {
       availableProcesses: [],
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
-      dropFiles: [],
-      countColors: {},
-      percentColors: {}
+      dropFiles: []
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -117,18 +115,6 @@ export default {
     data.selectedProcesses = data.availableProcesses.slice()
     data.selectedLevels = data.availableLevels.slice()
     data.excludedLevels = Object.values(levels).filter(l => !data.availableLevels.includes(l.id)).map(l => l.id).sort()
-
-    data.countColors = data.projectEvidences
-      .reduce((acc, evi) => {
-        acc[evi.approval]++
-        return acc
-      }, {0: 0, 1: 0, 2: 0})
-
-    data.percentColors = {
-      0: parseInt(100 * (data.countColors[0] / data.projectEvidences.length)),
-      1: parseInt(100 * (data.countColors[1] / data.projectEvidences.length)),
-      2: parseInt(100 * (data.countColors[2] / data.projectEvidences.length))
-    }
 
     return data
   },
@@ -189,6 +175,22 @@ export default {
         })
         .filter(projectEvidence => projectEvidence)
     },
+
+    countColors() {
+      return this.filteredRows
+        .reduce((acc, evi) => {
+          acc[evi.original.approval]++
+          return acc
+        }, {0: 0, 1: 0, 2: 0})
+    },
+
+    percentColors() {
+      return {
+        0: parseInt(100 * (this.countColors[0] / this.filteredRows.length)),
+        1: parseInt(100 * (this.countColors[1] / this.filteredRows.length)),
+        2: parseInt(100 * (this.countColors[2] / this.filteredRows.length))
+      }
+    }
   },
 
   methods: {
