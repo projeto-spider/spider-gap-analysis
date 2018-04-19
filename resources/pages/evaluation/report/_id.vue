@@ -15,15 +15,15 @@
 
     <div class="columns">
       <div class="column">
-        <strong>Total Verde:</strong> {{countColors[2]}}
+        <strong>Total Verde:</strong> {{countColors[2]}} ({{percentColors[2]}}%)
       </div>
 
       <div class="column">
-        <strong>Total Amarelo:</strong> {{countColors[1]}}
+        <strong>Total Amarelo:</strong> {{countColors[1]}} ({{percentColors[1]}}%)
       </div>
 
       <div class="column">
-        <strong>Total Vermelho:</strong> {{countColors[0]}}
+        <strong>Total Vermelho:</strong> {{countColors[0]}} ({{percentColors[0]}}%)
       </div>
     </div>
 
@@ -92,7 +92,8 @@ export default {
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
-      countColors: {}
+      countColors: {},
+      percentColors: {}
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -122,6 +123,12 @@ export default {
         acc[evi.approval]++
         return acc
       }, {0: 0, 1: 0, 2: 0})
+
+    data.percentColors = {
+      0: parseInt(100 * (data.countColors[0] / data.projectEvidences.length)),
+      1: parseInt(100 * (data.countColors[1] / data.projectEvidences.length)),
+      2: parseInt(100 * (data.countColors[2] / data.projectEvidences.length))
+    }
 
     return data
   },
