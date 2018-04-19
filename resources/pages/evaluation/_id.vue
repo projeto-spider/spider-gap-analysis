@@ -210,8 +210,14 @@ export default {
             : this.project.levelId
 
           // Blank invalid
+
+          const getProcessAttributeId = attributeWithSubId =>
+            // Example 'AP 5.1 (IV)' => 'AP 5.1'
+            attributeWithSubId.split(' ').slice(0, -1).join(' ')
+
           if (
-            (!expectedResults[id] && !processAttributes[id]) ||
+            (type === 'expectedResult' && !expectedResults[id]) ||
+            (type === 'processAttribute' && !processAttributes[getProcessAttributeId(id)]) ||
             !this.evidencesDb[evidenceId]
           ) return
 

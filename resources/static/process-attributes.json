@@ -2,46 +2,104 @@
   "AP 1.1":{
     "id":"AP 1.1",
     "description":"O processo é executado",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i)  o processo produz os resultados definidos."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i)  o processo produz os resultados definidos.",
+    "sub": [
+      "O processo produz os resultados definidos."
+    ]
   },
   "AP 2.1":{
     "id":"AP 2.1",
     "description":"A execução do processo é gerenciada",
-    "evidence":"As evidências apresentadas devem assegurar que: (i) existe uma política organizacional estabelecida e mantida para o processo; (ii) a execução do processo é planejada  (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas);  (iii) a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados; (iv) as pessoas que executam o processo estão preparadas para  executar suas responsabilidades; (v) as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas;  (vi) (a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades."
+    "evidence":"As evidências apresentadas devem assegurar que: (i) existe uma política organizacional estabelecida e mantida para o processo; (ii) a execução do processo é planejada  (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas);  (iii) a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados; (iv) as pessoas que executam o processo estão preparadas para  executar suas responsabilidades; (v) as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas;  (vi) (a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades.",
+    "sub": [
+      "existe uma política organizacional estabelecida e mantida para o processo",
+      "a execução do processo é planejada (O planejamento deve incluir identificação e disponibilização dos recursos e informações necessárias para a execução do processo, definição, atribuição e comunicação das responsabilidades pela execução do processo e planejamento da comunicação entre as partes interessadas)",
+      "a execução do processo é monitorada em relação ao planejado e, quando necessário, ajustes são realizados",
+      "as pessoas que executam o processo estão preparadas para executar suas responsabilidades",
+      "as atividades, o status e os resultados do processo são revistos com a gerência de nível superior e são tratadas questões críticas",
+      "(a partir do Nível F) a aderência dos processos executados às descrições de processo, padrões e procedimentos é avaliada objetivamente e são tratadas as não conformidades"
+    ]
   },
   "AP 2.2":{
     "id":"AP 2.2",
     "description":"Os produtos de trabalho do processo são gerenciados",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os requisitos para documentação e controle dos produtos de trabalho do processo são identificados; (ii) os produtos de trabalho do processo estão identificados, documentados e sob os níveis de controle especificados; (iii) os produtos de trabalho são avaliados objetivamente com relação à aderência aos padrões, procedimentos e requisitos aplicáveis e são tratadas as não conformidades."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os requisitos para documentação e controle dos produtos de trabalho do processo são identificados; (ii) os produtos de trabalho do processo estão identificados, documentados e sob os níveis de controle especificados; (iii) os produtos de trabalho são avaliados objetivamente com relação à aderência aos padrões, procedimentos e requisitos aplicáveis e são tratadas as não conformidades.",
+    "sub": [
+      "os requisitos para documentação e controle dos produtos de trabalho do processo são identificados",
+      "os produtos de trabalho do processo estão identificados, documentados e sob os níveis de controle especificados",
+      "os produtos de trabalho são avaliados objetivamente com relação à aderência aos padrões, procedimentos e requisitos aplicáveis e são tratadas as não conformidades"
+    ]
   },
   "AP 3.1":{
     "id":"AP 3.1",
     "description":"O processo é definido",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) existe a definição de um processo padrão, o que inclui diretrizes para a sua adaptação a situações específicas, a sequência de execução, a interação deste processo com os outros processos, os papéis e competências, a infraestrutura e o ambiente de trabalho requeridos para executar o processo; (ii) métodos adequados para monitorar a efetividade e adequação do processo são identificados."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) existe a definição de um processo padrão, o que inclui diretrizes para a sua adaptação a situações específicas, a sequência de execução, a interação deste processo com os outros processos, os papéis e competências, a infraestrutura e o ambiente de trabalho requeridos para executar o processo; (ii) métodos adequados para monitorar a efetividade e adequação do processo são identificados.",
+    "sub": [
+      "existe a definição de um processo padrão, o que inclui diretrizes para a sua adaptação a situações específicas, a sequência de execução, a interação deste processo com os outros processos, os papéis e competências, a infraestrutura e o ambiente de trabalho requeridos para executar o processo",
+      "métodos adequados para monitorar a efetividade e adequação do processo são identificados"
+    ]
   },
   "AP 3.2":{
     "id":"AP 3.2",
     "description":"O processo está implementado",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) um processo definido baseado nas diretrizes para seleção e/ou adaptação do processo padrão está  implementado; (ii) a infraestrutura e o ambiente de trabalho requeridos para executar o processo definido estão disponibilizados, gerenciados e mantidos; (iii) experiências e dados apropriados são coletados, analisados e utilizados para entendimento do comportamento e adequação do processo, e para a identificação de oportunidades de melhoria no processo."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) um processo definido baseado nas diretrizes para seleção e/ou adaptação do processo padrão está  implementado; (ii) a infraestrutura e o ambiente de trabalho requeridos para executar o processo definido estão disponibilizados, gerenciados e mantidos; (iii) experiências e dados apropriados são coletados, analisados e utilizados para entendimento do comportamento e adequação do processo, e para a identificação de oportunidades de melhoria no processo.",
+    "sub": [
+      "um processo definido baseado nas diretrizes para seleção e/ou adaptação do processo padrão está implementado",
+      "a infraestrutura e o ambiente de trabalho requeridos para executar o processo definido estão disponibilizados, gerenciados e mantidos",
+      "experiências e dados apropriados são coletados, analisados e utilizados para entendimento do comportamento e adequação do processo, e para a identificação de oportunidades de melhoria no processo"
+    ]
   },
   "AP 4.1":{
     "id":"AP 4.1",
     "description":"O processo é objeto de análise quantitativa",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os processos que estão alinhados a objetivos quantitativos de negócio são identificados; (ii) foram identificadas as necessidades de informação dos processos requeridas para apoiar o alcance dos objetivos de negócio relevantes da organização; (iii) os objetivos de medição do processo foram definidos a partir das necessidades de informação; (iv) relacionamentos mensuráveis entre elementos do processo que contribuem para o desempenho do processo são identificados; (v) os objetivos quantitativos para qualidade e desempenho do processo da organização foram definidos e estão alinhados às necessidades de informação e aos objetivos de negócio; (vi)  os processos que serão objeto de análise de desempenho são selecionados a partir do conjunto de processos padrão da organização e das necessidades de informação dos usuários dos processos;..."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) os processos que estão alinhados a objetivos quantitativos de negócio são identificados; (ii) foram identificadas as necessidades de informação dos processos requeridas para apoiar o alcance dos objetivos de negócio relevantes da organização; (iii) os objetivos de medição do processo foram definidos a partir das necessidades de informação; (iv) relacionamentos mensuráveis entre elementos do processo que contribuem para o desempenho do processo são identificados; (v) os objetivos quantitativos para qualidade e desempenho do processo da organização foram definidos e estão alinhados às necessidades de informação e aos objetivos de negócio; (vi)  os processos que serão objeto de análise de desempenho são selecionados a partir do conjunto de processos padrão da organização e das necessidades de informação dos usuários dos processos;...",
+    "sub": [
+      "os processos que estão alinhados a objetivos quantitativos de negócio são identificados",
+      "foram identificadas as necessidades de informação dos processos requeridas para apoiar o alcance dos objetivos de negócio relevantes da organização",
+      "os objetivos de medição do processo foram definidos a partir das necessidades de informação",
+      "relacionamentos mensuráveis entre elementos do processo que contribuem para o desempenho do processo são identificados",
+      "os objetivos quantitativos para qualidade e desempenho do processo da organização foram definidos e estão alinhados às necessidades de informação e aos objetivos de negócio",
+      "os processos que serão objeto de análise de desempenho são selecionados a partir do conjunto de processos padrão da organização e das necessidades de informação dos usuários dos processos",
+      "medidas adequadas para análise de desempenho do processo, incluindo a frequência de realização das medições, são identificadas, definidas e incorporadas ao plano de medição da organização",
+      ")resultados de medições são coletados, validados e reportados para monitorar o quanto os objetivos quantitativos para o desempenho do processo foram alcançados"
+    ]
   },
   "AP 4.2":{
     "id":"AP 4.2",
     "description":"O processo é controlado quantitativamente",
-    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) técnicas para análise dos dados coletados são selecionadas; (ii) dados de medições são analisados com relação a causas especiais (atribuíveis) de variação do processo; (iii) o desempenho do processo é caracterizado; (iv) ações corretivas foram executadas para tratar causas especiais de variação; (v) se necessário, análises adicionais são realizadas para avaliar  o processo sob o efeito de causas especiais de variação; (vi) modelos de desempenho do processo são estabelecidos, melhorados e ajustados em função do conhecimento adquirido com o aumento de dados históricos, compreensão das características do processo ou mudanças no próprio negócio da organização."
+    "evidence":"As evidências apresentadas para este resultado devem obrigatoriamente assegurar que: (i) técnicas para análise dos dados coletados são selecionadas; (ii) dados de medições são analisados com relação a causas especiais (atribuíveis) de variação do processo; (iii) o desempenho do processo é caracterizado; (iv) ações corretivas foram executadas para tratar causas especiais de variação; (v) se necessário, análises adicionais são realizadas para avaliar  o processo sob o efeito de causas especiais de variação; (vi) modelos de desempenho do processo são estabelecidos, melhorados e ajustados em função do conhecimento adquirido com o aumento de dados históricos, compreensão das características do processo ou mudanças no próprio negócio da organização.",
+    "sub": [
+      "técnicas para análise dos dados coletados são selecionadas",
+      "dados de medições são analisados com relação a causas especiais (atribuíveis) de variação do processo",
+      "o desempenho do processo é caracterizado",
+      "ações corretivas foram executadas para tratar causas especiais de variação",
+      "se necessário, análises adicionais são realizadas para avaliar o processo sob o efeito de causas especiais de variação",
+      "modelos de desempenho do processo são estabelecidos, melhorados e ajustados em função do conhecimento adquirido com o aumento de dados históricos, compreensão das características do processo ou mudanças no próprio negócio da organização"
+    ]
   },
   "AP 5.1":{
     "id":"AP 5.1",
     "description":"O processo é objeto de melhorias incrementais e inovações",
-    "evidence":"O atributo de processo AP 5.1 é a medida do quanto mudanças no processo são identificadas a partir de investigação de enfoques inovadores para a definição e implantação do processo."
+    "evidence":"O atributo de processo AP 5.1 é a medida do quanto mudanças no processo são identificadas a partir de investigação de enfoques inovadores para a definição e implantação do processo.",
+    "sub": [
+      "os objetivos de negócio da organização são mantidos com base no entendimento das estratégias de negócio e resultados de desempenho do processo",
+      "objetivos de melhoria do processo são definidos com base no entendimento do desempenho do processo, de forma a apoiar o alcance dos objetivos de negócio",
+      "dados que influenciam o desempenho do processo foram identificados, classificados e selecionados para análise de causas",
+      "dados selecionados foram analisados para identificar causas raiz e propor soluções aceitáveis para evitar ocorrências futuras de resultados similares ou incorporar melhores práticas no processo",
+      "dados adequados são analisados para identificar oportunidades para aplicar melhores práticas e inovações com impacto no alcance dos objetivos de negócio",
+      "oportunidades de melhoria derivadas de novas tecnologias e conceitos de processo foram identificadas, avaliadas e selecionadas com base no impacto no alcance dos objetivos de negócio",
+      "uma estratégia de implementação para as melhorias selecionadas foi estabelecida para alcançar os objetivos de melhoria e inovação no processo e para resolver problemas"
+    ]
   },
   "AP 5.2":{
     "id":"AP 5.2",
     "description":"O processo é objeto de implementação de melhorias inovadoras e incrementais",
-    "evidence":"O atributo de processo AP 5.2 é a medida do quanto as mudanças na definição, gerência e desempenho do processo alcançou os objetivos."
+    "evidence":"O atributo de processo AP 5.2 é a medida do quanto as mudanças na definição, gerência e desempenho do processo alcançou os objetivos.",
+    "sub": [
+      "o impacto de todas as mudanças propostas é avaliado com relação aos objetivos do processo definido para o projeto e do processo padrão",
+      "a implementação das mudanças acordadas é gerenciada para garantir o entendimento de qualquer variação no desempenho do processo e ações corretivas necessárias foram executadas",
+      "as ações implementadas para resolução de problemas e melhoria no processo são acompanhadas, com uso de técnicas estatísticas e outras técnicas quantitativas, para verificar se as mudanças no processo corrigiram o problema e melhoraram o seu desempenho",
+      "dados de análise e resolução de causas de problemas são armazenados para uso em situações similares"
+    ]
   }
 }

@@ -260,6 +260,7 @@
 
 <script>
 import FormData from 'form-data'
+import { toRoman } from 'roman-numerals'
 import levels from '~/static/levels.json'
 import expectedResults from '~/static/expected-results.json'
 import process from '~/static/process.json'
@@ -274,6 +275,9 @@ const emptyProjectEvidence = {
   type: 0,
   typeId: 0,
 }
+
+const flatten = xs =>
+  xs.reduce((acc, ys) => acc.concat(ys), [])
 
 export default {
   middleware: 'is-admin',
@@ -305,8 +309,15 @@ export default {
       r.map(level => level.level_id).sort()
     )
 
-    data.processAttributes = levels[data.project.levelId].attributes
-      .map(attrId => processAttributes[attrId])
+    data.processAttributes = flatten(
+      levels[data.project.levelId].attributes
+        .map(attrId => processAttributes[attrId])
+        .map(attr =>
+          attr.sub.map((sub, i) => ({
+            id: `${attr.id} (${toRoman(i + 1)})`
+          }))
+        )
+    )
 
     return data
   },
