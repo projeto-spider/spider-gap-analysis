@@ -72,14 +72,19 @@
       <div class="card-content">
         <div class="content">
           <b-field>
-            <b-checkbox v-model="selectedLevels"
-              v-for="level in levels"
+            <div
+              @click.prevent="setUnitLevelId(level.id)"
+               v-for="level in levels"
               :key="level.id"
-              :native-value="level.id"
-              type="is-success"
+            >
+              <b-checkbox
+                v-model="selectedLevels"
+                :native-value="level.id"
+                type="is-success"
               >
-              <span>[{{level.id}}] {{level.title}}</span>
-            </b-checkbox>
+                <span>[{{level.id}}] {{level.title}}</span>
+              </b-checkbox>
+            </div>
           </b-field>
         </div>
       </div>
@@ -129,6 +134,9 @@ import attributes from '~/static/process-attributes.json'
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
+const levelsUpTo = levelId =>
+  Object.keys(levels).filter(id => id >= levelId)
+
 export default {
   middleware: 'is-admin',
 
@@ -145,12 +153,12 @@ export default {
         coordinator: '',
         colaborators: 0,
         expectedResults: [],
+        levelId: 'G',
       },
+      // This property is just to satisfy the need of an array for the checkboxes
+      selectedLevels: [],
       selectableOrganizations: [],
       organizationName: false,
-      originallySelectedLevels: [],
-      selectedLevels: [],
-      selectedResults: [],
       levels: Object.values(levels)
         .sort((a, b) =>
           a.id - b.id
@@ -187,14 +195,13 @@ export default {
 
     const unit = await app.$axios.$get(`/units/${id}`)
     const organization = await app.$axios.$get(`/organizations/${unit.organizationId}`)
-    const selectedLevels = await app.$axios.$get(`/units/${id}/levels`).then(r =>
-      r.map(level => level.level_id)
-    )
 
     Object.assign(data.unit, unit)
     data.organizationName = organization.name
-    data.originallySelectedLevels = selectedLevels
-    data.selectedLevels = selectedLevels
+
+    // Build our fake selectedLevels array once just so the first
+    // render matches the desired output
+    data.selectedLevels = levelsUpTo(data.unit.levelId)
 
     return data
   },
@@ -248,38 +255,7 @@ export default {
       const data = await this.$axios.$put(`/units/${id}`, updatedData)
         .catch(this.$translateError('Falha ao atualizar unidade'))
 
-      const newLevels = this.selectedLevels
-        .filter(level => !this.originallySelectedLevels.includes(level))
-        .map(level =>
-          this.$axios.$post(`/units/${id}/levels`, {
-            unit_id: id,
-            level_id: level
-          })
-          .catch(err => {
-            const levelName = levels.find(l => l.id === level).title
-            this.$fail('Falha ao adicionar nível ' + levelName)
-            throw err
-          })
-        )
-      const levelsToRemove = this.originallySelectedLevels
-        .filter(level => !this.selectedLevels.includes(level))
-        .map(level =>
-          this.$axios.$delete(`/units/${id}/levels/${level}`)
-          .catch(err => {
-            const levelName = levels.find(l => l.id === level).title
-            this.$fail('Falha ao adicionar nível ' + levelName)
-            throw err
-          })
-        )
-
-      await Promise.all(newLevels.concat(levelsToRemove))
-
       this.$success('Atualizado com sucesso')
-
-      data.fundationDate = new Date(data.fundationDate)
-      Object.assign(this.unit, data)
-      this.selectedResults = this.scope
-        .filter(({id}) => this.expectedResults.includes(id))
     },
 
     async destroy() {
@@ -292,11 +268,9 @@ export default {
       this.$router.push('/unit/')
     },
 
-    watch: {
-      expectedResults() {
-        this.selectedResults = this.scope
-          .filter(({id}) => this.expectedResults.includes(id))
-      },
+    setUnitLevelId (levelId) {
+      this.unit.levelId = levelId
+      this.selectedLevels = levelsUpTo(this.unit.levelId)
     }
   }
 }

@@ -1,6 +1,7 @@
 'use strict'
 
 const Model = use('Model')
+const levelIds = Object.keys(require('../../resources/static/levels.json'))
 
 class Unit extends Model {
   getExpectedResults(str) {
@@ -11,6 +12,11 @@ class Unit extends Model {
 
   setExpectedResults(arr) {
     return arr.join(',')
+  }
+
+  setLevelId (levelId) {
+    if (!levelIds.includes(levelId)) return 'G'
+    return levelId
   }
 
   organization() {

@@ -11,7 +11,8 @@ const attrs = [
   'manager',
   'coordinator',
   'colaborators',
-  'expectedResults'
+  'expectedResults',
+  'levelId'
 ]
 
 class UnitController {
