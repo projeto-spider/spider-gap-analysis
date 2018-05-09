@@ -29,19 +29,54 @@
 
     <br>
 
-    <div class="card" v-for="projectEvidence in filteredRows">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left media-left-approval">
-            <span v-if="projectEvidence.original.approval === 2" class="tag is-primary is-medium">Verde</span>
-            <span v-else-if="projectEvidence.original.approval === 1" class="tag is-warning is-medium">Amarelo</span>
-            <span v-else class="tag is-danger is-medium">Vermelho</span>
+    <div
+      v-for="process in selectedProcesses"
+      :key="process.id"
+      v-if="expectedResultsByProcessWithEvidence[process.id].length || attributesByProcessWithEvidence[process.id].length"
+    >
+      <h5 class="title is-5">{{ process.id }}</h5>
+
+      <div
+        v-for="result in expectedResultsByProcessWithEvidence[process.id]"
+        :key="result.id"
+        class="card"
+      >
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left media-left-approval">
+              <span v-if="result.projectEvidence.approval === 2" class="tag is-primary is-medium">Verde</span>
+              <span v-else-if="result.projectEvidence.approval === 1" class="tag is-warning is-medium">Amarelo</span>
+              <span v-else class="tag is-danger is-medium">Vermelho</span>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">{{result.id}}</p>
+              <p class="subtitle is-6">Nível {{ process.level || process.levels.filter(level => level >= unit.levelId).pop()}}</p>
+              <div class="content" v-if="result.projectEvidence.feedback">
+                {{result.projectEvidence.feedback}}
+              </div>
+            </div>
           </div>
-          <div class="media-content">
-            <p class="title is-4">{{projectEvidence.id}}</p>
-            <p class="subtitle is-6">Nível {{projectEvidence.level}}</p>
-            <div class="content" v-if="projectEvidence.original.feedback">
-              {{projectEvidence.original.feedback}}
+        </div>
+      </div>
+
+      <div
+        v-for="attr in attributesByProcessWithEvidence[process.id]"
+        :key="attr.id"
+        class="card"
+      >
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left media-left-approval">
+              <span v-if="attr.projectEvidence.approval === 2" class="tag is-primary is-medium">Verde</span>
+              <span v-else-if="attr.projectEvidence.approval === 1" class="tag is-warning is-medium">Amarelo</span>
+              <span v-else class="tag is-danger is-medium">Vermelho</span>
+            </div>
+            <div class="media-content">
+              <p class="title is-4">{{attr.id}}</p>
+              <p class="subtitle is-6">Nível {{process.level}}</p>
+              <div class="content" v-if="attr.projectEvidence.feedback">
+                {{attr.projectEvidence.feedback}}
+              </div>
             </div>
           </div>
         </div>
@@ -54,6 +89,7 @@
 import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import process from '~/static/process.json'
+const processes = process
 import processAttributes from '~/static/process-attributes.json'
 
 const emptyProjectEvidence = {
@@ -65,6 +101,20 @@ const emptyProjectEvidence = {
   type: 0,
   typeId: 0,
 }
+
+const flatten = xs =>
+  xs.reduce((acc, ys) => acc.concat(ys), [])
+
+const processesList = Object.values(processes)
+
+const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
+  processesList
+    .filter(({ id, level, levels }) =>
+      levels
+        // GPR
+        ? levels.some(level => selectedFeatures[level].processes.includes(id))
+        : selectedFeatures[level].processes.includes(id)
+    )
 
 export default {
   layout: 'report',
@@ -91,7 +141,14 @@ export default {
       availableProcesses: [],
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
-      dropFiles: []
+      dropFiles: [],
+      expectedResultsByProcess: Object.values(expectedResults)
+        .reduce((acc, result) => {
+          if (!acc[result.process]) acc[result.process] = []
+          acc[result.process].push(result)
+          return acc
+        }, {}),
+      processAttributeBySelectedLevel: {}
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -113,10 +170,22 @@ export default {
         .map(evi => evi.typeId)
     )]
     data.selectedProcesses = data.availableProcesses.slice()
-    data.selectedLevels = data.availableLevels.slice()
-    data.excludedLevels = Object.values(levels).filter(l => !data.availableLevels.includes(l.id)).map(l => l.id).sort()
+    data.selectedLevels = Object.keys(levels).filter(level => level >= data.unit.levelId).reverse()
+    data.excludedLevels = Object.keys(levels).filter(level => !data.selectedLevels.includes(level)).reverse()
+
+    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
+      .reduce((acc, [level, { attributes }]) => {
+        acc[level] = attributes.sort()
+        return acc
+      }, {})
 
     return data
+  },
+
+  created () {
+    // Has to be done on created so the client rendering rehydratation
+    // gets references to the local lists
+    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -126,69 +195,73 @@ export default {
   },
 
   computed: {
-    filteredRows() {
-      const validLevels = new Set(this.selectedLevels)
-      const validProcessAttributes = new Set(
-        levels[this.project.levelId].attributes
-      )
+    validEvidences () {
+      return flatten(Object.values(this.expectedResultsByProcessWithEvidence))
+        .concat(flatten(Object.values(this.attributesByProcessWithEvidence)))
+    },
 
-      return this.projectEvidences
-        .map(projectEvidence => {
-          const { type, filename, evidenceId } = projectEvidence
-          const id = projectEvidence.typeId
+    expectedResultsByProcessWithEvidence () {
+      return Object.entries(this.expectedResultsByProcess)
+        .reduce((acc, [process, expectedResults]) => {
+          acc[process] = expectedResults.map(result => {
+            const projectEvidence = this.projectEvidences.find(ev =>
+              ev.type === 'expectedResult' && ev.typeId == result.id
+            )
 
-          const maybeProcess = type === 'expectedResult'
-            ? expectedResults[id] && process[expectedResults[id].process]
-            : false
+            if (!projectEvidence) return
 
-          const getLevelFromProcess = process =>
-            process.levels
-              ? process.levels[process.levels.length - 1]
-              : process.level
+            const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
 
-          const level = type === 'expectedResult'
-            ? (maybeProcess ? getLevelFromProcess(maybeProcess) : '-')
-            : this.project.levelId
+            return Object.assign({}, result, {
+              evidenceName,
+              projectEvidence
+            })
+          })
+          .filter(x => x)
 
-          // Blank invalid
+          return acc
+        }, {})
+    },
 
-          const getProcessAttributeId = attributeWithSubId =>
-            // Example 'AP 5.1 (IV)' => 'AP 5.1'
-            attributeWithSubId.split(' ').slice(0, -1).join(' ')
+    attributesByProcessWithEvidence () {
+      return Object.values(processes)
+        .reduce((acc, process) => {
+          acc[process.id] = this.attributesForProcess(process)
+            .map(attribute => {
+              const projectEvidence = this.projectEvidences.find(ev =>
+                ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
+              )
 
-          if (
-            (type === 'expectedResult' && !expectedResults[id]) ||
-            (type === 'processAttribute' && !processAttributes[getProcessAttributeId(id)]) ||
-            !this.evidencesDb[evidenceId]
-          ) return
+              if (!projectEvidence) return
 
-          const evidence = this.evidencesDb[evidenceId].name
+              const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
 
-          return {
-            type,
-            id,
-            level,
-            filename,
-            evidence,
-            original: projectEvidence
-          }
-        })
-        .filter(projectEvidence => projectEvidence)
+              return {
+                id: attribute,
+                evidenceName,
+                projectEvidence
+              }
+            })
+            .filter(x => x)
+
+          return acc
+        }, {})
     },
 
     countColors() {
-      return this.filteredRows
-        .reduce((acc, evi) => {
-          acc[evi.original.approval]++
+      return this.validEvidences
+        .map(({ projectEvidence }) => projectEvidence)
+        .reduce((acc, { approval }) => {
+          acc[approval]++
           return acc
         }, {0: 0, 1: 0, 2: 0})
     },
 
     percentColors() {
       return {
-        0: parseInt(100 * (this.countColors[0] / this.filteredRows.length)),
-        1: parseInt(100 * (this.countColors[1] / this.filteredRows.length)),
-        2: parseInt(100 * (this.countColors[2] / this.filteredRows.length))
+        0: parseInt(100 * (this.countColors[0] / this.validEvidences.length)),
+        1: parseInt(100 * (this.countColors[1] / this.validEvidences.length)),
+        2: parseInt(100 * (this.countColors[2] / this.validEvidences.length))
       }
     }
   },
@@ -205,6 +278,15 @@ export default {
         feedback: evidence.feedback
       })
     },
+
+    attributesForProcess (process) {
+      return this.processAttributeBySelectedLevel[
+        process.levels
+          // GPR
+          ? process.levels.filter(level => level >= this.unit.levelId).pop()
+          : process.level
+      ]
+    }
   }
 }
 </script>
