@@ -12,7 +12,8 @@ const attrs = [
   'coordinator',
   'colaborators',
   'expectedResults',
-  'levelId'
+  'levelId',
+  'selectedFeatures'
 ]
 
 class UnitController {

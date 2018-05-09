@@ -1,7 +1,8 @@
 'use strict'
 
 const Model = use('Model')
-const levelIds = Object.keys(require('../../resources/static/levels.json'))
+const levels = require('../../resources/static/levels.json')
+const levelIds = Object.keys(levels)
 
 class Unit extends Model {
   getExpectedResults(str) {
@@ -17,6 +18,29 @@ class Unit extends Model {
   setLevelId (levelId) {
     if (!levelIds.includes(levelId)) return 'G'
     return levelId
+  }
+
+  getSelectedFeatures (str) {
+    return JSON.parse(str)
+  }
+
+  setSelectedFeatures (obj) {
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
+      throw new Error('Invalid selectedFeatures type')
+    }
+
+    if (levelIds.some(id => !obj[id])) {
+      throw new Error('selectedFeatures must have all levels')
+    }
+
+    if (!Object.values(obj).every(level =>
+      level.processes && Array.isArray(level.processes) &&
+      level.attributes && Array.isArray(level.attributes)
+    )) {
+      throw new Error('selectedFeatures levels must have processes and attributes props as arrays')
+    }
+
+    return JSON.stringify(obj)
   }
 
   organization() {

@@ -68,13 +68,13 @@
       </div>
     </form>
 
-    <div v-if="editing" class="card">
+    <div class="card">
       <div class="card-content">
         <div class="content">
           <b-field>
             <div
               @click.prevent="setUnitLevelId(level.id)"
-               v-for="level in levels"
+               v-for="level in Object.values(levels)"
               :key="level.id"
             >
               <b-checkbox
@@ -90,35 +90,45 @@
       </div>
     </div>
 
-    <div v-if="editing" class="card">
+    <div class="card">
       <div class="card-content">
         <div class="content">
-          <b-table
-            :data="filteredScope"
-            :checked-rows.sync="selectedResults"
-            checkable
+          <div
+            v-for="levelId in selectedLevels"
+            :key="levelId"
           >
-            <template v-if="props.rows.level)" scope="props">
-              <b-table-column label="Nível">
-                {{ props.row.level }}
-              </b-table-column>
+            <h5 class="title is-5">Nível {{levelId}}</h5>
 
-              <b-table-column label="Processo">
-                {{ props.row.process }}
-              </b-table-column>
+            <div class="columns">
+              <div v-if="levelId !== 'A'" class="column">
+                <b-table
+                  :data="processesForLevel(levelId)"
+                  :checked-rows.sync="selectedProcesses"
+                  checkable
+                >
+                  <template scope="props">
+                    <b-table-column label="Processo">
+                      {{ props.row.id }}
+                    </b-table-column>
+                  </template>
+                </b-table>
+              </div>
 
-              <b-table-column label="Atributo do Processo">
-                {{ Array.isArray(props.row.attributes)
-                    ? props.row.attributes.join(', ')
-                    : props.row.attributes[props.row.level].join(', ')
-                }}
-              </b-table-column>
-
-              <b-table-column label="Resultados Esperados">
-                {{ props.row.result }}
-              </b-table-column>
-            </template>
-          </b-table>
+              <div class="column">
+                <b-table
+                  :data="processAttributesForLevel(levelId)"
+                  :checked-rows.sync="selectedProcesseAttributes"
+                  checkable
+                >
+                  <template scope="props">
+                    <b-table-column label="Atributo do Processo">
+                      {{ props.row.id }}
+                    </b-table-column>
+                  </template>
+                </b-table>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -134,8 +144,38 @@ import attributes from '~/static/process-attributes.json'
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
+const processesList = Object.values(processes)
+const processAttributesList = flatten(
+  Object.values(levels)
+    .map(level =>
+      level.attributes
+        .map(attr => ({
+          levelId: level.id,
+          id: attr
+        }))
+    )
+)
+
+const levelContains = (first, second) =>
+  first >= second
+
 const levelsUpTo = levelId =>
   Object.keys(levels).filter(id => id >= levelId)
+
+const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
+  processesList
+    .filter(({ id, level, levels }) =>
+      levels
+        // GPR
+        ? levels.some(level => selectedFeatures[level].processes.includes(id))
+        : selectedFeatures[level].processes.includes(id)
+    )
+
+const selectedFeaturesToSelectedAttrs = (selectedFeatures) =>
+  processAttributesList
+    .filter(({ id, levelId }) =>
+      selectedFeatures[levelId].attributes.includes(id)
+    )
 
 export default {
   middleware: 'is-admin',
@@ -154,38 +194,25 @@ export default {
         colaborators: 0,
         expectedResults: [],
         levelId: 'G',
+        selectedFeatures: {
+          G: { processes: [], attributes: [] },
+          F: { processes: [], attributes: [] },
+          E: { processes: [], attributes: [] },
+          D: { processes: [], attributes: [] },
+          C: { processes: [], attributes: [] },
+          B: { processes: [], attributes: [] },
+          A: { processes: [], attributes: [] }
+        }
       },
-      // This property is just to satisfy the need of an array for the checkboxes
-      selectedLevels: [],
+      // Although unit.level is cumulative, it helps to have
+      // an array mostly for loops and to check inclusion in
+      // valid level ranges
+      selectedLevels: ['G'],
       selectableOrganizations: [],
+      selectedProcesses: [],
+      selectedProcesseAttributes: [],
       organizationName: false,
-      levels: Object.values(levels)
-        .sort((a, b) =>
-          a.id - b.id
-        ),
-      scope: flatten(
-        Object.values(levels)
-          .map(level =>
-            flatten(
-              Object.values(processes)
-                // GPR appears in multiple levels
-                .filter(p => p.levels ? p.levels.includes(level.id) : p.level === level.id)
-                .map(process =>
-                  Object.values(expectedResults)
-                    .filter(r => r.process === process.id)
-                    .map(result => ({
-                      id: result.id,
-                      levelId: level.id,
-                      level: level.id,
-                      process: process.id,
-                      result: result.id,
-                      requiresLevel: result.requiresLevel,
-                      attributes: level.attributes
-                    }))
-                )
-            )
-          )
-      )
+      levels
     }
 
     if (id === "new") {
@@ -194,21 +221,21 @@ export default {
     }
 
     const unit = await app.$axios.$get(`/units/${id}`)
-    const organization = await app.$axios.$get(`/organizations/${unit.organizationId}`)
+    data.unit = unit
 
-    Object.assign(data.unit, unit)
+    const organization = await app.$axios.$get(`/organizations/${unit.organizationId}`)
     data.organizationName = organization.name
 
-    // Build our fake selectedLevels array once just so the first
-    // render matches the desired output
     data.selectedLevels = levelsUpTo(data.unit.levelId)
 
     return data
   },
 
-  created() {
-    this.selectedResults = this.scope
-      .filter(({id}) => this.unit.expectedResults.includes(id))
+  created () {
+    // Has to be done on created so the client rendering rehydratation
+    // gets references to the local lists
+    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
+    this.selectedProcesseAttributes = selectedFeaturesToSelectedAttrs(this.unit.selectedFeatures)
   },
 
   head () {
@@ -221,23 +248,12 @@ export default {
     editing() {
       return this.unit.id !== 'new'
     },
-
-    filteredScope() {
-      const filteredByLevel = this.scope
-        .filter(({levelId, requiresLevel}) =>
-          this.selectedLevels.includes(levelId) &&
-          (requiresLevel ? this.selectedLevels.includes(requiresLevel) : true)
-        )
-
-      return filteredByLevel
-        .filter(({result}, i, xs) =>
-          !xs.slice(i + 1).some(x => x.result === result)
-        )
-    },
   },
 
   methods: {
     async create() {
+      this.updateSelectedFeatures()
+
       const {id} = await this.$axios.$post('/units', this.unit)
         .catch(this.$translateError('Falha ao criar unidade'))
 
@@ -247,12 +263,10 @@ export default {
     },
 
     async update() {
+      this.updateSelectedFeatures()
+
       const { id } = this.unit
-      const updatedData = Object.assign({}, this.unit)
-      updatedData.expectedResults = this.selectedResults
-        .filter(({levelId}) => this.selectedLevels.includes(levelId))
-        .map(er => er.id)
-      const data = await this.$axios.$put(`/units/${id}`, updatedData)
+      const data = await this.$axios.$put(`/units/${id}`, this.unit)
         .catch(this.$translateError('Falha ao atualizar unidade'))
 
       this.$success('Atualizado com sucesso')
@@ -268,9 +282,59 @@ export default {
       this.$router.push('/unit/')
     },
 
+    updateSelectedFeatures () {
+      const groupProcessesByLevel = this.selectedProcesses
+        .reduce((acc, process) => {
+          const level = process.levels
+            // GPR
+            ? process.levels.filter(level => this.selectedLevels.includes(level)).pop()
+            : process.level
+
+          if (!acc[level]) acc[level] = []
+          acc[level].push(process.id)
+          return acc
+        }, {})
+
+      const groupAttrsByLevel = this.selectedProcesseAttributes
+        .reduce((acc, attr) => {
+          if (!acc[attr.levelId]) acc[attr.levelId] = []
+          acc[attr.levelId].push(attr.id)
+          return acc
+        }, {})
+
+      this.unit.selectedFeatures = Object.values(levels)
+        .reduce((acc, level) => {
+          const hasThisLevel = this.selectedLevels.includes(level.id)
+
+          acc[level.id] = {
+            processes: hasThisLevel && groupProcessesByLevel[level.id] || [],
+            attributes: hasThisLevel && groupAttrsByLevel[level.id] || [],
+          }
+          return acc
+        }, {})
+    },
+
     setUnitLevelId (levelId) {
       this.unit.levelId = levelId
       this.selectedLevels = levelsUpTo(this.unit.levelId)
+    },
+
+    processesForLevel (levelId) {
+      const gprLevel = processes.GPR.levels
+        .filter(level => this.selectedLevels.includes(level))
+        .pop()
+
+      return processesList.filter(({ level, levels}) =>
+        levels
+          // GPR
+          ? levels.includes(levelId) && levelId === gprLevel
+          : levelId === level
+      )
+    },
+
+    processAttributesForLevel (levelId) {
+      return processAttributesList
+        .filter(attr => attr.levelId === levelId)
     }
   }
 }
