@@ -102,9 +102,6 @@
 
 <script>
 import cep from 'cep-promise'
-import debounce from 'p-debounce'
-
-const cepDebouced = debounce(cep, 300)
 
 export default {
   middleware: 'is-admin',
@@ -167,7 +164,7 @@ export default {
 
   methods: {
     findAddress() {
-      cepDebouced(this.organization.cep.replace('-', ''))
+      cep(this.organization.cep.replace('-', ''))
         .then(data => {
           this.organization.state = data.state
           this.organization.city = data.city
