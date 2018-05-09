@@ -3,54 +3,77 @@
     <h2 class="title">{{project.name}}</h2>
     <h3 class="subtitle">{{organization.name}} - {{unit.name}}</h3>
 
-    <strong>Associar Projetos às Evidências</strong>
+    <p><h4 class="title is-4">Associar Projetos às Evidências</h4></p>
 
-    <div class="columns">
-      <div class="column">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="attr in processAttributes">
-              <td>{{attr.id}}</td>
-              <td>
-                <template v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == attr.id)">
-                  <button @click="openEvidence('processAttribute', attr.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('processAttribute', attr.id)"  class="button is-danger">Excluir</button>
-                </template>
-                <button v-else @click="openModal('processAttribute', attr.id)" class="button is-secondary">Inserir Evidência</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div
+      v-for="process in selectedProcesses"
+      :key="process.id"
+    >
+      <h5 class="title is-5">{{ process.id }}</h5>
 
-      <div class="column">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="result in expectedResults.filter(({id}) => unit.expectedResults.includes(id))">
-              <td>{{result.id}}</td>
-              <td>
-                <template v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)">
-                  <button @click="openEvidence('expectedResult', result.id)"  class="button is-primary">Ver Evidência</button>
-                  <button @click="destroy('expectedResult', result.id)"  class="button is-danger">Excluir</button>
-                </template>
-                <button v-else @click="openModal('expectedResult', result.id)" class="button is-secondary">Inserir Evidência</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr v-for="result in expectedResultsByProcess[process.id]" :key="result.id">
+            <td>{{result.id}}</td>
+            <td>
+              <template
+                v-if="projectEvidences.some(ev => ev.type === 'expectedResult' &&
+                      ev.typeId == result.id)"
+              >
+                <button
+                  @click="openEvidence('expectedResult', result.id)"
+                  class="button is-primary"
+                >Ver Evidência</button>
+                <button
+                  @click="destroy('expectedResult', result.id)"
+                  class="button is-danger"
+                >Excluir</button>
+              </template>
+
+              <button
+                v-else
+                @click="openModal('expectedResult', result.id)"
+                class="button is-secondary"
+              >Inserir Evidência</button>
+            </td>
+          </tr>
+
+          <tr
+            v-for="attr in attributesForProcess(process)"
+            :key="attr"
+          >
+            <td>{{ attr }}</td>
+            <td>
+              <template
+                v-if="projectEvidences.some(ev => ev.type === 'processAttribute' &&
+                      ev.typeId == `${process.id}-${attr}`)"
+              >
+                <button
+                  @click="openEvidence('processAttribute', `${process.id}-${attr}`)"
+                  class="button is-primary"
+                >Ver Evidência</button>
+                <button
+                  @click="destroy('processAttribute', `${process.id}-${attr}`)"
+                  class="button is-danger"
+                >Excluir</button>
+              </template>
+
+              <button
+                v-else
+                @click="openModal('processAttribute', `${process.id}-${attr}`)"
+                class="button is-secondary"
+              >Inserir Evidência</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <b-modal :active.sync="isModalActive">
@@ -264,6 +287,7 @@ import { toRoman } from 'roman-numerals'
 import levels from '~/static/levels.json'
 import expectedResults from '~/static/expected-results.json'
 import process from '~/static/process.json'
+const processes = process
 import processAttributes from '~/static/process-attributes.json'
 
 const emptyProjectEvidence = {
@@ -278,6 +302,17 @@ const emptyProjectEvidence = {
 
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
+
+const processesList = Object.values(processes)
+
+const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
+  processesList
+    .filter(({ id, level, levels }) =>
+      levels
+        // GPR
+        ? levels.some(level => selectedFeatures[level].processes.includes(id))
+        : selectedFeatures[level].processes.includes(id)
+    )
 
 export default {
   middleware: 'is-admin',
@@ -297,6 +332,14 @@ export default {
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
+      selectedProcesses: [],
+      expectedResultsByProcess: Object.values(expectedResults)
+        .reduce((acc, result) => {
+          if (!acc[result.process]) acc[result.process] = []
+          acc[result.process].push(result)
+          return acc
+        }, {}),
+      processAttributeBySelectedLevel: {}
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -319,7 +362,19 @@ export default {
         )
     )
 
+    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
+      .reduce((acc, [level, { attributes }]) => {
+        acc[level] = attributes.sort()
+        return acc
+      }, {})
+
     return data
+  },
+
+  created () {
+    // Has to be done on created so the client rendering rehydratation
+    // gets references to the local lists
+    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -374,6 +429,15 @@ export default {
       this.$success('Excluído com sucesso')
 
       this.projectEvidences = this.projectEvidences.filter(ev => ev.id !== evidence.id)
+    },
+
+    attributesForProcess (process) {
+      return this.processAttributeBySelectedLevel[
+        process.levels
+          // GPR
+          ? process.levels.filter(level => level >= this.unit.levelId).pop()
+          : process.level
+      ]
     }
   }
 }
