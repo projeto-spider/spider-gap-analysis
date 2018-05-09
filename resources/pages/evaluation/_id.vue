@@ -3,106 +3,139 @@
     <h2 class="title">{{project.name}}</h2>
     <h3 class="subtitle">{{organization.name}} - {{unit.name}}</h3>
 
-    <strong>Avaliação</strong>
-
-    <br></br>
+    <p><h5 class="title is-5">Avaliação</h5></p>
 
     <router-link class="button" :to="`/evaluation/report/${$route.params.id}`" target="_blank">
       Relatório
     </router-link>
 
-    <br></br>
+    <br>
+    <br>
 
-    <div class="card">
-      <div class="card-content">
-        <div class="content">
-          <b-field>
-            <b-checkbox v-model="selectedLevels"
-              v-for="level in levels"
-              v-if="availableLevels.includes(level.id)"
-              :key="level.id"
-              :native-value="level.id"
-              type="is-success"
-              >
-              <span>[{{level.id}}] {{level.title}}</span>
-            </b-checkbox>
-          </b-field>
-          <br/>
+    <div
+      v-for="process in selectedProcesses"
+      :key="process.id"
+      v-if="expectedResultsByProcessWithEvidence[process.id].length || attributesByProcessWithEvidence[process.id].length"
+    >
+      <h5 class="title is-5">{{ process.id }}</h5>
 
-          <b-field>
-            <b-checkbox v-model="selectedProcesses"
-              v-for="process in process"
-              v-if="availableProcesses.includes(process.id) && availableLevels.includes(process.levelId)"
-              :key="process.id"
-              :native-value="process.id"
-              type="is-success"
-              >
-              <span>{{process.id}}</span>
-            </b-checkbox>
-          </b-field>
-        </div>
-      </div>
-    </div>
+      <table class="table is-fullwidth">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Evidência</th>
+            <th>Arquivo</th>
+            <th>Ações</th>
+            <th>Feedback</th>
+          </tr>
+        </thead>
 
-    <br/>
+        <tbody>
+          <tr
+            v-for="result in expectedResultsByProcessWithEvidence[process.id]"
+            :key="result.id"
+          >
+            <td>{{ result.id }}</td>
+            <td>{{ result.evidenceName }}</td>
+            <td>
+              <a :href="`/uploads/${result.projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
+            </td>
+            <td>
+              <b-field>
+                <b-radio-button
+                  v-model="result.projectEvidence.approval"
+                  :native-value="0"
+                  type="is-danger"
+                  @input="updateApprovalStatus(result.projectEvidence)"
+                >
+                  <b-icon icon="close"></b-icon>
+                  <span>Vermelho</span>
+                </b-radio-button>
 
-    <div class="columns">
-      <div class="column">
-        <table class="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Nível</th>
-              <th>Identificador</th>
-              <th>Tipo</th>
-              <th>Evidência</th>
-              <th>Arquivo</th>
-              <th>Ações</th>
-              <th>Feedback</th>
-            </tr>
-          </thead>
+                <b-radio-button
+                  v-model="result.projectEvidence.approval"
+                  :native-value="1"
+                  type="is-warning"
+                  @input="updateApprovalStatus(result.projectEvidence)"
+                >
+                  Amarelo
+                </b-radio-button>
 
-          <tbody>
-            <tr v-for="projectEvidence in filteredRows">
-              <td>Nível {{projectEvidence.level}}</td>
-              <td>
-                <span>{{projectEvidence.id}}</span>
-              </td>
-              <td>{{projectEvidence.type === 'expectedResult' ? 'Resultado Esperado' : 'Atributo de Processo'}}</td>
-              <td>{{projectEvidence.evidence}}</td>
-              <td>
-                <a :href="`/uploads/${projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
-              </td>
-              <td>
-                <b-field>
-                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="0" type="is-danger" @input="updateApprovalStatus(projectEvidence.original)">
-                    <b-icon icon="close"></b-icon>
-                    <span>Vermelho</span>
-                  </b-radio-button>
+                <b-radio-button
+                  v-model="result.projectEvidence.approval"
+                  :native-value="2" type="is-success"
+                  @input="updateApprovalStatus(result.projectEvidence)"
+                >
+                  <b-icon icon="check"></b-icon>
+                  <span>Verde</span>
+                </b-radio-button>
+              </b-field>
+            </td>
+            <td>
+              <b-field v-if="result.projectEvidence.approval < 2">
+                <b-input
+                  v-model="result.projectEvidence.feedback"
+                  @input="updateFeedback(result.projectEvidence)"
+                  maxlength="200"
+                  type="textarea"
+                ></b-input>
+              </b-field>
+            </td>
+          </tr>
 
-                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="1" type="is-warning" @input="updateApprovalStatus(projectEvidence.original)">
-                    Amarelo
-                  </b-radio-button>
+          <tr
+            v-for="attr in attributesByProcessWithEvidence[process.id]"
+            :key="attr.id"
+          >
+            <td>{{ attr.id }}</td>
+            <td>{{ attr.evidenceName }}</td>
+            <td>
+              <a :href="`/uploads/${attr.projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
+            </td>
+            <td>
+              <b-field>
+                <b-radio-button
+                  v-model="attr.projectEvidence.approval"
+                  :native-value="0"
+                  type="is-danger"
+                  @input="updateApprovalStatus(attr.projectEvidence)"
+                >
+                  <b-icon icon="close"></b-icon>
+                  <span>Vermelho</span>
+                </b-radio-button>
 
-                  <b-radio-button v-model="projectEvidence.original.approval" :native-value="2" type="is-success" @input="updateApprovalStatus(projectEvidence.original)">
-                    <b-icon icon="check"></b-icon>
-                    <span>Verde</span>
-                  </b-radio-button>
-                </b-field>
-              </td>
-              <td>
-                <b-field v-if="projectEvidence.original.approval < 2">
-                  <b-input
-                    v-model="projectEvidence.original.feedback"
-                    @input="updateFeedback(projectEvidence.original)"
-                    maxlength="200"
-                    type="textarea"
-                  ></b-input>
-                </b-field>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                <b-radio-button
+                  v-model="attr.projectEvidence.approval"
+                  :native-value="1"
+                  type="is-warning"
+                  @input="updateApprovalStatus(attr.projectEvidence)"
+                >
+                  Amarelo
+                </b-radio-button>
+
+                <b-radio-button
+                  v-model="attr.projectEvidence.approval"
+                  :native-value="2" type="is-success"
+                  @input="updateApprovalStatus(attr.projectEvidence)"
+                >
+                  <b-icon icon="check"></b-icon>
+                  <span>Verde</span>
+                </b-radio-button>
+              </b-field>
+            </td>
+            <td>
+              <b-field v-if="attr.projectEvidence.approval < 2">
+                <b-input
+                  v-model="attr.projectEvidence.feedback"
+                  @input="updateFeedback(attr.projectEvidence)"
+                  maxlength="200"
+                  type="textarea"
+                ></b-input>
+              </b-field>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </template>
@@ -112,6 +145,7 @@ import FormData from 'form-data'
 import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import process from '~/static/process.json'
+const processes = process
 import processAttributes from '~/static/process-attributes.json'
 
 const emptyProjectEvidence = {
@@ -123,6 +157,20 @@ const emptyProjectEvidence = {
   type: 0,
   typeId: 0,
 }
+
+const flatten = xs =>
+  xs.reduce((acc, ys) => acc.concat(ys), [])
+
+const processesList = Object.values(processes)
+
+const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
+  processesList
+    .filter(({ id, level, levels }) =>
+      levels
+        // GPR
+        ? levels.some(level => selectedFeatures[level].processes.includes(id))
+        : selectedFeatures[level].processes.includes(id)
+    )
 
 export default {
   middleware: 'is-reviewer',
@@ -148,6 +196,13 @@ export default {
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
+      expectedResultsByProcess: Object.values(expectedResults)
+        .reduce((acc, result) => {
+          if (!acc[result.process]) acc[result.process] = []
+          acc[result.process].push(result)
+          return acc
+        }, {}),
+      processAttributeBySelectedLevel: {}
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -175,7 +230,19 @@ export default {
     data.selectedLevels = data.availableLevels.slice()
     data.selectedProcesses = data.availableProcesses.slice()
 
+    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
+      .reduce((acc, [level, { attributes }]) => {
+        acc[level] = attributes.sort()
+        return acc
+      }, {})
+
     return data
+  },
+
+  created () {
+    // Has to be done on created so the client rendering rehydratation
+    // gets references to the local lists
+    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -234,6 +301,54 @@ export default {
         })
         .filter(projectEvidence => projectEvidence)
     },
+
+    expectedResultsByProcessWithEvidence () {
+      return Object.entries(this.expectedResultsByProcess)
+        .reduce((acc, [process, expectedResults]) => {
+          acc[process] = expectedResults.map(result => {
+            const projectEvidence = this.projectEvidences.find(ev =>
+              ev.type === 'expectedResult' && ev.typeId == result.id
+            )
+
+            if (!projectEvidence) return
+
+            const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
+
+            return Object.assign({}, result, {
+              evidenceName,
+              projectEvidence
+            })
+          })
+          .filter(x => x)
+
+          return acc
+        }, {})
+    },
+
+    attributesByProcessWithEvidence () {
+      return Object.values(processes)
+        .reduce((acc, process) => {
+          acc[process.id] = this.attributesForProcess(process)
+            .map(attribute => {
+              const projectEvidence = this.projectEvidences.find(ev =>
+                ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
+              )
+
+              if (!projectEvidence) return
+
+              const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
+
+              return {
+                id: attribute,
+                evidenceName,
+                projectEvidence
+              }
+            })
+            .filter(x => x)
+
+          return acc
+        }, {})
+    }
   },
 
   methods: {
@@ -248,6 +363,15 @@ export default {
         feedback: evidence.feedback
       })
     },
+
+    attributesForProcess (process) {
+      return this.processAttributeBySelectedLevel[
+        process.levels
+          // GPR
+          ? process.levels.filter(level => level >= this.unit.levelId).pop()
+          : process.level
+      ]
+    }
   }
 }
 </script>
