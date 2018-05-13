@@ -1,39 +1,39 @@
 <template>
   <section class="container">
-    <template v-if="isLoggedIn">
-      <h1 class="title">
-        Bem vindo(a) {{ loggedUser.username }}
-      </h1>
-    </template>
+    <div class="logo-container">
+      <a href="http://spider.ufpa.br/" target="_blank">
+        <img :src="spiderLogo" alt="Projeto SPIDER">
+      </a>
+    </div>
 
-    <template v-else>
-      <form action="fake" @submit.prevent="login">
-        <b-field label="Nome de usuário">
-          <b-input v-model="username"></b-input>
-        </b-field>
+    <form action="fake" @submit.prevent="login">
+      <b-field label="Nome de usuário">
+        <b-input v-model="username"></b-input>
+      </b-field>
 
-        <b-field label="Senha">
-          <b-input
-            type="password"
-            v-model="password"
-            password-reveald
-            autocomplete="password"
-          ></b-input>
-        </b-field>
+      <b-field label="Senha">
+        <b-input
+          type="password"
+          v-model="password"
+          password-reveald
+          autocomplete="password"
+        ></b-input>
+      </b-field>
 
-        <button type="submit" class="button is-primary">Login</button>
-      </form>
-    </template>
+      <button type="submit" class="button is-primary">Login</button>
+    </form>
   </section>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import spiderLogo from '~/assets/spider-logo.png'
 
 export default {
   middleware: 'logged-off',
 
   data: () => ({
+    spiderLogo,
     username: '',
     password: '',
   }),
@@ -57,8 +57,11 @@ export default {
 </script>
 
 <style scoped>
-.title
-{
-  margin: 50px 0;
+.logo-container {
+  text-align: center;
+}
+
+.logo-container img {
+  max-width: 150px;
 }
 </style>
