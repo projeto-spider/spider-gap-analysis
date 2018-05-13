@@ -163,15 +163,6 @@ const flatten = xs =>
 
 const processesList = Object.values(processes)
 
-const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
-  processesList
-    .filter(({ id, level, levels }) =>
-      levels
-        // GPR
-        ? levels.some(level => selectedFeatures[level].processes.includes(id))
-        : selectedFeatures[level].processes.includes(id)
-    )
-
 export default {
   middleware: 'is-reviewer',
 
@@ -182,7 +173,6 @@ export default {
       levels,
       process,
       isModalActive: false,
-      expectedResults: Object.values(expectedResults),
       processAttributes: [],
       project: {},
       organization: {},
@@ -191,17 +181,10 @@ export default {
       evidencesDb: {},
       selectedLevels: [],
       selectedProcesses: [],
-      availableLevels: [],
-      availableProcesses: [],
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
-      expectedResultsByProcess: Object.values(expectedResults)
-        .reduce((acc, result) => {
-          if (!acc[result.process]) acc[result.process] = []
-          acc[result.process].push(result)
-          return acc
-        }, {}),
+      expectedResultsByProcess: app.mps.expectedResultsByProcess,
       processAttributeBySelectedLevel: {}
     }
 
@@ -216,19 +199,16 @@ export default {
       }, {})
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
-    data.availableLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id).sort()
-    )
-
-    data.processAttributes = levels[data.project.levelId].attributes
-      .map(attrId => processAttributes[attrId])
 
     data.availableProcesses = [...new Set(
       data.projectEvidences
         .map(evi => evi.typeId)
     )]
-    data.selectedLevels = data.availableLevels.slice()
-    data.selectedProcesses = data.availableProcesses.slice()
+
+    const selectedProcessesSet = new Set(data.unit.selectedProcesses)
+    data.selectedProcesses = Object.values(processes)
+      .filter(({id}) => selectedProcessesSet.has(id))
+    data.selectedAttributes = levels[data.unit.levelId].attributes
 
     data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
       .reduce((acc, [level, { attributes }]) => {
@@ -237,12 +217,6 @@ export default {
       }, {})
 
     return data
-  },
-
-  created () {
-    // Has to be done on created so the client rendering rehydratation
-    // gets references to the local lists
-    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -328,7 +302,7 @@ export default {
     attributesByProcessWithEvidence () {
       return Object.values(processes)
         .reduce((acc, process) => {
-          acc[process.id] = this.attributesForProcess(process)
+          acc[process.id] = this.selectedAttributes
             .map(attribute => {
               const projectEvidence = this.projectEvidences.find(ev =>
                 ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
@@ -362,15 +336,6 @@ export default {
       this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
         feedback: evidence.feedback
       })
-    },
-
-    attributesForProcess (process) {
-      return this.processAttributeBySelectedLevel[
-        process.levels
-          // GPR
-          ? process.levels.filter(level => level >= this.unit.levelId).pop()
-          : process.level
-      ]
     }
   }
 }
