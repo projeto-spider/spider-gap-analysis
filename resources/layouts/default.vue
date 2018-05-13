@@ -47,7 +47,7 @@
           <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
               <ul>
-                <nuxt-link tag="li" to="/" exact v-if="isAdmin">
+                <nuxt-link tag="li" :to="isLoggedIn ? '/about' : '/'" exact v-if="isAdmin">
                   <a>Home</a>
                 </nuxt-link>
 
