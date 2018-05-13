@@ -24,8 +24,7 @@
             <td>{{result.id}}</td>
             <td>
               <template
-                v-if="projectEvidences.some(ev => ev.type === 'expectedResult' &&
-                      ev.typeId == result.id)"
+                v-if="projectEvidences.some(ev => ev.type === 'expectedResult' && ev.typeId == result.id)"
               >
                 <button
                   @click="openEvidence('expectedResult', result.id)"
@@ -46,14 +45,13 @@
           </tr>
 
           <tr
-            v-for="attr in attributesForProcess(process)"
+            v-for="attr in selectedAttributes"
             :key="attr"
           >
             <td>{{ attr }}</td>
             <td>
               <template
-                v-if="projectEvidences.some(ev => ev.type === 'processAttribute' &&
-                      ev.typeId == `${process.id}-${attr}`)"
+                v-if="projectEvidences.some(ev => ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attr}`)"
               >
                 <button
                   @click="openEvidence('processAttribute', `${process.id}-${attr}`)"
@@ -125,159 +123,6 @@
         </div>
       </form>
     </b-modal>
-
-    <form v-if="false" @submit.prevent="() => editing ? update() : create()">
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
-            <h3>Projeto</h3>
-
-            <unit-picker :disabled="editing" v-model="project.unitId" :value="project.unitId"></unit-picker>
-
-            <b-field grouped>
-              <b-field label="Nome" expanded>
-                <b-input v-model="project.name" required></b-input>
-              </b-field>
-
-              <b-field label="Sigla" expanded>
-                <b-input v-model="project.abbr"></b-input>
-              </b-field>
-            </b-field>
-
-            <b-field label="Nível" expanded>
-              <b-select v-model="project.levelId" placeholder="Nível do Projeto" expanded required>
-                <option
-                  v-for="level in levels"
-                  :value="level.id"
-                  :key="level.id"
-                >
-                  {{ "[" + level.level + "] " + level.title }}
-                </option>
-              </b-select>
-
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Gerente" expanded>
-                <b-input v-model="project.manager" required></b-input>
-              </b-field>
-
-              <b-field label="Ciclo de Vida" expanded>
-                <b-input v-model="project.lifeCycle"></b-input>
-              </b-field>
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Número Total de Colaboradores" expanded>
-                <b-input v-model="project.collaborators" type="number"></b-input>
-              </b-field>
-
-              <b-field label="Data de Inicio" expanded>
-                <b-datepicker
-                  v-if="isClient && project.startDate instanceof Date"
-                  v-model="project.startDate"
-                ></b-datepicker>
-                <b-input disabled v-else></b-input>
-              </b-field>
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Esforço em Horas" expanded>
-                <b-input v-model="project.duration" type="number"></b-input>
-              </b-field>
-
-              <b-field label="Data de Término" expanded>
-                <b-datepicker
-                  v-if="isClient && project.endDate instanceof Date"
-                  v-model="project.endDate"
-                ></b-datepicker>
-                <b-input disabled v-else></b-input>
-              </b-field>
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Fase Atual" expanded>
-                <b-select v-model="project.currentStep" placeholder="Fase Atual" expanded>
-                  <option
-                    v-for="item in ['Contratação', 'Planejamento', 'Análise/projeto', 'Construção', 'Teste', 'Parado', 'Concluído']"
-                    :value="item"
-                    :key="item"
-                  >
-                    {{ item }}
-                  </option>
-                </b-select>
-              </b-field>
-
-              <b-field label="Tipo de Cliente" expanded>
-                <b-select v-model="project.clientType" placeholder="Tipo de Cliente" expanded>
-                  <option
-                    v-for="item in ['Interno', 'Externo']"
-                    :value="item"
-                    :key="item"
-                  >
-                    {{ item }}
-                  </option>
-                </b-select>
-              </b-field>
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Tipo de Projeto" expanded>
-                <b-select v-model="project.type" placeholder="Tipo de Projeto" expanded>
-                  <option
-                    v-for="item in ['Evolução Produto', 'Manutenção', 'Desenvolvimento']"
-                    :value="item"
-                    :key="item"
-                  >
-                    {{ item }}
-                  </option>
-                </b-select>
-              </b-field>
-
-              <b-field label="Importância" expanded>
-                <b-select v-model="project.importance" placeholder="Importância" expanded>
-                  <option
-                    v-for="item in ['Baixa', 'Média', 'Alta']"
-                    :value="item"
-                    :key="item"
-                  >
-                    {{ item }}
-                  </option>
-                </b-select>
-              </b-field>
-            </b-field>
-
-            <b-field grouped>
-              <b-field label="Descrição do Projeto" expanded>
-                <b-input type="textarea" v-model="project.description"></b-input>
-              </b-field>
-
-              <b-field label="Justificativa para Seleção" expanded>
-                <b-input type="textarea" v-model="project.justification"></b-input>
-              </b-field>
-            </b-field>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <template>
-          <div v-if="editing">
-            <button type="submit" class="button is-info">
-              Atualizar
-            </button>
-
-            <button type="button" @click="destroy" class="button is-danger">
-              Excluir
-            </button>
-          </div>
-
-          <button v-else type="submit" class="button is-primary">
-            Criar
-          </button>
-        </template>
-      </div>
-    </form>
   </section>
 </template>
 
@@ -285,12 +130,9 @@
 import FormData from 'form-data'
 import { toRoman } from 'roman-numerals'
 import levels from '~/static/levels.json'
-import expectedResults from '~/static/expected-results.json'
-import process from '~/static/process.json'
-const processes = process
-import processAttributes from '~/static/process-attributes.json'
+import processes from '~/static/process.json'
 
-const emptyProjectEvidence = {
+const emptyProjectEvidence = () => ({
   projectId: 0,
   evidenceId: 0,
   roleId: 0,
@@ -298,31 +140,16 @@ const emptyProjectEvidence = {
   filename: 0,
   type: 0,
   typeId: 0,
-}
-
-const flatten = xs =>
-  xs.reduce((acc, ys) => acc.concat(ys), [])
-
-const processesList = Object.values(processes)
-
-const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
-  processesList
-    .filter(({ id, level, levels }) =>
-      levels
-        // GPR
-        ? levels.some(level => selectedFeatures[level].processes.includes(id))
-        : selectedFeatures[level].processes.includes(id)
-    )
+})
 
 export default {
   middleware: 'is-admin',
 
   async asyncData({ app, params }) {
-    const {id} = params
+    const { id } = params
 
     const data = {
       isModalActive: false,
-      expectedResults: Object.values(expectedResults),
       processAttributes: [],
       project: {},
       organization: {},
@@ -330,15 +157,11 @@ export default {
       evidences: [],
       selectedLevels: [],
       projectEvidences: [],
-      newEvidence: Object.assign({}, emptyProjectEvidence),
+      newEvidence: emptyProjectEvidence(),
       dropFiles: [],
       selectedProcesses: [],
-      expectedResultsByProcess: Object.values(expectedResults)
-        .reduce((acc, result) => {
-          if (!acc[result.process]) acc[result.process] = []
-          acc[result.process].push(result)
-          return acc
-        }, {}),
+      selectedAttributes: [],
+      expectedResultsByProcess: app.mps.expectedResultsByProcess,
       processAttributeBySelectedLevel: {}
     }
 
@@ -348,33 +171,11 @@ export default {
     data.evidences = await app.$axios.$get('/evidences')
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
-    data.selectedLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id).sort()
-    )
 
-    data.processAttributes = flatten(
-      levels[data.project.levelId].attributes
-        .map(attrId => processAttributes[attrId])
-        .map(attr =>
-          attr.sub.map((sub, i) => ({
-            id: `${attr.id} (${toRoman(i + 1)})`
-          }))
-        )
-    )
-
-    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
-      .reduce((acc, [level, { attributes }]) => {
-        acc[level] = attributes.sort()
-        return acc
-      }, {})
+    data.selectedProcesses = app.mps.mapProcessesIdsToProcesses(data.unit.selectedProcesses)
+    data.selectedAttributes = levels[data.unit.levelId].attributes
 
     return data
-  },
-
-  created () {
-    // Has to be done on created so the client rendering rehydratation
-    // gets references to the local lists
-    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -391,7 +192,7 @@ export default {
     },
 
     closeModal() {
-      this.newEvidence = Object.assign({}, emptyProjectEvidence)
+      this.newEvidence = emptyProjectEvidence()
       this.isModalActive = false
     },
 
@@ -429,15 +230,6 @@ export default {
       this.$success('Excluído com sucesso')
 
       this.projectEvidences = this.projectEvidences.filter(ev => ev.id !== evidence.id)
-    },
-
-    attributesForProcess (process) {
-      return this.processAttributeBySelectedLevel[
-        process.levels
-          // GPR
-          ? process.levels.filter(level => level >= this.unit.levelId).pop()
-          : process.level
-      ]
     }
   }
 }

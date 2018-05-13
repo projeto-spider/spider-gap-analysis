@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Pré Avaliação MPS - SW',
+    title: 'SPIDER Gap Analysis',
     meta: [
       {
         charset: 'utf-8'
@@ -60,5 +60,6 @@ module.exports = {
     '~plugins/buefy',
     '~plugins/cleave',
     '~plugins/toast',
+    '~plugins/mps'
   ]
 }

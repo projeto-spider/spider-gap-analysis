@@ -7,8 +7,8 @@
           <nav class="navbar">
             <div class="container">
               <div class="navbar-brand">
-                <router-link class="navbar-item" to="/">
-                  Pré Avaliação MPS - SW
+                <router-link class="navbar-item" to="/" exact>
+                  SPIDER Gap Analysis
                 </router-link>
 
                 <span class="navbar-burger burger" data-target="navbarMenuHeroB">
@@ -47,7 +47,7 @@
           <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
               <ul>
-                <nuxt-link tag="li" to="/" exact v-if="isAdmin">
+                <nuxt-link tag="li" :to="isLoggedIn ? '/about' : '/'" exact v-if="isAdmin">
                   <a>Home</a>
                 </nuxt-link>
 
@@ -101,11 +101,19 @@
           <div class="container">
             <div class="columns">
               <div class="column">
-                Programa de Pós-Graduação em Computação Aplicada - PPCA
+                <p>Universidade Federal do Pará</p>
+                <p>Programa de Pós-Graduação em Computação Aplicada - PPCA</p>
+                <p>Faculdade de Computação</p>
               </div>
-              <div class="column">
-                <p>Mestrado Profissional em Computação Aplicada</p>
-                <p>Mestranda: Silvia M. F. Brabo</p>
+
+              <div class="column column-logos">
+                <a href="http://spider.ufpa.br/" target="_blank">
+                  <img class="logo spider-logo" :src="spiderLogo">
+                </a>
+
+                <a href="https://portal.ufpa.br/" target="_blank">
+                  <img class="logo ufpa-logo" :src="ufpaLogo">
+                </a>
               </div>
             </div>
           </div>
@@ -117,8 +125,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import spiderLogo from '~/assets/spider-logo.png'
+import ufpaLogo from '~/assets/ufpa-logo.png'
 
 export default {
+  data: () => ({
+    spiderLogo,
+    ufpaLogo
+  }),
+
   computed: {
     ...mapGetters(['loggedUser', 'isLoggedIn', 'isAdmin', 'isReviewer']),
   },
@@ -133,3 +148,22 @@ export default {
 </script>
 
 <style lang="sass" src="@/assets/overrides.scss"></style>
+
+<style scoped>
+.logo {
+  height: auto;
+  margin-left: 32px;
+}
+
+.column-logos {
+  text-align: right;
+}
+
+.spider-logo {
+  width: 48px;
+}
+
+.ufpa-logo {
+  width: 60px;
+}
+</style>

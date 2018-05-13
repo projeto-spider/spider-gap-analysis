@@ -18,7 +18,6 @@ const attrs = [
   'clientType',
   'importance',
   'justification',
-  'levelId',
   'unitId'
 ]
 
