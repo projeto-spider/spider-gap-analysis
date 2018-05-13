@@ -177,11 +177,6 @@ export default {
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
 
-    data.availableProcesses = [...new Set(
-      data.projectEvidences
-        .map(evi => evi.typeId)
-    )]
-
     const selectedProcessesSet = new Set(data.unit.selectedProcesses)
     data.selectedProcesses = Object.values(processes)
       .filter(({id}) => selectedProcessesSet.has(id))
