@@ -115,7 +115,7 @@
               </div>
 
               <div class="column">
-                <b-table :data="levels[levelId].attributes">
+                <b-table :data="levels[unit.levelId].attributes">
                   <template scope="props">
                     <b-table-column label="Atributos de Processo">
                       {{ props.row }}
