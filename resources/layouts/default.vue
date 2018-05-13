@@ -7,7 +7,7 @@
           <nav class="navbar">
             <div class="container">
               <div class="navbar-brand">
-                <router-link class="navbar-item" to="/">
+                <router-link class="navbar-item" to="/" exact>
                   SPIDER Gap Analysis
                 </router-link>
 
