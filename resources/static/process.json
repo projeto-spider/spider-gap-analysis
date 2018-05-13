@@ -3,7 +3,7 @@
     "id":"GPR",
     "description":"Gerência de Projetos",
     "proposal":"O propósito do processo Gerência de Projetos é estabelecer e manter planos que definem as atividades, recursos e responsabilidades do projeto, bem como prover informações sobre o andamento do projeto que permitam a realização de correções quando houver desvios significativos no desempenho do projeto. O propósito deste processo evolui à medida que a organização cresce em maturidade. ",
-    "levels": ["G", "E", "B"]
+    "level":"G"
   },
   "GRE":{
     "id":"GRE",
@@ -65,6 +65,12 @@
     "proposal":"O propósito do processo Gerência de Reutilização é gerenciar o ciclo de vida dos ativos reutilizáveis.",
     "level":"E"
   },
+  "GPR Evolução":{
+    "id":"GPR Evolução",
+    "description":"Gerência de Projetos",
+    "proposal":"O propósito do processo Gerência de Projetos é estabelecer e manter planos que definem as atividades, recursos e responsabilidades do projeto, bem como prover informações sobre o andamento do projeto que permitam a realização de correções quando houver desvios significativos no desempenho do projeto. O propósito deste processo evolui à medida que a organização cresce em maturidade. ",
+    "level":"E"
+  },
   "DRE":{
     "id":"DRE",
     "description":"Desenvolvimento de Requisitos",
@@ -123,6 +129,12 @@
     "id":"GQP",
     "description":"Gerenciado Quantitativamente",
     "proposal":"O propósito do processo Gerência Quantitativa do Projeto é gerenciar quantitativamente o processo definido para o projeto de forma a alcançar os objetivos para qualidade e para o desempenho do processo estabelecidos para o projeto.",
+    "level":"B"
+  },
+  "GPR Evolução II":{
+    "id":"GPR Evolução II",
+    "description":"Gerência de Projetos",
+    "proposal":"O propósito do processo Gerência de Projetos é estabelecer e manter planos que definem as atividades, recursos e responsabilidades do projeto, bem como prover informações sobre o andamento do projeto que permitam a realização de correções quando houver desvios significativos no desempenho do projeto. O propósito deste processo evolui à medida que a organização cresce em maturidade. ",
     "level":"B"
   }
 }

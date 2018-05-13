@@ -60,5 +60,6 @@ module.exports = {
     '~plugins/buefy',
     '~plugins/cleave',
     '~plugins/toast',
+    '~plugins/mps'
   ]
 }

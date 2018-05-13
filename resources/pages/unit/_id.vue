@@ -19,7 +19,7 @@
                 </option>
               </b-select>
 
-              <p v-else>{{organizationName}}</p>
+              <p v-else>{{organization.name}}</p>
             </b-field>
 
             <b-field label="Nome" expanded>
@@ -102,27 +102,23 @@
             <div class="columns">
               <div v-if="levelId !== 'A'" class="column">
                 <b-table
-                  :data="processesForLevel(levelId)"
-                  :checked-rows.sync="selectedProcesses"
+                  :data="processesByLevel[levelId]"
+                  :checked-rows.sync="unit.selectedProcesses"
                   checkable
                 >
                   <template scope="props">
                     <b-table-column label="Processo">
-                      {{ props.row.id }}
+                      {{ props.row }}
                     </b-table-column>
                   </template>
                 </b-table>
               </div>
 
               <div class="column">
-                <b-table
-                  :data="processAttributesForLevel(levelId)"
-                  :checked-rows.sync="selectedProcesseAttributes"
-                  checkable
-                >
+                <b-table :data="levels[levelId].attributes">
                   <template scope="props">
-                    <b-table-column label="Atributo do Processo">
-                      {{ props.row.id }}
+                    <b-table-column label="Atributos de Processo">
+                      {{ props.row }}
                     </b-table-column>
                   </template>
                 </b-table>
@@ -137,45 +133,17 @@
 
 <script>
 import levels from '~/static/levels.json'
-import processes from '~/static/process.json'
 import expectedResults from '~/static/expected-results.json'
 import attributes from '~/static/process-attributes.json'
 
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
-const processesList = Object.values(processes)
-const processAttributesList = flatten(
-  Object.values(levels)
-    .map(level =>
-      level.attributes
-        .map(attr => ({
-          levelId: level.id,
-          id: attr
-        }))
-    )
-)
-
 const levelContains = (first, second) =>
   first >= second
 
 const levelsUpTo = levelId =>
   Object.keys(levels).filter(id => id >= levelId)
-
-const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
-  processesList
-    .filter(({ id, level, levels }) =>
-      levels
-        // GPR
-        ? levels.some(level => selectedFeatures[level].processes.includes(id))
-        : selectedFeatures[level].processes.includes(id)
-    )
-
-const selectedFeaturesToSelectedAttrs = (selectedFeatures) =>
-  processAttributesList
-    .filter(({ id, levelId }) =>
-      selectedFeatures[levelId].attributes.includes(id)
-    )
 
 export default {
   middleware: 'is-admin',
@@ -192,26 +160,16 @@ export default {
         manager: '',
         coordinator: '',
         colaborators: 0,
-        expectedResults: [],
         levelId: 'G',
-        selectedFeatures: {
-          G: { processes: [], attributes: [] },
-          F: { processes: [], attributes: [] },
-          E: { processes: [], attributes: [] },
-          D: { processes: [], attributes: [] },
-          C: { processes: [], attributes: [] },
-          B: { processes: [], attributes: [] },
-          A: { processes: [], attributes: [] }
-        }
+        selectedProcesses: []
       },
+      organization: {},
       // Although unit.level is cumulative, it helps to have
       // an array mostly for loops and to check inclusion in
       // valid level ranges
       selectedLevels: ['G'],
       selectableOrganizations: [],
-      selectedProcesses: [],
-      selectedProcesseAttributes: [],
-      organizationName: false,
+      processesByLevel: app.mps.processesByLevel,
       levels
     }
 
@@ -224,18 +182,11 @@ export default {
     data.unit = unit
 
     const organization = await app.$axios.$get(`/organizations/${unit.organizationId}`)
-    data.organizationName = organization.name
+    data.organization = organization
 
     data.selectedLevels = levelsUpTo(data.unit.levelId)
 
     return data
-  },
-
-  created () {
-    // Has to be done on created so the client rendering rehydratation
-    // gets references to the local lists
-    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
-    this.selectedProcesseAttributes = selectedFeaturesToSelectedAttrs(this.unit.selectedFeatures)
   },
 
   head () {
@@ -252,8 +203,6 @@ export default {
 
   methods: {
     async create() {
-      this.updateSelectedFeatures()
-
       const {id} = await this.$axios.$post('/units', this.unit)
         .catch(this.$translateError('Falha ao criar unidade'))
 
@@ -263,8 +212,6 @@ export default {
     },
 
     async update() {
-      this.updateSelectedFeatures()
-
       const { id } = this.unit
       const data = await this.$axios.$put(`/units/${id}`, this.unit)
         .catch(this.$translateError('Falha ao atualizar unidade'))
@@ -275,66 +222,16 @@ export default {
     async destroy() {
       const { id } = this.unit
       const data = await this.$axios.$delete(`/units/${id}`)
-        .catch(this.$translateError('Falha ao atualizar unidade'))
+        .catch(this.$translateError('Falha ao deletar unidade'))
 
       this.$success('Excluído com sucesso')
 
       this.$router.push('/unit/')
     },
 
-    updateSelectedFeatures () {
-      const groupProcessesByLevel = this.selectedProcesses
-        .reduce((acc, process) => {
-          const level = process.levels
-            // GPR
-            ? process.levels.filter(level => this.selectedLevels.includes(level)).pop()
-            : process.level
-
-          if (!acc[level]) acc[level] = []
-          acc[level].push(process.id)
-          return acc
-        }, {})
-
-      const groupAttrsByLevel = this.selectedProcesseAttributes
-        .reduce((acc, attr) => {
-          if (!acc[attr.levelId]) acc[attr.levelId] = []
-          acc[attr.levelId].push(attr.id)
-          return acc
-        }, {})
-
-      this.unit.selectedFeatures = Object.values(levels)
-        .reduce((acc, level) => {
-          const hasThisLevel = this.selectedLevels.includes(level.id)
-
-          acc[level.id] = {
-            processes: hasThisLevel && groupProcessesByLevel[level.id] || [],
-            attributes: hasThisLevel && groupAttrsByLevel[level.id] || [],
-          }
-          return acc
-        }, {})
-    },
-
     setUnitLevelId (levelId) {
       this.unit.levelId = levelId
       this.selectedLevels = levelsUpTo(this.unit.levelId)
-    },
-
-    processesForLevel (levelId) {
-      const gprLevel = processes.GPR.levels
-        .filter(level => this.selectedLevels.includes(level))
-        .pop()
-
-      return processesList.filter(({ level, levels}) =>
-        levels
-          // GPR
-          ? levels.includes(levelId) && levelId === gprLevel
-          : levelId === level
-      )
-    },
-
-    processAttributesForLevel (levelId) {
-      return processAttributesList
-        .filter(attr => attr.levelId === levelId)
     }
   }
 }

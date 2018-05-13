@@ -5,13 +5,13 @@ const levels = require('../../resources/static/levels.json')
 const levelIds = Object.keys(levels)
 
 class Unit extends Model {
-  getExpectedResults(str) {
+  getSelectedProcesses (str) {
     return str
       .split(',')
       .filter(x => x)
   }
 
-  setExpectedResults(arr) {
+  setSelectedProcesses (arr) {
     return arr.join(',')
   }
 
