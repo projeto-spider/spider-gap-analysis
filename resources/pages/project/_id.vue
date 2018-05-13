@@ -20,20 +20,6 @@
               </b-field>
             </b-field>
 
-            <b-field label="Nível" expanded>
-              <b-select v-model="project.levelId" placeholder="Nível do Projeto" expanded required>
-                <option
-                  v-for="level in levels"
-                  v-if="selectedLevels.includes(level.id)"
-                  :value="level.id"
-                  :key="level.id"
-                >
-                  {{ "[" + level.id + "] " + level.title }}
-                </option>
-              </b-select>
-
-            </b-field>
-
             <b-field grouped>
               <b-field label="Gerente" expanded>
                 <b-input v-model="project.manager" required></b-input>
@@ -160,25 +146,6 @@
 
 <script>
 import UnitPicker from '~/components/unit-picker.vue'
-import levels from '~/static/levels.json'
-
-const attrs = [
-  'name',
-  'manager',
-  'collaborators',
-  'duration',
-  'currentStep',
-  'projectType',
-  'description',
-  'abbr',
-  'lifeCycle',
-  'startDate',
-  'endDate',
-  'clientType',
-  'importance',
-  'justification',
-  'levelId'
-]
 
 export default {
   middleware: 'is-admin',
@@ -207,11 +174,7 @@ export default {
         clientType: '',
         importance: '',
         justification: '',
-        levelId: null,
-      },
-      levels: Object.values(levels),
-      // TODO: use only levels from the Unit
-      selectedLevels: Object.values(levels).map(l => l.id),
+      }
     }
 
     if (id === "new") {
@@ -221,9 +184,6 @@ export default {
     data.project = await app.$axios.$get(`/projects/${id}`)
     data.project.startDate = new Date(data.project.startDate)
     data.project.endDate = new Date(data.project.endDate)
-    data.selectedLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id)
-    )
 
     return data
   },
