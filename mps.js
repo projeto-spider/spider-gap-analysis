@@ -1,8 +1,10 @@
 import processes from '~/static/process.json'
 import expectedResults from '~/static/expected-results.json'
 
+const processesList = Object.values(processes)
+
 export const processesByLevel =
-  Object.values(processes)
+  processesList
     .reduce((acc, process) => {
       if (!acc[process.level]) acc[process.level] = []
       acc[process.level].push(process.id)
@@ -16,3 +18,10 @@ export const expectedResultsByProcess =
       acc[result.process].push(result)
       return acc
     }, {})
+
+export function mapProcessesIdsToProcesses (ids) {
+  const valid = new Set(ids)
+
+  return processesList
+    .filter(({id}) => valid.has(id))
+}
