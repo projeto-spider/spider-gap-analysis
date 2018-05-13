@@ -32,7 +32,7 @@
     <div
       v-for="process in selectedProcesses"
       :key="process.id"
-      v-if="expectedResultsByProcessWithEvidence[process.id].length || attributesByProcessWithEvidence[process.id].length"
+      v-if="process.id === 'Nível A' ? attributesByProcessWithEvidence[process.id].length : expectedResultsByProcessWithEvidence[process.id].length || attributesByProcessWithEvidence[process.id].length"
     >
       <h5 class="title is-5">{{ process.id }}</h5>
 

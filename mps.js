@@ -21,6 +21,9 @@ export const expectedResultsByProcess =
 
 export function mapProcessesIdsToProcesses (ids) {
   const valid = new Set(ids)
+  // Ensure level A is there because you can't select it on
+  // Unit page
+  valid.add('Nível A')
 
   return processesList
     .filter(({id}) => valid.has(id))

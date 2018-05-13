@@ -136,5 +136,11 @@
     "description":"Gerência de Projetos",
     "proposal":"O propósito do processo Gerência de Projetos é estabelecer e manter planos que definem as atividades, recursos e responsabilidades do projeto, bem como prover informações sobre o andamento do projeto que permitam a realização de correções quando houver desvios significativos no desempenho do projeto. O propósito deste processo evolui à medida que a organização cresce em maturidade. ",
     "level":"B"
+  },
+  "Nível A":{
+    "id":"Nível A",
+    "description":"This is not a process. I just do it so level A is included in the loop so it can show it's process attributes.",
+    "proposal":"",
+    "level":"A"
   }
 }
