@@ -46,7 +46,7 @@
           </tr>
 
           <tr
-            v-for="attr in attributesForProcess(process)"
+            v-for="attr in selectedAttributes"
             :key="attr"
           >
             <td>{{ attr }}</td>
@@ -285,7 +285,6 @@
 import FormData from 'form-data'
 import { toRoman } from 'roman-numerals'
 import levels from '~/static/levels.json'
-import expectedResults from '~/static/expected-results.json'
 import process from '~/static/process.json'
 const processes = process
 import processAttributes from '~/static/process-attributes.json'
@@ -305,15 +304,6 @@ const flatten = xs =>
 
 const processesList = Object.values(processes)
 
-const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
-  processesList
-    .filter(({ id, level, levels }) =>
-      levels
-        // GPR
-        ? levels.some(level => selectedFeatures[level].processes.includes(id))
-        : selectedFeatures[level].processes.includes(id)
-    )
-
 export default {
   middleware: 'is-admin',
 
@@ -322,7 +312,6 @@ export default {
 
     const data = {
       isModalActive: false,
-      expectedResults: Object.values(expectedResults),
       processAttributes: [],
       project: {},
       organization: {},
@@ -333,12 +322,8 @@ export default {
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
       selectedProcesses: [],
-      expectedResultsByProcess: Object.values(expectedResults)
-        .reduce((acc, result) => {
-          if (!acc[result.process]) acc[result.process] = []
-          acc[result.process].push(result)
-          return acc
-        }, {}),
+      selectedAttributes: [],
+      expectedResultsByProcess: app.mps.expectedResultsByProcess,
       processAttributeBySelectedLevel: {}
     }
 
@@ -352,29 +337,13 @@ export default {
       r.map(level => level.level_id).sort()
     )
 
-    data.processAttributes = flatten(
-      levels[data.project.levelId].attributes
-        .map(attrId => processAttributes[attrId])
-        .map(attr =>
-          attr.sub.map((sub, i) => ({
-            id: `${attr.id} (${toRoman(i + 1)})`
-          }))
-        )
-    )
+    const selectedProcessesSet = new Set(data.unit.selectedProcesses)
 
-    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
-      .reduce((acc, [level, { attributes }]) => {
-        acc[level] = attributes.sort()
-        return acc
-      }, {})
+    data.selectedProcesses = processesList
+      .filter(({id}) => selectedProcessesSet.has(id))
+    data.selectedAttributes = levels[data.unit.levelId].attributes
 
     return data
-  },
-
-  created () {
-    // Has to be done on created so the client rendering rehydratation
-    // gets references to the local lists
-    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -429,15 +398,6 @@ export default {
       this.$success('Excluído com sucesso')
 
       this.projectEvidences = this.projectEvidences.filter(ev => ev.id !== evidence.id)
-    },
-
-    attributesForProcess (process) {
-      return this.processAttributeBySelectedLevel[
-        process.levels
-          // GPR
-          ? process.levels.filter(level => level >= this.unit.levelId).pop()
-          : process.level
-      ]
     }
   }
 }
