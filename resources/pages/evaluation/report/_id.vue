@@ -105,17 +105,6 @@ const emptyProjectEvidence = {
 const flatten = xs =>
   xs.reduce((acc, ys) => acc.concat(ys), [])
 
-const processesList = Object.values(processes)
-
-const selectedFeaturesToSelectedProjects = (selectedFeatures) =>
-  processesList
-    .filter(({ id, level, levels }) =>
-      levels
-        // GPR
-        ? levels.some(level => selectedFeatures[level].processes.includes(id))
-        : selectedFeatures[level].processes.includes(id)
-    )
-
 export default {
   layout: 'report',
 
@@ -125,9 +114,6 @@ export default {
     const {id} = params
 
     const data = {
-      levels: Object.values(levels),
-      process: Object.values(process),
-      isModalActive: false,
       expectedResults: Object.values(expectedResults),
       processAttributes: Object.values(processAttributes),
       project: {},
@@ -135,57 +121,37 @@ export default {
       unit: {},
       evidences: [],
       selectedLevels: [],
-      selectedProcesses: [],
       excludedLevels: [],
-      availableLevels: [],
-      availableProcesses: [],
+      selectedProcesses: [],
       projectEvidences: [],
       newEvidence: Object.assign({}, emptyProjectEvidence),
       dropFiles: [],
-      expectedResultsByProcess: Object.values(expectedResults)
-        .reduce((acc, result) => {
-          if (!acc[result.process]) acc[result.process] = []
-          acc[result.process].push(result)
-          return acc
-        }, {}),
-      processAttributeBySelectedLevel: {}
+      expectedResultsByProcess: app.mps.expectedResultsByProcess
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
     data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
     data.organization = await app.$axios.$get(`/organizations/${data.unit.organizationId}`)
-    data.evidences = await app.$axios.$get('/evidences')
-    data.evidencesDb = data.evidences
+
+    const evidences = await app.$axios.$get('/evidences')
+    data.evidencesDb = evidences
       .reduce((acc, evidence) => {
         acc[evidence.id] = evidence
         return acc
       }, {})
+
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
-    data.availableLevels = await app.$axios.$get(`/units/${data.project.unitId}/levels`).then(r =>
-      r.map(level => level.level_id).sort()
-    )
-    data.availableProcesses = [...new Set(
-      data.projectEvidences
-        .map(evi => evi.typeId)
-    )]
-    data.selectedProcesses = data.availableProcesses.slice()
+
+    const selectedProcessesSet = new Set(data.unit.selectedProcesses)
+    data.selectedProcesses = Object.values(processes)
+      .filter(({id}) => selectedProcessesSet.has(id))
+    data.selectedAttributes = levels[data.unit.levelId].attributes
+
     data.selectedLevels = Object.keys(levels).filter(level => level >= data.unit.levelId).reverse()
     data.excludedLevels = Object.keys(levels).filter(level => !data.selectedLevels.includes(level)).reverse()
 
-    data.processAttributeBySelectedLevel = Object.entries(data.unit.selectedFeatures)
-      .reduce((acc, [level, { attributes }]) => {
-        acc[level] = attributes.sort()
-        return acc
-      }, {})
-
     return data
-  },
-
-  created () {
-    // Has to be done on created so the client rendering rehydratation
-    // gets references to the local lists
-    this.selectedProcesses = selectedFeaturesToSelectedProjects(this.unit.selectedFeatures)
   },
 
   head () {
@@ -226,7 +192,7 @@ export default {
     attributesByProcessWithEvidence () {
       return Object.values(processes)
         .reduce((acc, process) => {
-          acc[process.id] = this.attributesForProcess(process)
+          acc[process.id] = this.selectedAttributes
             .map(attribute => {
               const projectEvidence = this.projectEvidences.find(ev =>
                 ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
@@ -263,29 +229,6 @@ export default {
         1: parseInt(100 * (this.countColors[1] / this.validEvidences.length)),
         2: parseInt(100 * (this.countColors[2] / this.validEvidences.length))
       }
-    }
-  },
-
-  methods: {
-    updateApprovalStatus(evidence) {
-      this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
-        approval: evidence.approval
-      })
-    },
-
-    updateFeedback(evidence) {
-      this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
-        feedback: evidence.feedback
-      })
-    },
-
-    attributesForProcess (process) {
-      return this.processAttributeBySelectedLevel[
-        process.levels
-          // GPR
-          ? process.levels.filter(level => level >= this.unit.levelId).pop()
-          : process.level
-      ]
     }
   }
 }
