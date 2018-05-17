@@ -46,137 +46,128 @@
     "id":"GPR 8",
     "description":"(A partir do nível E) Os recursos e o ambiente de trabalho necessários para executar os projetos são planejados a partir dos ambientes padrão de trabalho da organização",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que  existe um plano para gerência de dados, que relacione todos os documentos gerados no projeto, sua distribuição, mídia para armazenamento, forma de proteção (segurança e sigilo) e recuperação dos dados?",
-    "process":"GPR",
+    "process":"GPR Evolução",
     "requiresLevel": "E"
   },
   "GPR 9":{
     "id":"GPR 9",
     "description":"Os dados relevantes do projeto são identificados e planejados quanto à forma de coleta, armazenamento e distribuição. Um mecanismo é estabelecido para acessá-los, incluindo, se pertinente, questões de privacidade e segurança",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que  existe um plano para gerência de dados, que relacione todos os documentos gerados no projeto, sua distribuição, mídia para armazenamento, forma de proteção (segurança e sigilo) e recuperação dos dados?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 10":{
     "id":"GPR 10",
     "description":"Um plano geral para a execução do projeto é estabelecido com a integração de planos específicos",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que as informações de planejamento do projeto foram documentadas, organizadas e relacionadas entre si, de forma a comporem o plano de projeto?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 11":{
     "id":"GPR 11",
     "description":"A viabilidade de atingir as metas do projeto é explicitamente avaliada considerando restrições e recursos disponíveis. Se necessário, ajustes são realizados",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que  a viabilidade do projeto foi avaliada de forma explícita após a elaboração do plano do projeto,  e considerando critérios como os objetivos do projeto, os recursos financeiros, técnicos, humanos, bem como das restrições impostas pelo cliente?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 12":{
     "id":"GPR 12",
     "description":"O Plano do Projeto é revisado com todos os interessados e o compromisso com ele é obtido e mantido",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que  há registro de: (i) que todos os interessados tomaram conhecimento, revisaram e se comprometeram com o planejamento do projeto?; (ii) houve recomprometimento conforme necessário?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 13":{
     "id":"GPR 13",
     "description":"O escopo, as tarefas, as estimativas, o orçamento e o cronograma do projeto são monitorados em relação ao planejado",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação ao escopo, prazo, esforço, custos e cronograma?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 14":{
     "id":"GPR 14",
     "description":"Os recursos materiais e humanos bem como os dados relevantes do projeto são monitorados em relação ao planejado",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação ao escopo aos recursos materiais, humanos e em relação aos dados relevantes do projeto?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 15":{
     "id":"GPR 15",
     "description":"Os riscos são monitorados em relação ao planejado",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado ao longo de seu ciclo de vida, comparando o planejado e o realizado em relação aos riscos?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 16":{
     "id":"GPR 16",
     "description":"O envolvimento das partes interessadas no projeto é planejado,monitorado e mantido",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que o que foi planejado em relação ao envolvimento das partes interessadas foi monitorado e se existe evidência de que os compromissos assumidos foram cumpridos ou negociados?",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 17":{
     "id":"GPR 17",
     "description":"Revisões são realizadas em marcos do projeto e conforme estabelecido no planejamento",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que  ocorreram revisões nos marcos do projeto e em outros pontos estabelecidos no planejamento, que complementam o acompanhamento do dia-a-dia com uma visâo mais ampla e abrangente do projeto? ",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 18":{
     "id":"GPR 18",
     "description":"Registros de problemas identificados e o resultado da análise de questões pertinentes, incluindo dependências críticas, são estabelecidos e tratados com as partes interessadas",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que existem registros de identificação e análise dos problemas ocorridos no projeto e de que estes problemas foram  tratados com os interessados? ",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 19":{
     "id":"GPR 19",
     "description":"Ações para corrigir desvios em relação ao planejado e para prevenir a repetição dos problemas identificados são estabelecidas,implementadas e acompanhadas até a sua conclusão",
     "evidence":"",
-    "process":"GPR"
+    "process":"GPR Evolução"
   },
   "GPR 20":{
     "id":"GPR 20",
     "description":"(A partir do nível E) Equipes envolvidas no projeto são estabelecidas e mantidas a partir das regras e diretrizes para estruturação, formação e atuação",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que: (i) as equipes envolvidas no projeto foram definidas a partir das regras e diretrizes organizacionais? (ii) foram mapeados os relacionamentos entre as equipes internas e externas ao projeto (da própria organização e do cliente), conforme pertinente?",
-    "process":"GPR",
-    "requiresLevel": "E"
+    "process":"GPR Evolução"
   },
   "GPR 21":{
     "id":"GPR 21",
     "description":"(A partir do nível E) Experiências relacionadas aos processos contribuem para os ativos de processo organizacional",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que foram coletadas, a partir dos projetos, potenciais contribuições aos ativos de processo? ",
-    "process":"GPR",
-    "requiresLevel": "E"
+    "process":"GPR Evolução"
   },
   "GPR 22":{
     "id":"GPR 22",
     "description":"(A partir do nível B) Os objetivos de qualidade e de desempenho do processo definido para o projeto são estabelecidos e mantidos",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que foi definido um processo para o projeto, a partir dos processos-padrão da organização e das diretrizes estabelecidas para a adaptação do processo-padrão aos projetos?",
-    "process":"GPR",
-    "requiresLevel": "E"
+    "process":"GPR Evolução"
   },
   "GPR 23":{
     "id":"GPR 23",
     "description":"(A partir do nível B) O processo definido para o projeto que o possibilita atender seus objetivos de qualidade e de desempenho é composto com base em técnicas estatísticas e outras técnicas quantitativas",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que: (i) existem, para o projeto, objetivos especificados quantitativamente relacionados a atributos de desempenho do processo e a atributos do produto resultante do processo? (ii) esses objetivos foram revisados e atualizados em função de mudanças no negócio, na organização, no desempenho ou no projeto?",
-    "process":"GPR",
-    "requiresLevel": "E"
+    "process":"GPR Evolução II"
   },
   "GPR 24":{
     "id":"GPR 24",
     "description":"(A partir do nível B) Subprocessos e atributos críticos para avaliar o desempenho e que estão relacionados ao alcance dos objetivos de qualidade e de desempenho do processo do projeto são selecionados",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que: (i) foram selecionados subprocessos adequados para compor o processo definido para o projeto? (ii) esta seleção considerou critérios predefinidos, entre eles sua estabilidade histórica e sua capacidade? (iii) que foram utilizadas técnicas estatísticas e outras técnicas quantitativas para esta seleção?",
-    "process":"GPR",
-    "requiresLevel": "B"
+    "process":"GPR Evolução II"
   },
   "GPR 25":{
     "id":"GPR 25",
     "description":"(A partir do nível B) Medidas e técnicas analíticas são selecionadas para serem utilizadas na gerência quantitativa",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que: (i) a seleção dos subprocessos do processo definido para o projeto para serem gerenciados quantitativa e estatisticamente foi feita baseada nos critérios definidos?; (ii) foram identificados os atributos por meio dos quais cada subprocesso foi gerenciado estatisticamente?",
-    "process":"GPR",
-    "requiresLevel": "B"
+    "process":"GPR Evolução II"
   },
   "GPR 26":{
     "id":"GPR 26",
     "description":"(A partir do nível B) O desempenho dos subprocessos escolhidos para gerência quantitativa é monitorado usando técnicas estatísticas outras técnicas quantitativas",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que: (i) foi determinada a capacidade dos subprocessos escolhidos para gerência quantitativa? (ii) o desempenho do subprocesso foi monitorado com relação à capacidade de satisfazer os objetivos de qualidade e desempenho do projeto? (iii) foram utilizadas técnicas estatísticas e outras técnicas quantitativas nesta monitoração?",
-    "process":"GPR",
-    "requiresLevel": "B"
+    "process":"GPR Evolução II"
   },
   "GPR 27":{
     "id":"GPR 27",
     "description":"(A partir do nível B) O projeto é gerenciado usando técnicas estatísticas e outras técnicas quantitativas para determinar se seus objetivos de qualidade e de desempenho do processo serão atingidos",
     "evidence":"As evidências apresentadas para este resultado permitem assegurar que o projeto foi monitorado quanto ao atingimento de seus objetivos de qualidade para o produto e de desempenho dos processos que estão sendo gerenciados estatistica e quantitativamente?",
-    "process":"GPR",
-    "requiresLevel": "B"
+    "process":"GPR Evolução II"
   },
   "GPR 28":{
     "id":"GPR 28",
     "description":"(A partir do nível B) Questões que afetam os objetivos de qualidade e de desempenho do processo do projeto são alvo de análise de causa raiz",
     "evidence":"As evidências apresentadas para este questões que afetam os objetivos de qualidade e de desempenho do processo do projeto são alvo de análise de causa raiz?",
-    "process":"GPR",
-    "requiresLevel": "B"
+    "process":"GPR Evolução II"
   },
   "GRE 1":{
     "id":"GRE 1",
