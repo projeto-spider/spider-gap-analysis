@@ -5,8 +5,8 @@
     </h1>
 
     <div class="logo-container">
-      <a href="http://spider.ufpa.br/" target="_blank">
-        <img :src="spiderLogo" alt="Projeto SPIDER">
+      <a href="https://github.com/projeto-spider/spider-gap-analysis" target="_blank">
+        <img :src="gapLogo" alt="Projeto SPIDER">
       </a>
     </div>
   </section>
@@ -14,13 +14,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import spiderLogo from '~/assets/spider-logo.png'
+import gapLogo from '~/assets/spider-gap-logo-alt.png'
 
 export default {
   middleware: 'logged-in',
 
   data: () => ({
-    spiderLogo,
+    gapLogo,
   }),
 
   computed: {
@@ -43,6 +43,6 @@ export default {
 }
 
 .logo-container img {
-  max-width: 150px;
+  max-width: 240px;
 }
 </style>

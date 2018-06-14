@@ -114,6 +114,10 @@
                 <a href="https://portal.ufpa.br/" target="_blank">
                   <img class="logo ufpa-logo" :src="ufpaLogo">
                 </a>
+
+                <a href="https://github.com/projeto-spider/spider-gap-analysis" target="_blank">
+                  <img class="logo gap-logo" :src="gapLogo">
+                </a>
               </div>
             </div>
           </div>
@@ -125,11 +129,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import gapLogo from '~/assets/spider-gap-logo-alt.png'
 import spiderLogo from '~/assets/spider-logo.png'
 import ufpaLogo from '~/assets/ufpa-logo.png'
 
 export default {
   data: () => ({
+    gapLogo,
     spiderLogo,
     ufpaLogo
   }),
@@ -157,6 +163,10 @@ export default {
 
 .column-logos {
   text-align: right;
+}
+
+.gap-logo {
+  width: 72px;
 }
 
 .spider-logo {
