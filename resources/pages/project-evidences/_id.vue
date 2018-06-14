@@ -74,7 +74,7 @@
       </table>
     </div>
 
-    <b-modal :active.sync="isModalActive">
+    <b-modal :active.sync="isModalActive" @close="dropFiles = []">
       <form @submit.prevent="create">
         <div class="modal-card">
           <section class="modal-card-body">
@@ -100,20 +100,20 @@
               </b-select>
             </b-field>
 
-            <b-upload required v-model="dropFiles" drag-drop>
-              <section class="section">
-                <div class="content has-text-centered">
-                  <p>
-                    <b-icon
-                      icon="upload"
-                      size="is-large">
-                    </b-icon>
-                  </p>
+            <b-field class="file">
+              <b-upload v-model="dropFiles">
+                <a class="button is-primary">
+                  <b-icon icon="upload"></b-icon>
+                  <span>Selecionar arquivo</span>
+                </a>
+              </b-upload>
 
-                  <p>Arraste o arquivo ou clique aqui para upload</p>
-                </div>
-              </section>
-            </b-upload>
+              <span class="file-name" v-if="dropFiles && dropFiles.length">
+                {{ dropFiles[0].name }}
+              </span>
+
+              <span class="file-name" v-else>Nenhum arquivo selecionado</span>
+            </b-field>
           </section>
 
           <footer class="modal-card-foot">
@@ -194,6 +194,7 @@ export default {
     closeModal() {
       this.newEvidence = emptyProjectEvidence()
       this.isModalActive = false
+      this.dropFiles = []
     },
 
     openEvidence(type, id) {
