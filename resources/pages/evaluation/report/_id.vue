@@ -143,7 +143,7 @@ export default {
     data.roles = await app.$axios.$get('/roles')
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
 
-    data.selectedProcesses = app.mps.mapProcessesIdsToProcesses(data.unit.selectedProcesses)
+    data.selectedProcesses = app.mps.getUnitProcesses(data.unit)
     data.selectedAttributes = levels[data.unit.levelId].attributes
 
     data.selectedLevels = Object.keys(levels).filter(level => level >= data.unit.levelId).reverse()

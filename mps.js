@@ -19,12 +19,19 @@ export const expectedResultsByProcess =
       return acc
     }, {})
 
-export function mapProcessesIdsToProcesses (ids) {
+export function mapProcessesIdsToProcesses (ids, isLevelA) {
   const valid = new Set(ids)
-  // Ensure level A is there because you can't select it on
-  // Unit page
-  valid.add('Nível A')
+
+  if (isLevelA) {
+    // Ensure level A is there because you can't select it on
+    // Unit page
+    valid.add('Nível A')
+  }
 
   return processesList
     .filter(({id}) => valid.has(id))
+}
+
+export function getUnitProcesses (unit) {
+  return mapProcessesIdsToProcesses(unit.selectedProcesses, unit.levelId === 'A')
 }
