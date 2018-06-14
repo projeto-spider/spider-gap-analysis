@@ -168,8 +168,8 @@ export default {
     data.project = await app.$axios.$get(`/projects/${id}`)
     data.unit = await app.$axios.$get(`/units/${data.project.unitId}`)
     data.organization = await app.$axios.$get(`/organizations/${data.unit.organizationId}`)
-    data.evidences = await app.$axios.$get('/evidences')
-    data.roles = await app.$axios.$get('/roles')
+    data.evidences = await app.$axios.$get(`/units/${data.unit.id}/evidences`)
+    data.roles = await app.$axios.$get(`/units/${data.unit.id}/roles`)
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
 
     data.selectedProcesses = app.mps.mapProcessesIdsToProcesses(data.unit.selectedProcesses)

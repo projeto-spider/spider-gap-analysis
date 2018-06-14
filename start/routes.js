@@ -24,6 +24,7 @@ Route.group(() => {
   Route.resource('projects.evidences', 'ProjectEvidenceController').apiOnly()
   Route.resource('roles', 'RoleController').apiOnly()
   Route.get('units/:unitId/roles', 'RoleController.fromUnit')
+  Route.get('units/:unitId/evidences', 'EvidenceController.fromUnit')
   Route.resource('members', 'MemberController').apiOnly()
   Route.resource('evidences', 'EvidenceController').apiOnly()
   Route.get('me', 'UserController.me').middleware('auth')
