@@ -90,7 +90,7 @@
     </div>
 
     <!-- Hero content: will be in the middle -->
-    <div class="hero-body">
+    <div class="hero-body main-content">
       <nuxt/>
     </div>
 
@@ -156,6 +156,10 @@ export default {
 <style lang="sass" src="@/assets/overrides.scss"></style>
 
 <style scoped>
+.main-content {
+  background-color: #f1f1f1;
+}
+
 .logo {
   height: auto;
   margin-left: 32px;

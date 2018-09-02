@@ -4,26 +4,32 @@
       Nova
     </nuxt-link>
 
-    <table class="table is-fullwidth">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Papel</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="proj in roles">
-          <th>{{proj.id}}</th>
-          <td>{{proj.name}}</td>
-          <td>
-            <nuxt-link :to="`/role/${proj.id}`">
-              <button class="button is-primary">Ver</button>
-            </nuxt-link>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <table class="table is-fullwidth is-marginless">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Papel</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="role in roles" :key="role.id">
+                <th>{{role.id}}</th>
+                <td>{{role.name}}</td>
+                <td>
+                  <nuxt-link :to="`/role/${role.id}`">
+                    <button class="button is-primary">Ver</button>
+                  </nuxt-link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 

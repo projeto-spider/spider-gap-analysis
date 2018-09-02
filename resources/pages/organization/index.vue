@@ -4,7 +4,10 @@
       Nova
     </nuxt-link>
 
-    <table class="table is-fullwidth">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <table class="table is-fullwidth is-marginless">
       <thead>
         <tr>
           <th>ID</th>
@@ -13,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="org in organizations">
+              <tr v-for="org in organizations" :key="org.id">
           <th>{{org.id}}</th>
           <td>
             {{org.name}}
@@ -26,6 +29,11 @@
         </tr>
       </tbody>
     </table>
+        </div>
+      </div>
+    </div>
+
+
   </section>
 </template>
 
