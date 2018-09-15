@@ -1,5 +1,7 @@
+import levels from '~/static/levels.json'
 import processes from '~/static/process.json'
 import expectedResults from '~/static/expected-results.json'
+import processAttributes from '~/static/process-attributes.json'
 
 const processesList = Object.values(processes)
 
@@ -16,6 +18,13 @@ export const expectedResultsByProcess =
     .reduce((acc, result) => {
       if (!acc[result.process]) acc[result.process] = []
       acc[result.process].push(result)
+      return acc
+    }, {})
+
+export const processAttributesByLevel =
+  Object.values(levels)
+    .reduce((acc, level) => {
+      acc[level.id] = level.attributes.map(attrId => processAttributes[attrId])
       return acc
     }, {})
 
