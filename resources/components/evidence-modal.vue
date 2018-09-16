@@ -1,5 +1,5 @@
 <template>
-  <b-modal :active.sync="isActive" @close="onClose">
+  <b-modal :active="isActive" @close="onClose">
     <div class="card" v-if="projectEvidence">
       <div v-if="isImage" class="card-image">
         <figure class="image">

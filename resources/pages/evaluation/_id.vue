@@ -3,140 +3,42 @@
     <h2 class="title">{{project.name}}</h2>
     <h3 class="subtitle">{{organization.name}} - {{unit.name}}</h3>
 
-    <p><h5 class="title is-5">Avaliação</h5></p>
-
-    <router-link class="button" :to="`/evaluation/report/${$route.params.id}`" target="_blank">
-      Relatório
+    <router-link
+      class="button is-info is-medium"
+      :to="`/evaluation/report/${$route.params.id}`"
+      target="_blank"
+      style="float: right"
+    >
+      <span class="icon">
+        <i class="fa fa-paperclip"></i>
+      </span>
+      <span>Relatório</span>
     </router-link>
 
-    <br>
-    <br>
+    <h4 class="title is-4">Avaliação</h4>
 
-    <div
+    <process-collapse
       v-for="process in selectedProcesses"
       :key="process.id"
-      v-if="process.id === 'Nível A' ? attributesByProcessWithEvidence[process.id] && attributesByProcessWithEvidence[process.id].length : expectedResultsByProcessWithEvidence[process.id] && expectedResultsByProcessWithEvidence[process.id].length || attributesByProcessWithEvidence[process.id].length"
-    >
-      <h5 class="title is-5">{{ process.id }}</h5>
 
-      <table class="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Evidência</th>
-            <th>Arquivo</th>
-            <th>Ações</th>
-            <th>Feedback</th>
-          </tr>
-        </thead>
+      :readOnlyProjectEvidences="true"
+      :hideRowsWithoutEvidence="true"
+      :showEvaluationColumn="true"
+      :progressType="'howManyGreen'"
 
-        <tbody>
-          <tr
-            v-for="result in expectedResultsByProcessWithEvidence[process.id]"
-            :key="result.id"
-          >
-            <td>{{ result.id }}</td>
-            <td>{{ result.evidenceName }}</td>
-            <td>
-              <a :href="`/uploads/${result.projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
-            </td>
-            <td>
-              <b-field>
-                <b-radio-button
-                  v-model="result.projectEvidence.approval"
-                  :native-value="0"
-                  type="is-danger"
-                  @input="updateApprovalStatus(result.projectEvidence)"
-                >
-                  <b-icon icon="close"></b-icon>
-                  <span>Vermelho</span>
-                </b-radio-button>
+      :process="process"
 
-                <b-radio-button
-                  v-model="result.projectEvidence.approval"
-                  :native-value="1"
-                  type="is-warning"
-                  @input="updateApprovalStatus(result.projectEvidence)"
-                >
-                  Amarelo
-                </b-radio-button>
+      :processAttributes="selectedAttributes"
+      :roles="roles"
+      :evidences="evidences"
 
-                <b-radio-button
-                  v-model="result.projectEvidence.approval"
-                  :native-value="2" type="is-success"
-                  @input="updateApprovalStatus(result.projectEvidence)"
-                >
-                  <b-icon icon="check"></b-icon>
-                  <span>Verde</span>
-                </b-radio-button>
-              </b-field>
-            </td>
-            <td>
-              <b-field v-if="result.projectEvidence.approval < 2">
-                <b-input
-                  v-model="result.projectEvidence.feedback"
-                  @input="updateFeedback(result.projectEvidence)"
-                  maxlength="200"
-                  type="textarea"
-                ></b-input>
-              </b-field>
-            </td>
-          </tr>
+      :rolesById="rolesById"
+      :evidencesById="evidencesById"
+      :indexedProjectEvidences="indexedProjectEvidences"
 
-          <tr
-            v-for="attr in attributesByProcessWithEvidence[process.id]"
-            :key="attr.id"
-          >
-            <td>{{ attr.id }}</td>
-            <td>{{ attr.evidenceName }}</td>
-            <td>
-              <a :href="`/uploads/${attr.projectEvidence.filename}`" target="_blank" class="button is-secondary">Arquivo</a>
-            </td>
-            <td>
-              <b-field>
-                <b-radio-button
-                  v-model="attr.projectEvidence.approval"
-                  :native-value="0"
-                  type="is-danger"
-                  @input="updateApprovalStatus(attr.projectEvidence)"
-                >
-                  <b-icon icon="close"></b-icon>
-                  <span>Vermelho</span>
-                </b-radio-button>
-
-                <b-radio-button
-                  v-model="attr.projectEvidence.approval"
-                  :native-value="1"
-                  type="is-warning"
-                  @input="updateApprovalStatus(attr.projectEvidence)"
-                >
-                  Amarelo
-                </b-radio-button>
-
-                <b-radio-button
-                  v-model="attr.projectEvidence.approval"
-                  :native-value="2" type="is-success"
-                  @input="updateApprovalStatus(attr.projectEvidence)"
-                >
-                  <b-icon icon="check"></b-icon>
-                  <span>Verde</span>
-                </b-radio-button>
-              </b-field>
-            </td>
-            <td>
-              <b-field v-if="attr.projectEvidence.approval < 2">
-                <b-input
-                  v-model="attr.projectEvidence.feedback"
-                  @input="updateFeedback(attr.projectEvidence)"
-                  maxlength="200"
-                  type="textarea"
-                ></b-input>
-              </b-field>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      :onChangeApprovalStatus="onChangeApprovalStatus"
+      :onChangeFeedback="onChangeFeedback"
+    ></process-collapse>
   </section>
 </template>
 
@@ -146,8 +48,14 @@ import expectedResults from '~/static/expected-results.json'
 import levels from '~/static/levels.json'
 import processes from '~/static/process.json'
 
+import ApprovalInput from '~/components/approval-input.vue'
+
+import ProcessCollapse from '~/components/process-collapse.vue'
+
 export default {
   middleware: 'is-reviewer',
+
+  components: { ApprovalInput, ProcessCollapse },
 
   async asyncData({ app, params }) {
     const { id } = params
@@ -160,7 +68,8 @@ export default {
       selectedLevels: [],
       selectedProcesses: [],
       projectEvidences: [],
-      expectedResultsByProcess: app.mps.expectedResultsByProcess
+      expectedResultsByProcess: app.mps.expectedResultsByProcess,
+      processAttributesByLevel: app.mps.processAttributesByLevel
     }
 
     data.project = await app.$axios.$get(`/projects/${id}`)
@@ -168,6 +77,7 @@ export default {
     data.organization = await app.$axios.$get(`/organizations/${data.unit.organizationId}`)
 
     const evidences = await app.$axios.$get('/evidences')
+    data.evidences = evidences
     data.evidencesDb = evidences
       .reduce((acc, evidence) => {
         acc[evidence.id] = evidence
@@ -178,7 +88,7 @@ export default {
     data.projectEvidences = await app.$axios.$get(`/projects/${id}/evidences`)
 
     data.selectedProcesses = app.mps.getUnitProcesses(data.unit)
-    data.selectedAttributes = levels[data.unit.levelId].attributes
+    data.selectedAttributes = app.mps.processAttributesByLevel[data.unit.levelId]
 
     return data
   },
@@ -190,65 +100,67 @@ export default {
   },
 
   computed: {
-    expectedResultsByProcessWithEvidence () {
-      return Object.entries(this.expectedResultsByProcess)
-        .reduce((acc, [process, expectedResults]) => {
-          acc[process] = expectedResults.map(result => {
-            const projectEvidence = this.projectEvidences.find(ev =>
-              ev.type === 'expectedResult' && ev.typeId == result.id
-            )
-
-            if (!projectEvidence) return
-
-            const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
-
-            return Object.assign({}, result, {
-              evidenceName,
-              projectEvidence
-            })
-          })
-          .filter(x => x)
-
+    evidencesById () {
+      return this.evidences
+        .reduce((acc, evidence) => {
+          acc[evidence.id] = evidence
           return acc
         }, {})
     },
 
-    attributesByProcessWithEvidence () {
-      return Object.values(processes)
-        .reduce((acc, process) => {
-          acc[process.id] = this.selectedAttributes
-            .map(attribute => {
-              const projectEvidence = this.projectEvidences.find(ev =>
-                ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
-              )
-
-              if (!projectEvidence) return
-
-              const evidenceName = this.evidencesDb[projectEvidence.evidenceId].name
-
-              return {
-                id: attribute,
-                evidenceName,
-                projectEvidence
-              }
-            })
-            .filter(x => x)
-
+    rolesById () {
+      return this.roles
+        .reduce((acc, role) => {
+          acc[role.id] = role
           return acc
         }, {})
+    },
+
+    indexedProjectEvidences () {
+      const initialAcc = {
+        expectedResult: {},
+        processAttribute: {}
+      }
+
+      return this.projectEvidences
+        .reduce((acc, projectEvidence) => {
+          acc[projectEvidence.type][projectEvidence.typeId] = projectEvidence
+          return acc
+        }, initialAcc)
     }
   },
 
   methods: {
-    updateApprovalStatus(evidence) {
-      this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
-        approval: evidence.approval
+    onChangeApprovalStatus ({ id }, approval) {
+      console.log(arguments)
+      const foundProjectEvidence = this.projectEvidences.find(projectEvidence =>
+        projectEvidence.id === id
+      )
+
+      if (!foundProjectEvidence) {
+        return
+      }
+
+      foundProjectEvidence.approval = approval
+
+      this.$axios.$put(`/projects/${this.project.id}/evidences/${id}`, {
+        approval
       })
     },
 
-    updateFeedback(evidence) {
-      this.$axios.$put(`/projects/${this.project.id}/evidences/${evidence.id}`, {
-        feedback: evidence.feedback
+    onChangeFeedback ({ id }, feedback) {
+      const foundProjectEvidence = this.projectEvidences.find(projectEvidence =>
+        projectEvidence.id === id
+      )
+
+      if (!foundProjectEvidence) {
+        return
+      }
+
+      foundProjectEvidence.feedback = feedback
+
+      this.$axios.$put(`/projects/${this.project.id}/evidences/${id}`, {
+        feedback
       })
     }
   }
