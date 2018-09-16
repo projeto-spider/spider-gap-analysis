@@ -106,7 +106,7 @@
                   :checked-rows.sync="unit.selectedProcesses"
                   checkable
                 >
-                  <template scope="props">
+                  <template slot-scope="props">
                     <b-table-column label="Processo">
                       {{ props.row }}
                     </b-table-column>
@@ -116,7 +116,7 @@
 
               <div class="column">
                 <b-table :data="levels[unit.levelId].attributes">
-                  <template scope="props">
+                  <template slot-scope="props">
                     <b-table-column label="Atributos de Processo">
                       {{ props.row }}
                     </b-table-column>
