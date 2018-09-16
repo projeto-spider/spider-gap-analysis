@@ -11,6 +11,7 @@
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
     "build": "node ./ace nuxtbuild",
     "start": "cross-env NODE_ENV=production node server.js",
+    "start-heroku": "npm run build && cross-env NODE_ENV=production node server.js",
     "precommit": "npm run lint",
     "lint": "standard && eslint --ext .js,.vue resources/",
     "migrate": "node ace migration:run",
