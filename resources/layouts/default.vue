@@ -141,11 +141,11 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(['loggedUser', 'isLoggedIn', 'isAdmin', 'isReviewer']),
+    ...mapGetters(['loggedUser', 'isLoggedIn', 'isAdmin', 'isReviewer'])
   },
 
   methods: {
-    async logout() {
+    async logout () {
       await this.$store.dispatch('logout')
       this.$router.push('/')
     }

@@ -18,7 +18,7 @@ class UnitLevelController {
     const data = request.only(attrs)
     const unit = await Unit.findOrFail(data.unit_id)
       .catch(() => {
-        throw {status: 400, message: 'Invalid organizationId'}
+        throw {status: 400, message: 'Invalid organizationId'} // eslint-disable-line
       })
 
     const exists = await UnitLevel.query().where({
@@ -27,7 +27,7 @@ class UnitLevelController {
     }).fetch()
 
     if (exists.length) {
-      throw {status: 400, message: 'Already exists'}
+      throw {status: 400, message: 'Already exists'} // eslint-disable-line
     }
 
     return await unit.levels().create(data)

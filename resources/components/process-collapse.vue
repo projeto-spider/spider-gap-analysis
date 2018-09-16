@@ -170,7 +170,7 @@ export default {
     },
     showEvaluationColumn: {
       type: Boolean,
-      default: false,
+      default: false
     },
     progressType: {
       type: String,
@@ -203,12 +203,12 @@ export default {
     onChangeFeedback: {
       type: Function,
       default: () => {}
-    },
+    }
   },
 
   data: () => ({
     viewerModal: false,
-    formModal: false,
+    formModal: false
   }),
 
   computed: {
@@ -230,7 +230,7 @@ export default {
           key,
           type,
           expectedResult,
-          projectEvidence,
+          projectEvidence
         }
       })
 
@@ -243,7 +243,7 @@ export default {
           key,
           type,
           processAttribute,
-          projectEvidence,
+          projectEvidence
         }
       })
 

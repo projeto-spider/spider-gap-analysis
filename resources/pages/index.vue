@@ -37,7 +37,7 @@ export default {
   data: () => ({
     gapLogo,
     username: '',
-    password: '',
+    password: ''
   }),
 
   mounted () {
@@ -45,18 +45,16 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['loggedUser', 'isLoggedIn']),
+    ...mapGetters(['loggedUser', 'isLoggedIn'])
   },
 
   methods: {
-    async login() {
+    async login () {
       const { username, password } = this
 
       this.$store.dispatch('login', { username, password })
         .then(this.success)
         .catch(this.$translateError('Usuário ou senha incorretos.'))
-
-
     },
 
     success () {
@@ -64,7 +62,7 @@ export default {
 
       this.$success('Login com sucesso!')
 
-      this.$router.push({ path: '/about', success: true})
+      this.$router.push({ path: '/about', success: true })
     }
   }
 }

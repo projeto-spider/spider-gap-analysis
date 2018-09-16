@@ -42,7 +42,7 @@ class ProjectEvidenceController {
 
     const project = await Project.findOrFail(request.params.projects_id)
       .catch(() => {
-        throw {status: 400, message: 'Invalid project_id'}
+        throw {status: 400, message: 'Invalid project_id'} // eslint-disable-line
       })
 
     return await project.evidences().create(data)

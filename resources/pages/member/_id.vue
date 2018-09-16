@@ -115,7 +115,7 @@ export default {
 
   components: { UnitPicker, ProjectPicker, RolePicker },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const {id} = params
 
     const data = {
@@ -134,7 +134,7 @@ export default {
       }
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       return data
     }
 
@@ -150,13 +150,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.member.id !== 'new'
     }
   },
 
   methods: {
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/members', this.member)
         .catch(this.$translateError('Falha ao processar dados'))
 
@@ -165,22 +165,21 @@ export default {
       this.$router.push(`/member/${id}`)
     },
 
-    async update() {
+    async update () {
       const {id} = this.member
 
       const data = await this.$axios.$put(`/members/${id}`, this.member)
         .catch(this.$translateError('Falha ao atualizar'))
-
 
       this.$success('Atualizado com sucesso')
 
       Object.assign(this.member, data)
     },
 
-    async destroy() {
+    async destroy () {
       const {id} = this.member
 
-      const data = await this.$axios.$delete(`/members/${id}`)
+      await this.$axios.$delete(`/members/${id}`)
         .catch(this.$translateError('Falha ao deletar projeto'))
 
       this.$success('Excluído com sucesso')

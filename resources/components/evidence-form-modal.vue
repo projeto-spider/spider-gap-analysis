@@ -68,11 +68,11 @@ export default {
     onSubmit: Function,
 
     roles: Array,
-    evidences: Array,
+    evidences: Array
   },
 
   data: () => ({
-    projectEvidence: emptyProjectEvidence(),
+    projectEvidence: emptyProjectEvidence()
   }),
 
   methods: {

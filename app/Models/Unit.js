@@ -43,23 +43,23 @@ class Unit extends Model {
     return JSON.stringify(obj)
   }
 
-  organization() {
+  organization () {
     return this.belongsTo('App/Models/Organization')
   }
 
-  levels() {
+  levels () {
     return this.hasMany('App/Models/UnitLevel')
   }
 
-  projects() {
+  projects () {
     return this.hasMany('App/Models/Project', 'id', 'unitId')
   }
 
-  roles() {
+  roles () {
     return this.hasMany('App/Models/Role', 'id', 'unitId')
   }
 
-  evidences() {
+  evidences () {
     return this.hasMany('App/Models/Evidence', 'id', 'unitId')
   }
 

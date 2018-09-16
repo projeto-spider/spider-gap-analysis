@@ -3,15 +3,15 @@
 const Model = use('Model')
 
 class ProjectEvidence extends Model {
-  project() {
+  project () {
     return this.belongsTo('App/Models/Project', 'projectId')
   }
 
-  evidence() {
+  evidence () {
     return this.belongsTo('App/Models/Evidence', 'evidenceId')
   }
 
-  role() {
+  role () {
     return this.belongsTo('App/Models/Role', 'roleId')
   }
 }

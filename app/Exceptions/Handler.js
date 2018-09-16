@@ -32,7 +32,7 @@ class ExceptionHandler {
    *
    * @return {void}
    */
-  async report (error, { request }) {
+  async report (error, { request }) { // eslint-disable-line
   }
 }
 

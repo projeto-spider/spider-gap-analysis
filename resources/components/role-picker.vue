@@ -29,7 +29,7 @@ export default {
     scope: Number
   },
 
-  data() {
+  data () {
     return {
       selected: false,
       roles: [],
@@ -37,7 +37,7 @@ export default {
     }
   },
 
-  async created() {
+  async created () {
     if (this.editing) {
       this.selectedRole = await this.$axios.$get(`/roles/${this.value}`)
       return
@@ -51,11 +51,11 @@ export default {
   },
 
   watch: {
-    selected() {
+    selected () {
       this.$emit('input', this.selected)
     },
 
-    async scope() {
+    async scope () {
       this.roles = await this.$axios.$get(`/units/${this.scope}/roles`)
     }
   }

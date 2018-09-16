@@ -39,7 +39,7 @@
 export default {
   middleware: 'is-admin',
 
-  async asyncData({ app }) {
+  async asyncData ({ app }) {
     const units = await app.$axios.$get('tables/units')
 
     return {

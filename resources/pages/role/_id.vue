@@ -52,7 +52,7 @@ export default {
 
   components: { UnitPicker },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const {id} = params
 
     const data = {
@@ -60,12 +60,12 @@ export default {
         id,
         unitId: null,
         name: '',
-        description: '',
+        description: ''
       },
       levels
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       return data
     }
 
@@ -81,13 +81,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.role.id !== 'new'
     }
   },
 
   methods: {
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/roles', this.role)
         .catch(this.$translateError('Falha ao criar projeto'))
 
@@ -96,7 +96,7 @@ export default {
       this.$router.push(`/role/${id}`)
     },
 
-    async update() {
+    async update () {
       const {id} = this.role
 
       const data = await this.$axios.$put(`/roles/${id}`, this.role)
@@ -109,10 +109,10 @@ export default {
       Object.assign(this.role, data)
     },
 
-    async destroy() {
+    async destroy () {
       const {id} = this.role
 
-      const data = await this.$axios.$delete(`/roles/${id}`)
+      await this.$axios.$delete(`/roles/${id}`)
         .catch(this.$translateError('Falha ao deletar fonte de evidência'))
 
       this.$success('Excluído com sucesso')

@@ -9,14 +9,14 @@ export const mutations = {
 }
 
 export const actions = {
-  nuxtServerInit({ commit }, { req }) {
+  nuxtServerInit ({ commit }, { req }) {
     const { auth } = req
     if (auth && auth.user) {
       commit('SET_USER', auth.user)
     }
   },
 
-  async login({ commit }, { username, password }) {
+  async login ({ commit }, { username, password }) {
     try {
       const { data } = await this.$axios.post('/login', { username, password })
       commit('SET_USER', data)
@@ -29,26 +29,26 @@ export const actions = {
     }
   },
 
-  async logout({ commit }) {
+  async logout ({ commit }) {
     await this.$axios.post('/logout')
     commit('SET_USER', null)
   }
 }
 
 export const getters = {
-  loggedUser(state) {
+  loggedUser (state) {
     return state.authUser
   },
 
-  isLoggedIn(state) {
+  isLoggedIn (state) {
     return !!state.authUser
   },
 
-  isAdmin(state) {
+  isAdmin (state) {
     return state.authUser && state.authUser.role === 10
   },
 
-  isReviewer(state) {
+  isReviewer (state) {
     return state.authUser && state.authUser.role === 9
-  },
+  }
 }

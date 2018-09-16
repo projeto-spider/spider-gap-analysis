@@ -41,11 +41,11 @@
 export default {
   middleware: 'is-reviewer',
 
-  async asyncData({ app }) {
+  async asyncData ({ app }) {
     const projects = await app.$axios.$get('/tables/projects')
 
     return {
-      projects,
+      projects
     }
   }
 }

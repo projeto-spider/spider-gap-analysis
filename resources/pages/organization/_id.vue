@@ -122,19 +122,19 @@ export default {
         state: '',
         city: '',
         complement: '',
-        neighborhood: '',
+        neighborhood: ''
       },
       isClient: false
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       return data
     }
 
     const org = await app.$axios.$get(`/organizations/${id}`)
 
     Object.assign(org, {
-      fundationDate: new Date(org.fundationDate),
+      fundationDate: new Date(org.fundationDate)
     })
 
     Object.assign(data.organization, org)
@@ -142,7 +142,7 @@ export default {
     return data
   },
 
-  mounted() {
+  mounted () {
     this.isClient = !process.server
 
     if (this.isClient) {
@@ -157,13 +157,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.organization.id !== 'new'
-    },
+    }
   },
 
   methods: {
-    findAddress() {
+    findAddress () {
       cep(this.organization.cep.replace('-', ''))
         .then(data => {
           this.organization.state = data.state
@@ -174,7 +174,7 @@ export default {
         .catch(() => {})
     },
 
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/organizations', this.organization)
         .catch(this.$translateError('Falha ao criar organização'))
 
@@ -183,7 +183,7 @@ export default {
       this.$router.push(`/organization/${id}`)
     },
 
-    async update() {
+    async update () {
       const { id } = this.organization
       const data = await this.$axios.$put(`/organizations/${id}`, this.organization)
         .catch(this.$translateError('Falha ao atualizar organização'))
@@ -194,18 +194,16 @@ export default {
       Object.assign(this, data)
     },
 
-    async destroy() {
+    async destroy () {
       const { id } = this.organization
-      const data = await this.$axios.$delete(`/organizations/${id}`)
+
+      await this.$axios.$delete(`/organizations/${id}`)
         .catch(this.$translateError('Falha ao atualizar organização'))
 
       this.$success('Excluído com sucesso')
 
       this.$router.push('/organization/')
-    },
+    }
   }
 }
 </script>
-
-<style>
-</style>

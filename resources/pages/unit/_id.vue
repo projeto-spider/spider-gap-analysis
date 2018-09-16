@@ -133,14 +133,6 @@
 
 <script>
 import levels from '~/static/levels.json'
-import expectedResults from '~/static/expected-results.json'
-import attributes from '~/static/process-attributes.json'
-
-const flatten = xs =>
-  xs.reduce((acc, ys) => acc.concat(ys), [])
-
-const levelContains = (first, second) =>
-  first >= second
 
 const levelsUpTo = levelId =>
   Object.keys(levels).filter(id => id >= levelId)
@@ -173,7 +165,7 @@ export default {
       levels
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       data.selectableOrganizations = await app.$axios.$get('/organizations')
       return data
     }
@@ -196,13 +188,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.unit.id !== 'new'
-    },
+    }
   },
 
   methods: {
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/units', this.unit)
         .catch(this.$translateError('Falha ao criar unidade'))
 
@@ -211,17 +203,19 @@ export default {
       this.$router.push(`/unit/${id}`)
     },
 
-    async update() {
+    async update () {
       const { id } = this.unit
-      const data = await this.$axios.$put(`/units/${id}`, this.unit)
+
+      await this.$axios.$put(`/units/${id}`, this.unit)
         .catch(this.$translateError('Falha ao atualizar unidade'))
 
       this.$success('Atualizado com sucesso')
     },
 
-    async destroy() {
+    async destroy () {
       const { id } = this.unit
-      const data = await this.$axios.$delete(`/units/${id}`)
+
+      await this.$axios.$delete(`/units/${id}`)
         .catch(this.$translateError('Falha ao deletar unidade'))
 
       this.$success('Excluído com sucesso')

@@ -24,7 +24,7 @@ class UnitController {
     const data = request.only(attrs)
     const org = await Organization.findOrFail(data.organizationId)
       .catch(() => {
-        throw {status: 400, message: 'Invalid organizationId'}
+        throw {status: 400, message: 'Invalid organizationId'} // eslint-disable-line
       })
 
     return await org.units().create(data)

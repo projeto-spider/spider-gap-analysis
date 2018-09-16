@@ -37,7 +37,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' },
+    { src: 'font-awesome/scss/font-awesome.scss', lang: 'scss' }
   ],
   /*
   ** Customize the progress-bar color
@@ -51,7 +51,7 @@ module.exports = {
   ** Modules
   */
   modules: [
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   /*
   ** Plugins

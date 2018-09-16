@@ -1,16 +1,16 @@
 'use strict'
 
 class UserController {
-  async login({ request, auth }) {
+  async login ({ request, auth }) {
     const { username, password } = request.all()
     return await auth.attempt(username, password)
   }
 
-  async me({ auth, params }) {
+  async me ({ auth, params }) {
     return auth.user
   }
 
-  async logout({ auth, params }) {
+  async logout ({ auth, params }) {
     return await auth.logout()
   }
 

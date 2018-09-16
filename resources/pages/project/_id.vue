@@ -152,7 +152,7 @@ export default {
 
   components: { UnitPicker },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const {id} = params
 
     const data = {
@@ -173,11 +173,11 @@ export default {
         endDate: new Date(),
         clientType: '',
         importance: '',
-        justification: '',
+        justification: ''
       }
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       return data
     }
 
@@ -188,7 +188,7 @@ export default {
     return data
   },
 
-  mounted() {
+  mounted () {
     this.isClient = !process.server
 
     if (this.isClient) {
@@ -204,13 +204,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.project.id !== 'new'
     }
   },
 
   methods: {
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/projects', this.project)
         .catch(this.$translateError('Falha ao criar projeto'))
 
@@ -219,12 +219,11 @@ export default {
       this.$router.push(`/project/${id}`)
     },
 
-    async update() {
+    async update () {
       const {id} = this.project
 
       const data = await this.$axios.$put(`/projects/${id}`, this.project)
         .catch(this.$translateError('Falha ao atualizar projeto'))
-
 
       this.$success('Atualizado com sucesso')
 
@@ -233,10 +232,10 @@ export default {
       Object.assign(this.project, data)
     },
 
-    async destroy() {
+    async destroy () {
       const {id} = this.project
 
-      const data = await this.$axios.$delete(`/projects/${id}`)
+      await this.$axios.$delete(`/projects/${id}`)
         .catch(this.$translateError('Falha ao deletar project'))
 
       this.$success('Excluído com sucesso')

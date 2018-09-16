@@ -3,7 +3,7 @@
 const Model = use('Model')
 
 class UnitLevel extends Model {
-  unit() {
+  unit () {
     return this.belongsTo('App/Models/Unit')
   }
 }

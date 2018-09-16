@@ -41,7 +41,7 @@
 export default {
   middleware: 'is-admin',
 
-  async asyncData({ app }) {
+  async asyncData ({ app }) {
     const evidences = await app.$axios.$get('/evidences')
 
     return {

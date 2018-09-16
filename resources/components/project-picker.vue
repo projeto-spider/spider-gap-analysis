@@ -24,14 +24,14 @@ export default {
     scope: Number
   },
 
-  data() {
+  data () {
     return {
       selected: false,
-      projects: [],
+      projects: []
     }
   },
 
-  async created() {
+  async created () {
     const url = this.scope
       ? `/units/${this.scope}/projects`
       : '/projects'
@@ -40,11 +40,11 @@ export default {
   },
 
   watch: {
-    selected() {
+    selected () {
       this.$emit('input', this.selected)
     },
 
-    async scope() {
+    async scope () {
       this.projects = await this.$axios.$get(`/units/${this.scope}/projects`)
     }
   }

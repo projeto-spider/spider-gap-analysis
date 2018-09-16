@@ -3,15 +3,15 @@
 const Model = use('Model')
 
 class Project extends Model {
-  unit() {
+  unit () {
     return this.belongsTo('App/Models/Unit', 'unitId')
   }
 
-  members() {
+  members () {
     return this.hasMany('App/Models/Member', 'id', 'roleId')
   }
 
-  evidences() {
+  evidences () {
     return this.hasMany('App/Models/ProjectEvidence', 'id', 'projectId')
   }
 }

@@ -32,7 +32,7 @@ export default {
     }
   },
 
-  data() {
+  data () {
     return {
       selected: false,
       organizations: [],
@@ -41,7 +41,7 @@ export default {
     }
   },
 
-  async created() {
+  async created () {
     if (this.disabled) {
       this.selectedUnit = await this.$axios.$get(`/units/${this.value}`)
       return
@@ -61,7 +61,7 @@ export default {
   },
 
   watch: {
-    selected() {
+    selected () {
       this.$emit('input', this.selected)
     }
   }

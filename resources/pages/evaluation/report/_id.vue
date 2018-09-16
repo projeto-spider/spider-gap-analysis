@@ -99,7 +99,7 @@ const emptyProjectEvidence = {
   process: 0,
   filename: 0,
   type: 0,
-  typeId: 0,
+  typeId: 0
 }
 
 const flatten = xs =>
@@ -110,7 +110,7 @@ export default {
 
   middleware: 'is-reviewer',
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const {id} = params
 
     const data = {
@@ -169,7 +169,7 @@ export default {
         .reduce((acc, [process, expectedResults]) => {
           acc[process] = expectedResults.map(result => {
             const projectEvidence = this.projectEvidences.find(ev =>
-              ev.type === 'expectedResult' && ev.typeId == result.id
+              ev.type === 'expectedResult' && ev.typeId === result.id
             )
 
             if (!projectEvidence) return
@@ -193,7 +193,7 @@ export default {
           acc[process.id] = this.selectedAttributes
             .map(attribute => {
               const projectEvidence = this.projectEvidences.find(ev =>
-                ev.type === 'processAttribute' && ev.typeId == `${process.id}-${attribute}`
+                ev.type === 'processAttribute' && ev.typeId === `${process.id}-${attribute}`
               )
 
               if (!projectEvidence) return
@@ -212,7 +212,7 @@ export default {
         }, {})
     },
 
-    countColors() {
+    countColors () {
       return this.validEvidences
         .map(({ projectEvidence }) => projectEvidence)
         .reduce((acc, { approval }) => {
@@ -221,7 +221,7 @@ export default {
         }, {0: 0, 1: 0, 2: 0})
     },
 
-    percentColors() {
+    percentColors () {
       return {
         0: parseInt(100 * (this.countColors[0] / this.validEvidences.length)),
         1: parseInt(100 * (this.countColors[1] / this.validEvidences.length)),

@@ -3,11 +3,11 @@
 const Model = use('Model')
 
 class Evidence extends Model {
-  unit() {
+  unit () {
     return this.belongsto('app/models/Unit', 'unitid')
   }
 
-  evidences() {
+  evidences () {
     return this.hasMany('App/Models/ProjectEvidence', 'id', 'evidenceId')
   }
 }

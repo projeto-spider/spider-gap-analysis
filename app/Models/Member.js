@@ -3,11 +3,11 @@
 const Model = use('Model')
 
 class Member extends Model {
-  project() {
+  project () {
     return this.belongsTo('App/Models/Project', 'projectId')
   }
 
-  role() {
+  role () {
     return this.belongsTo('App/Models/Role', 'roleId')
   }
 }

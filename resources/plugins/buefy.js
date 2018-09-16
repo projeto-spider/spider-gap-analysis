@@ -21,15 +21,15 @@ Vue.use(Buefy, {
     'Dezembro'
   ],
 
-  defaultDateFormatter(date){
+  defaultDateFormatter (date) {
     const d = date.getDate()
     const m = date.getMonth() + 1
-    const yyyy = date.getFullYear();
+    const yyyy = date.getFullYear()
 
     return twoDigits(d) + '/' + twoDigits(m) + '/' + yyyy
   }
 })
 
-function twoDigits(n) {
+function twoDigits (n) {
   return n < 10 ? `0${n}` : n
 }

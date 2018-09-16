@@ -26,13 +26,13 @@ class MemberController {
   async store ({ request }) {
     const data = request.only(attrs)
 
-    const proj = await Project.findOrFail(data.projectId)
+    await Project.findOrFail(data.projectId)
       .catch(() => {
-        throw {status: 400, message: 'Invalid projectId'}
+        throw {status: 400, message: 'Invalid projectId'} // eslint-disable-line
       })
     const role = await Role.findOrFail(data.roleId)
       .catch(() => {
-        throw {status: 400, message: 'Invalid roleId'}
+        throw {status: 400, message: 'Invalid roleId'} // eslint-disable-line
       })
 
     return await role.members().create(data)

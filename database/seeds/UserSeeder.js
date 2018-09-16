@@ -17,13 +17,13 @@ class UserSeeder {
     await User.create({
       username: 'admin',
       password: 'admin',
-      role: 10,
+      role: 10
     })
 
     await User.create({
       username: 'reviewer',
       password: 'reviewer',
-      role: 9,
+      role: 9
     })
   }
 }

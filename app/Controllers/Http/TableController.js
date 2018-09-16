@@ -6,18 +6,18 @@ const Project = use('App/Models/Project')
 const Member = use('App/Models/Member')
 
 class TableController {
-  async organizations() {
+  async organizations () {
     return await Organization.query()
       .select('id', 'name')
   }
 
-  async units() {
+  async units () {
     return await Unit.query()
       .select('units.id', 'units.name', 'organizations.name as organizationName')
       .innerJoin('organizations', 'units.organizationId', 'organizations.id')
   }
 
-  async projects() {
+  async projects () {
     return await Project.query()
       .select(
         'projects.id',
@@ -29,7 +29,7 @@ class TableController {
       .innerJoin('organizations', 'units.organizationId', 'organizations.id')
   }
 
-  async members() {
+  async members () {
     return await Member.query()
       .select(
         'members.id',

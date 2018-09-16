@@ -43,11 +43,6 @@
 </template>
 
 <script>
-import FormData from 'form-data'
-import expectedResults from '~/static/expected-results.json'
-import levels from '~/static/levels.json'
-import processes from '~/static/process.json'
-
 import ApprovalInput from '~/components/approval-input.vue'
 
 import ProcessCollapse from '~/components/process-collapse.vue'
@@ -57,7 +52,7 @@ export default {
 
   components: { ApprovalInput, ProcessCollapse },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const { id } = params
 
     const data = {
@@ -132,7 +127,6 @@ export default {
 
   methods: {
     onChangeApprovalStatus ({ id }, approval) {
-      console.log(arguments)
       const foundProjectEvidence = this.projectEvidences.find(projectEvidence =>
         projectEvidence.id === id
       )

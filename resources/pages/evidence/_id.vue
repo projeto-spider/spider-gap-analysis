@@ -62,7 +62,7 @@ export default {
 
   components: { UnitPicker },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const {id} = params
 
     const data = {
@@ -75,7 +75,7 @@ export default {
       }
     }
 
-    if (id === "new") {
+    if (id === 'new') {
       return data
     }
 
@@ -91,13 +91,13 @@ export default {
   },
 
   computed: {
-    editing() {
+    editing () {
       return this.evidence.id !== 'new'
     }
   },
 
   methods: {
-    async create() {
+    async create () {
       const {id} = await this.$axios.$post('/evidences', this.evidence)
         .catch(this.$translateError('Falha ao processar dados'))
 
@@ -106,7 +106,7 @@ export default {
       this.$router.push(`/evidence/${id}`)
     },
 
-    async update() {
+    async update () {
       const {id} = this.evidence
 
       const data = await this.$axios.$put(`/evidences/${id}`, this.evidence)
@@ -117,10 +117,10 @@ export default {
       Object.assign(this.evidence, data)
     },
 
-    async destroy() {
+    async destroy () {
       const {id} = this.evidence
 
-      const data = await this.$axios.$delete(`/evidences/${id}`)
+      await this.$axios.$delete(`/evidences/${id}`)
         .catch(this.$translateError('Falha ao deletar evidência'))
 
       this.$success('Excluído com sucesso')

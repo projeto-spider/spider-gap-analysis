@@ -29,9 +29,6 @@
 
 <script>
 import FormData from 'form-data'
-import { toRoman } from 'roman-numerals'
-import levels from '~/static/levels.json'
-import processes from '~/static/process.json'
 
 import ProcessCollapse from '~/components/process-collapse.vue'
 
@@ -40,7 +37,7 @@ export default {
 
   components: { ProcessCollapse },
 
-  async asyncData({ app, params }) {
+  async asyncData ({ app, params }) {
     const { id } = params
 
     const data = {
@@ -136,7 +133,7 @@ export default {
         onConfirm: async () => {
           const { id: projectId } = this.$route.params
 
-          const data = await this.$axios.$delete(`/projects/${projectId}/evidences/${projectEvidence.id}`)
+          await this.$axios.$delete(`/projects/${projectId}/evidences/${projectEvidence.id}`)
             .catch(this.$translateError('Falha ao deletar'))
 
           this.$success('Excluído com sucesso')

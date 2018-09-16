@@ -3,5 +3,5 @@ import Cleave from 'cleave.js'
 
 Vue.directive('cleave', (el, binding) => {
   const input = el.querySelector('input')
-  new Cleave(input, binding.value)
+  new Cleave(input, binding.value) // eslint-disable-line
 })

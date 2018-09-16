@@ -52,8 +52,8 @@ export default {
   props: {
     projectEvidence: Object,
     onChangeApprovalStatus: Function,
-    onChangeFeedback: Function,
-  },
+    onChangeFeedback: Function
+  }
 }
 </script>
 

@@ -35,7 +35,7 @@ class ProjectController {
     const data = request.only(attrs)
     const unit = await Unit.findOrFail(+data.unitId)
       .catch(() => {
-        throw {status: 400, message: 'Invalid unitId'}
+        throw {status: 400, message: 'Invalid unitId'} // eslint-disable-line
       })
 
     return await unit.projects().create(data)
