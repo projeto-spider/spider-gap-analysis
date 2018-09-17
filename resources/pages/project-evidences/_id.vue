@@ -21,6 +21,8 @@
       :evidencesById="evidencesById"
       :indexedProjectEvidences="indexedProjectEvidences"
 
+      :loadingProjectEvidences="loadingProjectEvidences"
+
       :destroyProjectEvidence="destroyProjectEvidence"
       :createProjectEvidence="createProjectEvidence"
     ></process-collapse>
@@ -49,6 +51,7 @@ export default {
       projectEvidences: [],
       selectedProcesses: [],
       selectedAttributes: [],
+      loadingProjectEvidences: [],
       expectedResultsByProcess: app.mps.expectedResultsByProcess,
       processAttributesByLevel: app.mps.processAttributesByLevel
     }
@@ -105,6 +108,13 @@ export default {
 
   methods: {
     async createProjectEvidence ({ type, typeId, roleId, evidenceId, file }) {
+      this.loadingProjectEvidences.push(`${type}-${typeId}`)
+
+      const removeLoadingState = () => {
+        this.loadingProjectEvidences = this.loadingProjectEvidences
+          .filter(id => id !== `${type}-${typeId}`)
+      }
+
       const form = new FormData()
       form.append('process', 1)
       form.append('projectdId', this.project.id)
@@ -115,10 +125,14 @@ export default {
       form.append('file', file)
 
       const created = await this.$axios.$post(`/projects/${this.$route.params.id}/evidences`, form)
-        .catch(this.$translateError('Falha ao criar'))
+        .catch(err => {
+          removeLoadingState()
+          return this.$translateError('Falha ao criar')(err)
+        })
 
       this.$success('Criado com sucesso')
 
+      removeLoadingState()
       this.projectEvidences.push(created)
       this.closeModal()
     },

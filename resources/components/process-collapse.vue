@@ -66,6 +66,7 @@
                       v-else-if="!readOnlyProjectEvidences"
                       @click="() => openFormModal('expectedResult', expectedResult.id)"
                       class="button is-secondary"
+                      :class="{ 'is-loading': loadingProjectEvidences.includes(`expectedResult-${expectedResult.id}`) }"
                     >Inserir Evidência</button>
 
                     <span v-else>-</span>
@@ -103,6 +104,7 @@
                       v-else-if="!readOnlyProjectEvidences"
                       @click="() => openFormModal('processAttribute', `${process.id}-${processAttribute.id}`)"
                       class="button is-secondary"
+                      :class="{ 'is-loading': loadingProjectEvidences.includes(`processAttribute-${process.id}-${processAttribute.id}`) }"
                     >Inserir Evidência</button>
 
                     <span v-else>-</span>
@@ -186,6 +188,11 @@ export default {
     rolesById: Object,
     evidencesById: Object,
     indexedProjectEvidences: Object,
+
+    loadingProjectEvidences: {
+      type: Array,
+      default: () => []
+    },
 
     createProjectEvidence: {
       type: Function,
