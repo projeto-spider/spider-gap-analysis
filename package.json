@@ -11,12 +11,13 @@
     "dev": "nodemon --watch app --watch bootstrap --watch config --watch .env -x node server.js",
     "build": "cross-env NODE_ENV=production ENV_SILENT=true node ./ace nuxtbuild",
     "start": "cross-env NODE_ENV=production node server.js",
-    "heroku-postbuild": "npm run build && cross-env NODE_ENV=production ENV_SILENT=true npm run migrate -- --force && cross-env NODE_ENV=production ENV_SILENT=true npm run seed -- --force",
+    "heroku-postbuild": "npm run build && cross-env NODE_ENV=production ENV_SILENT=true npm run migrate -- --force && cross-env NODE_ENV=production ENV_SILENT=true npm run seed -- --force && cross-env NODE_ENV=production ENV_SILENT=true npm run seed-mock-data -- --force",
     "start-heroku": "cross-env NODE_ENV=production ENV_SILENT=true node server.js",
     "precommit": "npm run lint",
     "lint": "standard && eslint --ext .js,.vue resources/",
     "migrate": "node ace migration:run",
-    "seed": "node ace seed"
+    "seed": "node ace seed --files UserSeeder.js",
+    "seed-mock-data": "node ace seed --files MockSeeder.js"
   },
   "dependencies": {
     "@adonisjs/ace": "^4.0.7",
