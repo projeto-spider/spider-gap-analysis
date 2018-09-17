@@ -31,6 +31,7 @@ Route.group(() => {
   Route.post('login', 'UserController.login')
   Route.post('logout', 'UserController.logout')
 
+  Route.get('tables/homepage', 'TableController.homepage')
   Route.get('tables/organizations', 'TableController.organizations')
   Route.get('tables/units', 'TableController.units')
   Route.get('tables/projects', 'TableController.projects')

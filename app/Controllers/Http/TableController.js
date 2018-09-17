@@ -3,9 +3,38 @@
 const Organization = use('App/Models/Organization')
 const Unit = use('App/Models/Unit')
 const Project = use('App/Models/Project')
+const Role = use('App/Models/Role')
 const Member = use('App/Models/Member')
+const Evidence = use('App/Models/Evidence')
+const ProjectEvidence = use('App/Models/ProjectEvidence')
 
 class TableController {
+  async homepage () {
+    const [
+      organizations,
+      units,
+      projects,
+      roles,
+      members,
+      evidences,
+      projectEvidences
+    ] = await Promise.all([
+      Organization.getCount(),
+      Unit.getCount(),
+      Project.getCount(),
+      Role.getCount(),
+      Member.getCount(),
+      Evidence.getCount(),
+      ProjectEvidence.getCount()
+    ])
+
+    return {
+      count: {
+        organizations, units, projects, roles, members, evidences, projectEvidences
+      }
+    }
+  }
+
   async organizations () {
     return await Organization.query()
       .select('id', 'name')

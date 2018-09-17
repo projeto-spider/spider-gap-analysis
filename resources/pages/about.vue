@@ -1,6 +1,6 @@
 <template>
   <section class="container" style="align-self: flex-start;">
-    <div class="columns">
+    <div class="columns" style="flex-wrap: wrap; justify-content: space-around;">
       <div class="column is-one-third" v-for="(metric, i) in metricList" :key="i">
         <article class="message is-dark" :class="{[metric.color]: true}" style="box-shadow: 0 0 0.5rem rgba(83,78,76,.5);">
           <div class="message-header"></div>
@@ -12,16 +12,6 @@
         </article>
       </div>
     </div>
-
-    <h1 class="title" v-if="false">
-      Bem vindo(a) <strong>{{ loggedUser.username }}</strong>
-    </h1>
-
-    <div class="logo-container" v-if="false">
-      <a href="https://github.com/projeto-spider/spider-gap-analysis" target="_blank">
-        <img :src="gapLogo" alt="Projeto SPIDER">
-      </a>
-    </div>
   </section>
 </template>
 
@@ -29,35 +19,54 @@
 import { mapGetters } from 'vuex'
 import gapLogo from '~/assets/spider-gap-logo-alt.png'
 
+const panels = [
+  { key: 'organizations', singular: 'Organização', plural: 'Organizações' },
+  { key: 'units', singular: 'Unidade Organizacional', plural: 'Unidades Organizacionais' },
+  { key: 'projects', singular: 'Projeto', plural: 'Projetos' },
+  { key: 'roles', singular: 'Fonte de Evidência', plural: 'Fontes de Evidências' },
+  { key: 'members', singular: 'Membro', plural: 'Membros' },
+  { key: 'evidences', singular: 'Evidência', plural: 'Evidências' },
+  { key: 'projectEvidences', singular: 'Evidência em Projeto', plural: 'Evidências em Projetos' }
+]
+
 export default {
   middleware: 'logged-in',
 
-  data: () => ({
-    gapLogo,
+  async asyncData ({ app }) {
+    const { count } = await app.$axios.$get('/tables/homepage')
 
-    metrics: {
-      'Organizações': 0,
-      'Unidades Organizacionais': 0,
-      'Projetos': 0
+    return {
+      gapLogo,
+      count
     }
-  }),
+  },
 
   computed: {
     ...mapGetters(['loggedUser']),
 
     metricList () {
-      const colorFor = {
-        0: 'is-link',
-        1: 'is-dark',
-        2: 'is-info'
-      }
+      const colorFor = [
+        'is-link',
+        'is-dark',
+        'is-info',
+        'is-primary',
+        'is-danger',
+        'is-success',
+        'is-warning'
+      ]
 
-      return Object.entries(this.metrics)
-        .map(([key, value], i) => ({
-          name: key,
-          count: value,
+      return panels.map((panel, i) => {
+        const count = this.count[panel.key]
+        const name = count === 1
+          ? panel.singular
+          : panel.plural
+
+        return {
+          name,
+          count,
           color: colorFor[i]
-        }))
+        }
+      })
     }
   },
 
