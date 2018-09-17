@@ -51,7 +51,7 @@
             <div class="media-content">
               <p class="title is-4">{{result.id}}</p>
               <p class="subtitle is-6">Nível {{ process.level || process.levels.filter(level => level >= unit.levelId).pop()}}</p>
-              <div class="content" v-if="result.projectEvidence.feedback">
+              <div class="content" v-if="result.projectEvidence.feedback && result.projectEvidence.approval < 2">
                 {{result.projectEvidence.feedback}}
               </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="media-content">
               <p class="title is-4">{{attr.id}}</p>
               <p class="subtitle is-6">Nível {{process.level}}</p>
-              <div class="content" v-if="attr.projectEvidence.feedback">
+              <div class="content" v-if="attr.projectEvidence.feedback && attr.projectEvidence.approval < 2">
                 {{attr.projectEvidence.feedback}}
               </div>
             </div>
