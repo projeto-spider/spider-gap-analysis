@@ -181,3 +181,11 @@ export default {
   width: 60px;
 }
 </style>
+
+<style>
+/* Fix not evenly separated form items */
+
+.field.is-grouped .field.is-expanded {
+  flex-basis: 0;
+}
+</style>
