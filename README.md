@@ -10,6 +10,10 @@
 
 <h4 align="center">A helper tool for gap analysis in the context of <a href="https://www.softex.br/wp-content/uploads/2013/07/MPS.BR_Guia_Geral_Software_2016.pdf">MR-MPS-SW</a></h4>
 
+<p align="center">
+  <img src="https://i.imgur.com/YYbzef5.png">
+</p>
+
 Basic feature list:
 
   * Multiple **role** support for both **admin** and **reviewer**
