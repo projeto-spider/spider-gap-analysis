@@ -1,5 +1,13 @@
+const TOKEN = 'app/TOKEN'
+const USER = 'app/USER'
+
+const storedUser = localStorage.getItem(USER)
+const authUser = storedUser
+  ? JSON.parse(storedUser)
+  : false
+
 export const state = () => ({
-  authUser: null
+  authUser
 })
 
 export const mutations = {
@@ -18,8 +26,14 @@ export const actions = {
 
   async login ({ commit }, { username, password }) {
     try {
-      const { data } = await this.$axios.post('/login', { username, password })
+      const { data: { token } } = await this.$axios.post('/login', { username, password })
+      this.$axios.setToken(token, 'Bearer')
+
+      const { data } = await this.$axios.get('/me')
+
       commit('SET_USER', data)
+      localStorage.setItem(TOKEN, token)
+      localStorage.setItem(USER, JSON.stringify(data))
     } catch (error) {
       if (error.response && error.response.status === 401) {
         throw new Error('Bad credentials')
@@ -30,8 +44,10 @@ export const actions = {
   },
 
   async logout ({ commit }) {
-    await this.$axios.post('/logout')
+    this.$axios.setToken(false)
     commit('SET_USER', null)
+    localStorage.setItem(TOKEN, '')
+    localStorage.setItem(USER, '')
   }
 }
 

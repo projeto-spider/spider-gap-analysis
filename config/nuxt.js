@@ -34,6 +34,12 @@ module.exports = {
     linkActiveClass: 'is-active'
   },
   /*
+  ** Render
+  */
+  render: {
+    ssr: false
+  },
+  /*
   ** Global CSS
   */
   css: [
@@ -57,6 +63,7 @@ module.exports = {
   ** Plugins
   */
   plugins: [
+    '~/plugins/axios',
     '~plugins/buefy',
     '~plugins/cleave',
     '~plugins/toast',
