@@ -7,6 +7,10 @@
         </figure>
       </div>
 
+      <div class="card-image">
+        <pdf v-if="isPdf" :src="`/uploads/${projectEvidence.filename}`"></pdf>
+      </div>
+
       <div class="card-content">
         <div class="media">
           <div class="media-content">
@@ -32,9 +36,14 @@
 
 <script>
 import path from 'path'
+import pdf from 'vue-pdf'
 
 export default {
   name: 'EvidenceModal',
+
+  components: {
+    pdf
+  },
 
   props: {
     isActive: Boolean,
@@ -52,7 +61,17 @@ export default {
       const filename = this.projectEvidence.filename
       const extension = path.extname(filename)
 
-      return ['.png', '.jpeg', '.jpg', '.gif'].includes(extension)
+      return ['.png', '.PNG', '.jpeg', '.jpg', '.JPG', '.gif'].includes(extension)
+    },
+    isPdf () {
+      if (!this.projectEvidence) {
+        return false
+      }
+
+      const filename = this.projectEvidence.filename
+      const extension = path.extname(filename)
+
+      return ['.pdf'].includes(extension)
     }
   },
 
