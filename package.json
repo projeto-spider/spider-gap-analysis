@@ -41,6 +41,7 @@
     "roman-numerals": "^0.3.2",
     "sqlite3": "^3.1.13",
     "standard": "^8.6.0",
+    "vue-pdf": "^3.3.1",
     "youch": "^2.0.4"
   },
   "standard": {
