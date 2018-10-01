@@ -54,30 +54,24 @@ export default {
 
   computed: {
     isImage () {
-      if (!this.projectEvidence) {
-        return false
-      }
-
-      const filename = this.projectEvidence.filename
-      const extension = path.extname(filename)
-
-      return ['.png', '.PNG', '.jpeg', '.jpg', '.JPG', '.gif'].includes(extension)
+      return ['.png', '.jpeg', '.jpg', '.gif'].includes(this.returnExtension())
     },
     isPdf () {
-      if (!this.projectEvidence) {
-        return false
-      }
-
-      const filename = this.projectEvidence.filename
-      const extension = path.extname(filename)
-
-      return ['.pdf'].includes(extension)
+      return ['.pdf'].includes(this.returnExtension())
     }
   },
 
   methods: {
     onClose () {
       this.$emit('close')
+    },
+    returnExtension () {
+      if (!this.projectEvidence) {
+        return false
+      }
+
+      const filename = this.projectEvidence.filename
+      return path.extname(filename).toLowerCase()
     }
   }
 }
