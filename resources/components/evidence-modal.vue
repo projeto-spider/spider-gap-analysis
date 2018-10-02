@@ -11,6 +11,14 @@
         <pdf v-if="isPdf" :src="`/uploads/${projectEvidence.filename}`"></pdf>
       </div>
 
+      <div v-if="isVideo" class="card-image">
+        <figure class="video">
+          <video controls>
+            <source :src="`/uploads/${projectEvidence.filename}`" :type="videoMIME">
+          </video>
+        </figure>
+      </div>
+
       <div class="card-content">
         <div class="media">
           <div class="media-content">
@@ -58,6 +66,17 @@ export default {
     },
     isPdf () {
       return ['.pdf'].includes(this.returnExtension())
+    },
+    isVideo () {
+      return ['.mp4', '.ogg', '.webm'].includes(this.returnExtension())
+    },
+    videoMIME () {
+      if (!this.isVideo) {
+        return false
+      }
+
+      const type = this.returnExtension().slice(1)
+      return 'video/' + type
     }
   },
 
