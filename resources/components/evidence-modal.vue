@@ -18,8 +18,13 @@
           </video>
         </figure>
       </div>
-
-      <div class="card-content">
+      <div v-if="isAudio" class="card-image">
+          <figure class="audio">
+              <audio controls>
+                  <source :src="`/uploads/${projectEvidence.filename}`" :type="audioMIME">
+              </audio>
+          </figure>
+      </div>
         <div class="media">
           <div class="media-content">
             <p class="title is-4">
@@ -38,7 +43,6 @@
           </div>
         </div>
       </div>
-    </div>
   </b-modal>
 </template>
 
@@ -70,6 +74,10 @@ export default {
     isVideo () {
       return ['.mp4', '.ogg', '.webm'].includes(this.returnExtension())
     },
+    isAudio(){
+        return ['.mp3','.wav'].includes(this.returnExtension())
+    },
+
     videoMIME () {
       if (!this.isVideo) {
         return false
@@ -77,6 +85,13 @@ export default {
 
       const type = this.returnExtension().slice(1)
       return 'video/' + type
+    },
+    audioMIME(){
+        if(!this.isAudio){
+            return false
+        }
+        const type = this.returnExtension().slice(1)
+        return 'audio/' + type
     }
   },
 
