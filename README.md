@@ -19,6 +19,14 @@ Basic feature list:
   * Multiple **role** support for both **admin** and **reviewer**
   * **Simplified evaluation interface** to speed up analysis step
   * Auto generated **reports** based on analysis made inside the tool
+<details><summary>What is MR-MPS-SW ?</summary>
+<p>
+MR-MPS-SW is part of the brazillian model for software process improvement, 
+created by SOFTEX (Associação  para  Promoção  da  Excelência  do 
+Software  Brasileiro) with the aim of improving their efficiency and competitivity of small and medium companies through 
+the improvement of their processes. It achieves that by standarzing all the parts of project management.
+</p>
+</details>
 
 ## Deploy
 
