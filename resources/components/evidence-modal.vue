@@ -11,15 +11,20 @@
         <pdf v-if="isPdf" :src="`/uploads/${projectEvidence.filename}`"></pdf>
       </div>
 
-      <div v-if="isVideo" class="card-image">
+      <div v-if="isVideo && (mime && mime.includes('video') )" class="card-image">
         <figure class="video">
           <video controls>
-            <source :src="`/uploads/${projectEvidence.filename}`" :type="videoMIME">
+            <source :src="`/uploads/${projectEvidence.filename}`" :type="mime">
           </video>
         </figure>
       </div>
-
-      <div class="card-content">
+      <div v-if="isAudio && (mime && mime.includes('audio'))" style="text-align:center" class="card-image">
+          <figure class="audio">
+              <audio controls>
+                  <source :src="`/uploads/${projectEvidence.filename}`" :type="mime">
+              </audio>
+          </figure>
+      </div>
         <div class="media">
           <div class="media-content">
             <p class="title is-4">
@@ -38,7 +43,6 @@
           </div>
         </div>
       </div>
-    </div>
   </b-modal>
 </template>
 
@@ -53,45 +57,58 @@ export default {
     pdf
   },
 
+  data: () => ({
+    mime: null
+  }),
+
   props: {
     isActive: Boolean,
     projectEvidence: [Boolean, Object],
     evidence: [Boolean, Object],
-    role: [Boolean, Object]
+    role: [Boolean, Object],
   },
 
   computed: {
     isImage () {
-      return ['.png', '.jpeg', '.jpg', '.gif'].includes(this.returnExtension())
+      return ['.png', '.jpeg', '.jpg', '.gif'].includes(this.extension)
     },
     isPdf () {
-      return ['.pdf'].includes(this.returnExtension())
+      return ['.pdf'].includes(this.extension)
     },
     isVideo () {
-      return ['.mp4', '.ogg', '.webm'].includes(this.returnExtension())
+      return ['.mp4', '.ogg', '.webm'].includes(this.extension)
     },
-    videoMIME () {
-      if (!this.isVideo) {
-        return false
-      }
-
-      const type = this.returnExtension().slice(1)
-      return 'video/' + type
-    }
-  },
-
-  methods: {
-    onClose () {
-      this.$emit('close')
+    isAudio(){
+        return ['.mp3','.wav','.ogg'].includes(this.extension)
     },
-    returnExtension () {
+    extension () {
       if (!this.projectEvidence) {
         return false
       }
 
       const filename = this.projectEvidence.filename
       return path.extname(filename).toLowerCase()
+    } 
+  },
+  watch:{
+    extension(){
+        if(
+         !window.fetch ||
+         !this.projectEvidence ||
+         !(this.isVideo || this.isAudio)){
+            this.mime = null
+            return
+        }
+        fetch('/uploads/'+this.projectEvidence.filename)
+        .then((response) =>{
+        this.mime = response.headers.get('Content-type')
+        })
     }
+},
+  methods: {
+    onClose () {
+      this.$emit('close')
+    }   
   }
 }
 </script>
